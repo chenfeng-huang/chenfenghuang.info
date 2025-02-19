@@ -4,7 +4,7 @@ tags: home
 ---
 <h1>Chenfeng Huang</h1>
 <h3>I'm a master student at University of Southern California with a focus on Machine Learning.</h3>
-<h3>Currently, I am working on Time Series Analysis leveraging Diffusion Model.</h3>
+<h3>Currently, I am working on Causal Inference and Anomaly Detection.</h3>
 <nav>
   <ul>
     <li>
