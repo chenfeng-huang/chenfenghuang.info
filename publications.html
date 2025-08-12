@@ -7,62 +7,54 @@ js:
   - js/gh_projects.js
   - js/util_buttons.js
 ---
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h1, h2 {
+        margin-bottom: 15px;
+    }
+    hr {
+        margin: 20px 0;
+        border: none;
+        border-top: 1px solid #ddd;
+    }
+    a {
+        color: black;
+        text-decoration: none;
+    }
+    .item {
+        margin-bottom: 20px;
+    }
+    .item h4 {
+        margin: 0 0 5px 0;
+    }
+    .item p {
+        margin: 0;
+    }
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects & Open-Source</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2 {
-            margin-bottom: 15px;
-        }
-        hr {
-            margin: 20px 0;
-            border: none;
-            border-top: 1px solid #ddd;
-        }
-        a {
-            color: black;
-            text-decoration: none;
-        }
-        .item {
-            margin-bottom: 20px;
-        }
-        .item h4 {
-            margin: 0 0 5px 0;
-        }
-        .item p {
-            margin: 0;
-        }
-
-        /* GitHub-like star badge next to titles */
-        .gh-star-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          margin-left: 8px;
-          color: #57606a;
-          font-size: 0.9em;
-          vertical-align: middle;
-        }
-        .gh-star-badge svg {
-          width: 16px;
-          height: 16px;
-          color: #f2cc60; /* yellow star */
-          fill: currentColor;
-        }
-    </style>
-</head>
-<body>
+    /* GitHub-like star badge next to titles */
+    .gh-star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+      color: #57606a;
+      font-size: 0.9em;
+      vertical-align: middle;
+    }
+    .gh-star-badge svg {
+      width: 16px;
+      height: 16px;
+      color: #f2cc60; /* yellow star */
+      fill: currentColor;
+    }
+</style>
     <h1>Publications & Projects</h1>
     <p>
         Academic publications and side-projects with open source code. Click-through to check out the
@@ -100,7 +92,7 @@ js:
                 Data Mining: Child Mind Institute Problematic Internet Use 
                 <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" title="GitHub stars" aria-label="GitHub stars">
                   <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-                  <span class="count">—</span>
+                  <span class="count">0</span>
                 </span>
             </h4>
             <p class="leading-5 text-gray-700 dark:text-gray-300">
@@ -120,7 +112,7 @@ js:
               System Security: Secure File System with Comprehensive Access Control
               <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-                <span class="count">—</span>
+                <span class="count">0</span>
               </span>
             </h4>
             <p class="leading-5 text-gray-700 dark:text-gray-300">
@@ -141,7 +133,7 @@ js:
             Database Design: Firebase Emulation with Citi Bike Station Query Platform
             <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/firebase_emulation_citibike" title="GitHub stars" aria-label="GitHub stars">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-              <span class="count">—</span>
+              <span class="count">0</span>
             </span>
           </h4>
           <p class="leading-5 text-gray-700 dark:text-gray-300">
@@ -183,7 +175,11 @@ js:
               countNode.textContent = count;
               try { localStorage.setItem(cacheKey(repo), JSON.stringify({ count: count, ts: Date.now() })); } catch (e) {}
             })
-            .catch(function () { countNode.textContent = '?'; });
+            .catch(function (err) {
+              /* Surface minimal error for debugging without breaking layout */
+              try { console.warn('GitHub stars fetch failed for', repo, err && err.message); } catch (e) {}
+              countNode.textContent = countNode.textContent || '0';
+            });
         });
       })();
     </script>
