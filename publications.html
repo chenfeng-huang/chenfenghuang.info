@@ -43,6 +43,23 @@ js:
         .item p {
             margin: 0;
         }
+
+        /* GitHub-like star badge next to titles */
+        .gh-star-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          margin-left: 8px;
+          color: #57606a;
+          font-size: 0.9em;
+          vertical-align: middle;
+        }
+        .gh-star-badge svg {
+          width: 16px;
+          height: 16px;
+          color: #f2cc60; /* yellow star */
+          fill: currentColor;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +98,10 @@ js:
         >
             <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
                 Data Mining: Child Mind Institute Problematic Internet Use 
+                <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" title="GitHub stars" aria-label="GitHub stars">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                  <span class="count">—</span>
+                </span>
             </h4>
             <p class="leading-5 text-gray-700 dark:text-gray-300">
               Developed a silver-medal solution for the Kaggle CMI-PIU competition by integrating tabular and time-series features, 
@@ -96,7 +117,11 @@ js:
             rel="noopener noreferrer"
         >
             <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-              System Security: Secure Multi-Layered File System with Comprehensive Access Control
+              System Security: Secure File System with Comprehensive Access Control
+              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                <span class="count">—</span>
+              </span>
             </h4>
             <p class="leading-5 text-gray-700 dark:text-gray-300">
               Designed and implemented a secure multi-layered file system with robust access control, 
@@ -107,13 +132,17 @@ js:
 
     <div class="item">
       <a
-          href="https://github.com/91MrHuang/firebase_emulation_citibike"
+          href="https://github.com/chenfeng-huang/firebase_emulation_citibike"
           aria-label="Firebase Emulation"
           target="_blank"
           rel="noopener noreferrer"
       >
           <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
             Database Design: Firebase Emulation with Citi Bike Station Query Platform
+            <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/firebase_emulation_citibike" title="GitHub stars" aria-label="GitHub stars">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+              <span class="count">—</span>
+            </span>
           </h4>
           <p class="leading-5 text-gray-700 dark:text-gray-300">
             Replicated Firebase RESTful API using Flask. 
@@ -121,6 +150,43 @@ js:
           </p>
       </a>
     </div>
+
+    <script>
+      (function () {
+        var elements = document.querySelectorAll('.gh-stars[data-repo]');
+        if (!elements || elements.length === 0) return;
+
+        var oneHourMs = 60 * 60 * 1000;
+        function cacheKey(repo) { return 'gh-stars:' + repo; }
+
+        elements.forEach(function (el) {
+          var repo = el.getAttribute('data-repo');
+          if (!repo) return;
+
+          var countNode = el.querySelector('.count') || el;
+          try {
+            var cached = localStorage.getItem(cacheKey(repo));
+            if (cached) {
+              var parsed = JSON.parse(cached);
+              if (parsed && parsed.count != null && (Date.now() - parsed.ts) < oneHourMs) {
+                countNode.textContent = parsed.count;
+                return; // fresh cache
+              }
+            }
+          } catch (e) {}
+
+          fetch('https://api.github.com/repos/' + repo)
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
+            .then(function (data) {
+              var count = (data && (data.stargazers_count != null ? data.stargazers_count : data.watchers_count));
+              if (count == null) count = '0';
+              countNode.textContent = count;
+              try { localStorage.setItem(cacheKey(repo), JSON.stringify({ count: count, ts: Date.now() })); } catch (e) {}
+            })
+            .catch(function () { countNode.textContent = '?'; });
+        });
+      })();
+    </script>
 
     <!-- <div class="item">
       <a
