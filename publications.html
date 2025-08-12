@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: uncompressed
 title: Publications & Projects
 tags: publications
 permalink: /publications/
@@ -160,8 +160,7 @@ permalink: /publications/
       </a>
     </div>
   <hr />
-</body>
-</html> -->
+    -->
 
 <!-- 
 <h2>Project</h2>
@@ -345,117 +344,164 @@ permalink: /publications/
 </style> -->
 
 <script>
-// Simple, robust GitHub stars script
+// Define functions globally first to ensure they're always available
 function updateGitHubStars() {
-  console.log('GitHub stars script starting...');
-  
-  // Find all elements with data-repo attribute
-  var elements = document.querySelectorAll('[data-repo]');
-  console.log('Found', elements.length, 'elements with data-repo');
-  
-  if (elements.length === 0) {
-    console.warn('No elements with data-repo found');
-    return;
-  }
+      console.log('=== GitHub stars script starting ===');
+      console.log('Document ready state:', document.readyState);
+      console.log('Fetch API available:', typeof fetch !== 'undefined');
+      
+      // Find all elements with data-repo attribute
+      var elements = document.querySelectorAll('[data-repo]');
+      console.log('Found', elements.length, 'elements with data-repo');
+      
+      // Log all elements found
+      for (var i = 0; i < elements.length; i++) {
+        console.log('Element', i, ':', elements[i], 'data-repo:', elements[i].getAttribute('data-repo'));
+      }
+      
+      if (elements.length === 0) {
+        console.warn('No elements with data-repo found');
+        console.log('All elements on page:', document.querySelectorAll('*').length);
+        return;
+      }
 
-  elements.forEach(function(element, index) {
-    var repo = element.getAttribute('data-repo');
-    if (!repo) {
-      console.warn('Element', index, 'has no data-repo attribute');
-      return;
-    }
-    
-    console.log('Processing repo:', repo);
-    
-    // Find the count element
-    var countElement = element.querySelector('.count');
-    if (!countElement) {
-      console.warn('No .count element found for', repo);
-      return;
-    }
-
-    // Set loading state
-    countElement.textContent = '...';
-    
-    // First check for cached value
-    try {
-      var cached = localStorage.getItem('gh-stars-v5:' + repo);
-      if (cached) {
-        var cachedData = JSON.parse(cached);
-        var ageMs = Date.now() - cachedData.timestamp;
-        // Use cache if less than 1 hour old
-        if (ageMs < 3600000) {
-          console.log('Using cached value for', repo, ':', cachedData.count);
-          countElement.textContent = cachedData.count.toString();
+      elements.forEach(function(element, index) {
+        var repo = element.getAttribute('data-repo');
+        if (!repo) {
+          console.warn('Element', index, 'has no data-repo attribute');
           return;
         }
-      }
-    } catch (e) {
-      console.warn('Cache error for', repo, ':', e);
-    }
-    
-    // Fetch from GitHub API
-    console.log('Fetching data for:', repo);
-    
-    // Check if fetch is available
-    if (typeof fetch === 'undefined') {
-      console.error('Fetch API not available');
-      countElement.textContent = '?';
-      return;
-    }
-    
-    fetch('https://api.github.com/repos/' + repo)
-      .then(function(response) {
-        console.log('Response status for', repo, ':', response.status);
-        if (!response.ok) {
-          throw new Error('HTTP ' + response.status);
-        }
-        return response.json();
-      })
-      .then(function(data) {
-        console.log('Success for', repo, '- stars:', data.stargazers_count);
-        var stars = data.stargazers_count || 0;
-        countElement.textContent = stars.toString();
         
-        // Cache the result
-        try {
-          localStorage.setItem('gh-stars-v5:' + repo, JSON.stringify({
-            count: stars,
-            timestamp: Date.now()
-          }));
-          console.log('Cached result for', repo, ':', stars);
-        } catch (e) {
-          console.warn('Failed to cache for', repo, ':', e);
+        console.log('Processing repo:', repo);
+        
+        // Find the count element
+        var countElement = element.querySelector('.count');
+        if (!countElement) {
+          console.warn('No .count element found for', repo);
+          return;
         }
-      })
-      .catch(function(error) {
-        console.error('Failed to fetch stars for', repo, ':', error.message);
-        countElement.textContent = '0';
+
+        // Set loading state
+        countElement.textContent = '...';
+        
+        // First check for cached value
+        try {
+          var cached = localStorage.getItem('gh-stars-v5:' + repo);
+          if (cached) {
+            var cachedData = JSON.parse(cached);
+            var ageMs = Date.now() - cachedData.timestamp;
+            // Use cache if less than 1 hour old
+            if (ageMs < 3600000) {
+              console.log('Using cached value for', repo, ':', cachedData.count);
+              countElement.textContent = cachedData.count.toString();
+              return;
+            }
+          }
+        } catch (e) {
+          console.warn('Cache error for', repo, ':', e);
+        }
+        
+        // Fetch from GitHub API
+        console.log('Fetching data for:', repo);
+        
+        // Check if fetch is available
+        if (typeof fetch === 'undefined') {
+          console.error('Fetch API not available');
+          countElement.textContent = '?';
+          return;
+        }
+        
+        fetch('https://api.github.com/repos/' + repo)
+          .then(function(response) {
+            console.log('Response status for', repo, ':', response.status);
+            if (!response.ok) {
+              throw new Error('HTTP ' + response.status);
+            }
+            return response.json();
+          })
+          .then(function(data) {
+            console.log('Success for', repo, '- stars:', data.stargazers_count);
+            var stars = data.stargazers_count || 0;
+            countElement.textContent = stars.toString();
+            
+            // Cache the result
+            try {
+              localStorage.setItem('gh-stars-v5:' + repo, JSON.stringify({
+                count: stars,
+                timestamp: Date.now()
+              }));
+              console.log('Cached result for', repo, ':', stars);
+            } catch (e) {
+              console.warn('Failed to cache for', repo, ':', e);
+            }
+          })
+          .catch(function(error) {
+            console.error('Failed to fetch stars for', repo, ':', error.message);
+            countElement.textContent = '0';
+          });
       });
-  });
+    }
+
+// Manual API test function
+function testAPI() {
+  console.log('=== Testing GitHub API directly ===');
+  fetch('https://api.github.com/repos/chenfeng-huang/Secure-Multi-Layered-File-System')
+    .then(function(response) {
+      console.log('API Response status:', response.status);
+      console.log('API Response headers:', response.headers);
+      return response.json();
+    })
+    .then(function(data) {
+      console.log('API Success! Stars:', data.stargazers_count);
+      alert('API works! Stars: ' + data.stargazers_count);
+    })
+    .catch(function(error) {
+      console.error('API Error:', error);
+      alert('API Error: ' + error.message);
+    });
 }
 
-// Multiple ways to ensure the script runs
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', updateGitHubStars);
-} else {
+// Alias for convenience
+function testGitHubStars() {
   updateGitHubStars();
 }
 
-// Backup execution
-window.addEventListener('load', updateGitHubStars);
+// Initialization function
+function initializeGitHubStars() {
+  try {
 
-// Final fallback with delay
-setTimeout(updateGitHubStars, 500);
+  // Multiple ways to ensure the script runs
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateGitHubStars);
+  } else {
+    updateGitHubStars();
+  }
 
-// Manual trigger for testing
-window.testGitHubStars = updateGitHubStars;
+  // Backup execution
+  window.addEventListener('load', updateGitHubStars);
 
-// Debug info
-console.log('Script loaded successfully. You can manually run with: testGitHubStars()');
+  // Final fallback with delay
+  setTimeout(updateGitHubStars, 500);
+
+  // Debug info
+  console.log('=== GitHub Stars Script Initialization Complete ===');
+  console.log('Script loaded successfully.');
+  console.log('Available functions:');
+  console.log('- testGitHubStars() - Test the star updating function');
+  console.log('- testAPI() - Test GitHub API directly');
+  console.log('- updateGitHubStars() - Main function to update star counts');
+  console.log('Document ready state:', document.readyState);
+  console.log('jQuery available:', typeof $ !== 'undefined');
+  console.log('Fetch available:', typeof fetch !== 'undefined');
+
+  } catch (error) {
+    console.error('Script error:', error);
+    alert('Script error: ' + error.message);
+  }
+}
+
+// Initialize the script
+initializeGitHubStars();
 </script>
 
-<!-- Debug button for manual testing -->
-<button onclick="testGitHubStars()" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: red; color: white; padding: 10px;">
-  TEST STARS
-</button>
+
