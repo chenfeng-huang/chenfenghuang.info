@@ -22,4 +22,4 @@ tags: home
   </ul>
 </nav>
 
-<h3><a href="{{ site.baseurl }}/cv/">View my Resume</a></h3>
+<!-- <h3><a href="{{ site.baseurl }}/cv/">View my Resume</a></h3> -->

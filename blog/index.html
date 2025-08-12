@@ -7,7 +7,7 @@ tags: blog
 {% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
 {% assign coffee_note_count = coffee_notes | size %}
 
-<h1>Blogs</h1>
+<h2>Blogs</h2>
 <div class="home">
   {% if regular_posts_count > 0 %}
     <div class="posts">
@@ -36,7 +36,7 @@ tags: blog
   {% endif %}
 </div>
 
-<h1>Coffee Notes</h1>
+<h2>Coffee Notes</h2>
 <div class="coffee-note">
   {% if coffee_note_count > 0 %}
     {% assign sca_post = coffee_notes | where: "title", "SCA CSP Brewing-Professional Certificate" | first %}

@@ -8,7 +8,7 @@
 * [Home page](https://chenfenghuang.info/)
 * [About](https://chenfenghuang.info/about)
 * [Publication and Project](https://chenfenghuang.info/)
-* [Blog ](http://thundergolfer.com/about/)
+* [Blog ](https://chenfenghuang.info/blog/)
 
 ----
 
