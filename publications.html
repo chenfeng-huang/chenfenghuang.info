@@ -110,7 +110,7 @@ js:
         >
             <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
               System Security: Secure File System with Comprehensive Access Control
-              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" data-default-count="8" title="GitHub stars" aria-label="GitHub stars">
+              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
                 <span class="count">0</span>
               </span>
@@ -145,59 +145,98 @@ js:
 
     <script>
       (function () {
-        var elements = document.querySelectorAll('.gh-stars[data-repo]');
-        if (!elements || elements.length === 0) return;
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+          console.log('GitHub stars script starting...');
+          
+          var elements = document.querySelectorAll('.gh-stars[data-repo]');
+          console.log('Found', elements.length, 'elements with .gh-stars[data-repo]');
+          
+          if (!elements || elements.length === 0) {
+            console.warn('No GitHub star elements found');
+            return;
+          }
 
-        var oneHourMs = 60 * 60 * 1000;
-        var CACHE_VERSION = 'v3';
-        function cacheKey(repo) { return 'gh-stars:' + CACHE_VERSION + ':' + repo; }
+          var oneHourMs = 60 * 60 * 1000;
+          var CACHE_VERSION = 'v4'; // Updated cache version
+          function cacheKey(repo) { return 'gh-stars:' + CACHE_VERSION + ':' + repo; }
 
-        elements.forEach(function (el) {
-          var repo = el.getAttribute('data-repo');
-          if (!repo) return;
-
-          var countNode = el.querySelector('.count') || el;
-          var defaultCountRaw = el.getAttribute('data-default-count');
-          var defaultCount = defaultCountRaw != null ? parseInt(defaultCountRaw, 10) : null;
-          var provisional = null;
-
-          // 1) Show cached value immediately if present
-          try {
-            var cached = localStorage.getItem(cacheKey(repo));
-            if (cached) {
-              var parsed = JSON.parse(cached);
-              if (parsed && parsed.count != null) {
-                var cachedNum = parseInt(parsed.count, 10);
-                if (!isNaN(cachedNum)) provisional = cachedNum;
-              }
+          elements.forEach(function (el, index) {
+            var repo = el.getAttribute('data-repo');
+            console.log('Processing element', index, 'with repo:', repo);
+            
+            if (!repo) {
+              console.warn('No data-repo attribute found for element', index);
+              return;
             }
-          } catch (e) {}
 
-          // Choose the best preliminary value: prefer the greater of default and cached
-          if (defaultCount != null && !isNaN(defaultCount)) {
-            provisional = (provisional == null) ? defaultCount : Math.max(defaultCount, provisional);
-          }
-          if (provisional != null) {
-            countNode.textContent = String(provisional);
-          }
+            var countNode = el.querySelector('.count');
+            if (!countNode) {
+              console.warn('No .count element found for repo:', repo);
+              return;
+            }
+            
+            var defaultCountRaw = el.getAttribute('data-default-count');
+            var defaultCount = defaultCountRaw != null ? parseInt(defaultCountRaw, 10) : null;
+            console.log('Default count for', repo, ':', defaultCount);
+            
+            var provisional = null;
 
-          // 2) Always fetch latest (SWR)
-          fetch('https://api.github.com/repos/' + repo)
-            .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
-            .then(function (data) {
-              var count = (data && (data.stargazers_count != null ? data.stargazers_count : data.watchers_count));
-              if (count == null) count = 0;
-              // If we had a default and API returns lower (e.g., watchers), keep the higher
-              var finalCount = count;
-              if (defaultCount != null && !isNaN(defaultCount)) {
-                finalCount = Math.max(defaultCount, Number(count) || 0);
+            // 1) Show cached value immediately if present
+            try {
+              var cached = localStorage.getItem(cacheKey(repo));
+              if (cached) {
+                var parsed = JSON.parse(cached);
+                if (parsed && parsed.count != null) {
+                  var cachedNum = parseInt(parsed.count, 10);
+                  if (!isNaN(cachedNum)) provisional = cachedNum;
+                }
               }
-              countNode.textContent = String(finalCount);
-              try { localStorage.setItem(cacheKey(repo), JSON.stringify({ count: finalCount, ts: Date.now() })); } catch (e) {}
-            })
-            .catch(function (err) {
-              try { console.warn('GitHub stars fetch failed for', repo, err && err.message); } catch (e) {}
-            });
+            } catch (e) {
+              console.warn('Error reading cache for', repo, ':', e);
+            }
+
+            // Choose the best preliminary value: prefer the greater of default and cached
+            if (defaultCount != null && !isNaN(defaultCount)) {
+              provisional = (provisional == null) ? defaultCount : Math.max(defaultCount, provisional);
+            }
+            if (provisional != null) {
+              countNode.textContent = String(provisional);
+              console.log('Set provisional count for', repo, ':', provisional);
+            }
+
+            // 2) Always fetch latest (SWR)
+            console.log('Fetching GitHub API for:', repo);
+            fetch('https://api.github.com/repos/' + repo)
+              .then(function (r) { 
+                console.log('GitHub API response status for', repo, ':', r.status);
+                return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); 
+              })
+              .then(function (data) {
+                console.log('GitHub API data for', repo, ':', data);
+                var count = data.stargazers_count;
+                if (count == null) count = 0;
+                
+                // Use actual API count, don't artificially inflate with defaults
+                var finalCount = count;
+                console.log('Final count for', repo, ':', finalCount);
+                
+                countNode.textContent = String(finalCount);
+                try { 
+                  localStorage.setItem(cacheKey(repo), JSON.stringify({ count: finalCount, ts: Date.now() })); 
+                  console.log('Cached count for', repo, ':', finalCount);
+                } catch (e) {
+                  console.warn('Error caching for', repo, ':', e);
+                }
+              })
+              .catch(function (err) {
+                console.error('GitHub stars fetch failed for', repo, ':', err.message);
+                // If fetch fails and we have no provisional value, show 0
+                if (provisional == null) {
+                  countNode.textContent = '0';
+                }
+              });
+          });
         });
       })();
     </script>
