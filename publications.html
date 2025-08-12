@@ -3,9 +3,6 @@ layout: default
 title: Publications & Projects
 tags: publications
 permalink: /publications/
-js:
-  - js/gh_projects.js
-  - js/util_buttons.js
 ---
 <style>
     body {
@@ -143,103 +140,7 @@ js:
       </a>
     </div>
 
-    <script>
-      (function () {
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-          console.log('GitHub stars script starting...');
-          
-          var elements = document.querySelectorAll('.gh-stars[data-repo]');
-          console.log('Found', elements.length, 'elements with .gh-stars[data-repo]');
-          
-          if (!elements || elements.length === 0) {
-            console.warn('No GitHub star elements found');
-            return;
-          }
 
-          var oneHourMs = 60 * 60 * 1000;
-          var CACHE_VERSION = 'v4'; // Updated cache version
-          function cacheKey(repo) { return 'gh-stars:' + CACHE_VERSION + ':' + repo; }
-
-          elements.forEach(function (el, index) {
-            var repo = el.getAttribute('data-repo');
-            console.log('Processing element', index, 'with repo:', repo);
-            
-            if (!repo) {
-              console.warn('No data-repo attribute found for element', index);
-              return;
-            }
-
-            var countNode = el.querySelector('.count');
-            if (!countNode) {
-              console.warn('No .count element found for repo:', repo);
-              return;
-            }
-            
-            var defaultCountRaw = el.getAttribute('data-default-count');
-            var defaultCount = defaultCountRaw != null ? parseInt(defaultCountRaw, 10) : null;
-            console.log('Default count for', repo, ':', defaultCount);
-            
-            var provisional = null;
-
-            // 1) Show cached value immediately if present
-            try {
-              var cached = localStorage.getItem(cacheKey(repo));
-              if (cached) {
-                var parsed = JSON.parse(cached);
-                if (parsed && parsed.count != null) {
-                  var cachedNum = parseInt(parsed.count, 10);
-                  if (!isNaN(cachedNum)) provisional = cachedNum;
-                }
-              }
-            } catch (e) {
-              console.warn('Error reading cache for', repo, ':', e);
-            }
-
-            // Choose the best preliminary value: prefer the greater of default and cached
-            if (defaultCount != null && !isNaN(defaultCount)) {
-              provisional = (provisional == null) ? defaultCount : Math.max(defaultCount, provisional);
-            }
-            if (provisional != null) {
-              countNode.textContent = String(provisional);
-              console.log('Set provisional count for', repo, ':', provisional);
-            }
-
-            // 2) Always fetch latest (SWR)
-            console.log('Fetching GitHub API for:', repo);
-            fetch('https://api.github.com/repos/' + repo)
-              .then(function (r) { 
-                console.log('GitHub API response status for', repo, ':', r.status);
-                return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); 
-              })
-              .then(function (data) {
-                console.log('GitHub API data for', repo, ':', data);
-                var count = data.stargazers_count;
-                if (count == null) count = 0;
-                
-                // Use actual API count, don't artificially inflate with defaults
-                var finalCount = count;
-                console.log('Final count for', repo, ':', finalCount);
-                
-                countNode.textContent = String(finalCount);
-                try { 
-                  localStorage.setItem(cacheKey(repo), JSON.stringify({ count: finalCount, ts: Date.now() })); 
-                  console.log('Cached count for', repo, ':', finalCount);
-                } catch (e) {
-                  console.warn('Error caching for', repo, ':', e);
-                }
-              })
-              .catch(function (err) {
-                console.error('GitHub stars fetch failed for', repo, ':', err.message);
-                // If fetch fails and we have no provisional value, show 0
-                if (provisional == null) {
-                  countNode.textContent = '0';
-                }
-              });
-          });
-        });
-      })();
-    </script>
 
     <!-- <div class="item">
       <a
@@ -442,3 +343,119 @@ js:
     transform: scale(1.01);
   }
 </style> -->
+
+<script>
+// Simple, robust GitHub stars script
+function updateGitHubStars() {
+  console.log('GitHub stars script starting...');
+  
+  // Find all elements with data-repo attribute
+  var elements = document.querySelectorAll('[data-repo]');
+  console.log('Found', elements.length, 'elements with data-repo');
+  
+  if (elements.length === 0) {
+    console.warn('No elements with data-repo found');
+    return;
+  }
+
+  elements.forEach(function(element, index) {
+    var repo = element.getAttribute('data-repo');
+    if (!repo) {
+      console.warn('Element', index, 'has no data-repo attribute');
+      return;
+    }
+    
+    console.log('Processing repo:', repo);
+    
+    // Find the count element
+    var countElement = element.querySelector('.count');
+    if (!countElement) {
+      console.warn('No .count element found for', repo);
+      return;
+    }
+
+    // Set loading state
+    countElement.textContent = '...';
+    
+    // First check for cached value
+    try {
+      var cached = localStorage.getItem('gh-stars-v5:' + repo);
+      if (cached) {
+        var cachedData = JSON.parse(cached);
+        var ageMs = Date.now() - cachedData.timestamp;
+        // Use cache if less than 1 hour old
+        if (ageMs < 3600000) {
+          console.log('Using cached value for', repo, ':', cachedData.count);
+          countElement.textContent = cachedData.count.toString();
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('Cache error for', repo, ':', e);
+    }
+    
+    // Fetch from GitHub API
+    console.log('Fetching data for:', repo);
+    
+    // Check if fetch is available
+    if (typeof fetch === 'undefined') {
+      console.error('Fetch API not available');
+      countElement.textContent = '?';
+      return;
+    }
+    
+    fetch('https://api.github.com/repos/' + repo)
+      .then(function(response) {
+        console.log('Response status for', repo, ':', response.status);
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status);
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        console.log('Success for', repo, '- stars:', data.stargazers_count);
+        var stars = data.stargazers_count || 0;
+        countElement.textContent = stars.toString();
+        
+        // Cache the result
+        try {
+          localStorage.setItem('gh-stars-v5:' + repo, JSON.stringify({
+            count: stars,
+            timestamp: Date.now()
+          }));
+          console.log('Cached result for', repo, ':', stars);
+        } catch (e) {
+          console.warn('Failed to cache for', repo, ':', e);
+        }
+      })
+      .catch(function(error) {
+        console.error('Failed to fetch stars for', repo, ':', error.message);
+        countElement.textContent = '0';
+      });
+  });
+}
+
+// Multiple ways to ensure the script runs
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateGitHubStars);
+} else {
+  updateGitHubStars();
+}
+
+// Backup execution
+window.addEventListener('load', updateGitHubStars);
+
+// Final fallback with delay
+setTimeout(updateGitHubStars, 500);
+
+// Manual trigger for testing
+window.testGitHubStars = updateGitHubStars;
+
+// Debug info
+console.log('Script loaded successfully. You can manually run with: testGitHubStars()');
+</script>
+
+<!-- Debug button for manual testing -->
+<button onclick="testGitHubStars()" style="position: fixed; top: 10px; right: 10px; z-index: 9999; background: red; color: white; padding: 10px;">
+  TEST STARS
+</button>
