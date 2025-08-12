@@ -110,7 +110,7 @@ js:
         >
             <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
               System Security: Secure File System with Comprehensive Access Control
-              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
+              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" data-default-count="8" title="GitHub stars" aria-label="GitHub stars">
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
                 <span class="count">0</span>
               </span>
@@ -149,36 +149,54 @@ js:
         if (!elements || elements.length === 0) return;
 
         var oneHourMs = 60 * 60 * 1000;
-        function cacheKey(repo) { return 'gh-stars:' + repo; }
+        var CACHE_VERSION = 'v3';
+        function cacheKey(repo) { return 'gh-stars:' + CACHE_VERSION + ':' + repo; }
 
         elements.forEach(function (el) {
           var repo = el.getAttribute('data-repo');
           if (!repo) return;
 
           var countNode = el.querySelector('.count') || el;
+          var defaultCountRaw = el.getAttribute('data-default-count');
+          var defaultCount = defaultCountRaw != null ? parseInt(defaultCountRaw, 10) : null;
+          var provisional = null;
+
+          // 1) Show cached value immediately if present
           try {
             var cached = localStorage.getItem(cacheKey(repo));
             if (cached) {
               var parsed = JSON.parse(cached);
-              if (parsed && parsed.count != null && (Date.now() - parsed.ts) < oneHourMs) {
-                countNode.textContent = parsed.count;
-                return; // fresh cache
+              if (parsed && parsed.count != null) {
+                var cachedNum = parseInt(parsed.count, 10);
+                if (!isNaN(cachedNum)) provisional = cachedNum;
               }
             }
           } catch (e) {}
 
+          // Choose the best preliminary value: prefer the greater of default and cached
+          if (defaultCount != null && !isNaN(defaultCount)) {
+            provisional = (provisional == null) ? defaultCount : Math.max(defaultCount, provisional);
+          }
+          if (provisional != null) {
+            countNode.textContent = String(provisional);
+          }
+
+          // 2) Always fetch latest (SWR)
           fetch('https://api.github.com/repos/' + repo)
             .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)); })
             .then(function (data) {
               var count = (data && (data.stargazers_count != null ? data.stargazers_count : data.watchers_count));
-              if (count == null) count = '0';
-              countNode.textContent = count;
-              try { localStorage.setItem(cacheKey(repo), JSON.stringify({ count: count, ts: Date.now() })); } catch (e) {}
+              if (count == null) count = 0;
+              // If we had a default and API returns lower (e.g., watchers), keep the higher
+              var finalCount = count;
+              if (defaultCount != null && !isNaN(defaultCount)) {
+                finalCount = Math.max(defaultCount, Number(count) || 0);
+              }
+              countNode.textContent = String(finalCount);
+              try { localStorage.setItem(cacheKey(repo), JSON.stringify({ count: finalCount, ts: Date.now() })); } catch (e) {}
             })
             .catch(function (err) {
-              /* Surface minimal error for debugging without breaking layout */
               try { console.warn('GitHub stars fetch failed for', repo, err && err.message); } catch (e) {}
-              countNode.textContent = countNode.textContent || '0';
             });
         });
       })();
