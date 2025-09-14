@@ -2,8 +2,11 @@
 layout: default
 ---
 <article class="post">
-  <h1>{{ page.title }}</h1>
-  <p class="meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+  <div class="post-header">
+    <a href="/blog" class="back-button">← Back to Blog</a>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+  </div>
 
 
   <div class="post-content">
@@ -18,3 +21,28 @@ layout: default
   </div>
   -->
 </article>
+
+<style>
+.post .post-header {
+  margin-bottom: 2rem;
+}
+
+.post .back-button {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s ease;
+}
+
+.post .back-button:hover {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.post .back-button:before {
+  content: '';
+  margin-right: 0.25rem;
+}
+</style>

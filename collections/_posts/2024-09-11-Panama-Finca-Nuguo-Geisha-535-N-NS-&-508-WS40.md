@@ -29,10 +29,10 @@ tags: coffee-note
 
 <div class="image-container">
   <div class="image-wrapper">
-    <img src="/images/2024-09-11-Panama-Finca-Nuguo-Geisha-535-N-NS-&-508-WS40/Finca-nuguo.JPG" alt="nuguo">
+    <img src="/images/2024-09-11-Panama-Finca-Nuguo-Geisha-535-N-NS-%26-508-WS40/Finca-nuguo.JPG" alt="nuguo">
   </div>
   <div class="image-wrapper">
-    <img src="/images/2024-09-11-Panama-Finca-Nuguo-Geisha-535-N-NS-&-508-WS40/comparison.JPG" alt="compare">
+    <img src="/images/2024-09-11-Panama-Finca-Nuguo-Geisha-535-N-NS-%26-508-WS40/comparison.JPG" alt="compare">
   </div>
 </div>
 

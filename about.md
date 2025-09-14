@@ -10,10 +10,11 @@ headshot: /images/headshot.jpg
 I was born in Chengdu, China, where I lived for 17 years. In Fall 2017, I moved to the United States to pursue my studies and have been here since.
 
 ### What I do now
-I'm currently a master's student at USC, majoring in Applied Data Science. My **research interests** are **Machine Learning** and **Natural Language Processing**. <br>I am researching on Causal Inference and Anomaly Detection recently. 
+I'm currently a master's student at USC, majoring in Applied Data Science. My **research interests** are **Interpretable Machine Learning** and **Sequential Data Analysis**. <br>I am researching on Time Series OOD Generalization recently. 
 
 ### What I do in spare time
-I'm an aspiring professional fitness trainer and coffee enthusiast. With 5 years of dedicated workout experience, I've developed a passion for physical fitness. As a coffee addict, I specialize in pour-over techniques and enjoy exploring various coffee bean origins. Check out my [Coffee Notes]({{ site.baseurl }}/blog/). I'm working towards becoming a certified barista to further my expertise in coffee preparation.
+I'm an aspiring professional fitness trainer and coffee enthusiast. I specialize in pour-over techniques and enjoy exploring various coffee bean origins. Check out my [Coffee Notes]({{ site.baseurl }}/blog/). I'm working towards becoming a certified barista to further my expertise in coffee preparation. <br>
+I'm also actively engaged in Kaggle Competition. Check out my [Kaggle Profile](https://www.kaggle.com/alrickh).
 
 <!-- 
 <div id="stats" class="hidden">

@@ -3,8 +3,8 @@ layout: default
 tags: home
 ---
 <h1>Chenfeng Huang</h1>
-<h3>I'm a master student at University of Southern California with a focus on Machine Learning.</h3>
-<h3>Currently, I am working on Causal Inference and Anomaly Detection.</h3>
+<h3>I'm a master student at University of Southern California with a focus on Interpretable Machine Learning.</h3>
+<h3>Currently, I am working on Time Series OOD Generalization.</h3>
 <nav>
   <ul>
     <li>
