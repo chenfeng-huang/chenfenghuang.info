@@ -13,7 +13,7 @@ I was born in Chengdu, China, where I lived for 17 years. In Fall 2017, I moved 
 I'm currently a master's student at USC, majoring in Applied Data Science. My **research interests** are **Interpretable Machine Learning** and **Sequential Data Analysis**. <br>I am researching on Time Series OOD Generalization recently. 
 
 ### What I do in spare time
-I'm an aspiring professional fitness trainer and coffee enthusiast. I specialize in pour-over techniques and enjoy exploring various coffee bean origins. Check out my [Coffee Notes]({{ site.baseurl }}/blog/). I'm working towards becoming a certified barista to further my expertise in coffee preparation. <br>
+I'm also a coffee enthusiast who is specialized in pour-over techniques and enjoy exploring various coffee bean origins. Check out my [Coffee Notes]({{ site.baseurl }}/blog/). I'm working towards becoming a certified barista to further my expertise in coffee preparation. <br>
 I'm also actively engaged in Kaggle Competition. Check out my [Kaggle Profile](https://www.kaggle.com/alrickh).
 
 <!-- 
