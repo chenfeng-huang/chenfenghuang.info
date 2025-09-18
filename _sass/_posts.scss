@@ -5,8 +5,9 @@
 
 .posts .post {
   background-color: white;
-  margin-bottom: 0.75em;
-  border-bottom: thin solid #f3f3f3;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* border-bottom: thin solid #f3f3f3; */ /* Removed border between blog posts */
 }
 
 .posts .post:last-child {
@@ -59,11 +60,13 @@
   border-bottom: thin solid #f3f3f3;
 }
 
-// Original in _posts.scss
-.posts .post {
-  background-color: white;
-  margin-bottom: 0.5em;  // Reduce this value
-  border-bottom: thin solid #f3f3f3;
+// Original in _posts.scss - duplicate rule removed since border is now removed above
+
+// Add proper separation between Blogs and Coffee Notes sections
+.home {
+  margin-bottom: 3rem;  // Add space after Blogs section
+  padding-bottom: 2rem; // Add padding to create visual separation
+  border-bottom: thin solid #f3f3f3; // Add separator line between sections
 }
 
 // Add or modify these rules
