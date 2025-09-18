@@ -7,7 +7,7 @@ tags: blog
 {% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
 {% assign coffee_note_count = coffee_notes | size %}
 
-<h2>Blogs</h2>
+<h2><a href="{{ site.baseurl }}/blog-archive" class="section-title-link">Blogs</a></h2>
 <div class="home">
   {% if regular_posts_count > 0 %}
     <div class="posts">
@@ -47,7 +47,7 @@ tags: blog
   {% endif %}
 </div>
 
-<h2>Coffee Notes</h2>
+<h2><a href="{{ site.baseurl }}/coffee-note" class="section-title-link">Coffee Notes</a></h2>
 <div class="coffee-note">
   {% if coffee_note_count > 0 %}
     {% assign sca_post = coffee_notes | where: "title", "SCA CSP Brewing-Professional Certificate" | first %}
@@ -167,5 +167,17 @@ tags: blog
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
+}
+
+/* Section title link styling */
+.section-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.section-title-link:hover {
+  color: #0066cc;
+  text-decoration: none;
 }
 </style>

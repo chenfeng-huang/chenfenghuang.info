@@ -39,7 +39,7 @@ headshot: /images/headshot.jpg
   </div>
 </div>
 
-# About Me
+## About Me
 I am a master student in Applied Data Science at the University of Southern California, currently working as a research assistant at North Carolina State University under the guidance of [Dr. Tran](https://math.sciences.ncsu.edu/people/tran/). My research focuses on **Interpretable Machine Learning** and I am currently working on **Time Series OOD Generalization**.
 
 I am actively participating in [Kaggle](https://www.kaggle.com/alrickh) competitions and currently hold **Expert** level status.

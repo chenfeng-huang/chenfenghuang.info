@@ -6,7 +6,7 @@ permalink: /coffee-note/
 
 <div class="page-header">
   <a href="/blog" class="back-button">← Back to Blog</a>
-  <h1>Coffee Notes</h1>
+  <h2>Coffee Notes</h2>
   <p>A collection of coffee tasting notes, brewing experiments, and coffee-related experiences.</p>
 </div>
 
