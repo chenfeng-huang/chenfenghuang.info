@@ -7,47 +7,64 @@ preview_image: /images/2025-03-07-Leaves-Elida/IMG_4035.JPG
 ---
 <!--more-->
 <style>
-.image-container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0px;
-  margin-bottom: 20px;
-  align-items: stretch;
-}
-
-.image-wrapper {
-  flex: 1;
+.main-image {
+  width: 100%;
   height: 400px;
+  margin-bottom: 20px;
 }
 
-.image-wrapper:first-child {
-  flex: 2;
-}
-
-.image-wrapper img {
+.main-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+
+.text-content {
+  text-align: justify;
+}
+
+.side-image {
+  width: 200px;
+  height: 300px;
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+.side-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .side-image {
+    float: none;
+    width: 100%;
+    height: 300px;
+    margin: 15px 0;
+  }
+}
 </style>
 
-<div class="image-container">
-  <div class="image-wrapper">
-    <img src="/images/2025-03-07-Leaves-Elida/IMG_4035.JPG" alt="nuguo">
-  </div>
-  <div class="image-wrapper">
-    <img src="/images/2025-03-07-Leaves-Elida/IMG_4036.JPG" alt="compare">
-  </div>
+<div class="main-image">
+  <img src="/images/2025-03-07-Leaves-Elida/IMG_4035.JPG" alt="nuguo">
 </div>
 
-This coffee from Leaves is a light-roasted, naturally processed lot from the Torre plot of Elida Estate. Once ground, the dry aroma was filled with red berries and hints of purple florals.
+<div class="text-content">
+  <div class="side-image">
+    <img src="/images/2025-03-07-Leaves-Elida/IMG_4036.JPG" alt="compare">
+  </div>
 
-For brewing, I used the bypass method I learned in the advanced SCA brewing course. With 92°C water, I performed a normal bloom, then brewed with the smallest water flow in two pours until reaching 135g. After that, I quickly poured at maximum flow until 210g, then immediately cut off the drawdown. This approach highlights the bright acidity and sweetness in the early and middle phases of extraction. However, since the drawdown is cut early, the concentration tends to be higher, which is where bypassing comes in.
+This coffee from Leaves is a light-roasted, naturally processed lot from the Torre plot of Elida Estate. Once ground, the dry aroma was filled with red berries and hints of purple florals.<br>
 
-First, I measured the weight of the brewed coffee and checked its strength with a refractometer. Using the extraction formula:
+For brewing, I used the bypass method I learned in the advanced SCA brewing course. With 92°C water, I performed a normal bloom, then brewed with the smallest water flow in two pours until reaching 135g. After that, I quickly poured at maximum flow until 210g, then immediately cut off the drawdown. This approach highlights the bright acidity and sweetness in the early and middle phases of extraction. However, since the drawdown is cut early, the concentration tends to be higher, which is where bypassing comes in.<br>
 
-Brewed weight × current TDS ÷ target TDS (typically 1.35) = brewed weight + required bypass water
+First, I measured the weight of the brewed coffee and checked its strength with a refractometer. Using the extraction formula:<br>
 
-we can calculate exactly how much water to add to reach the ideal balance of concentration and extraction yield.
+<strong>Brewed weight × current TDS ÷ target TDS (typically 1.35) <br> = brewed weight + required bypass water</strong><br>
 
-Finally, I passed the finished coffee through a mesh ball filter to enhance mouthfeel. The result was a perfectly balanced hand-brewed cup.
+we can calculate exactly how much water to add to reach the ideal balance of concentration and extraction yield.<br>
+
+Finally, I passed the finished coffee through a mesh ball filter to enhance mouthfeel. The result was a perfectly balanced hand-brewed cup.<br>
+</div>
