@@ -63,7 +63,7 @@
 // Original in _posts.scss - duplicate rule removed since border is now removed above
 
 // Add proper separation between Blogs and Coffee Notes sections
-.home {
+div.home {
   margin-bottom: 3rem;  // Add space after Blogs section
   padding-bottom: 2rem; // Add padding to create visual separation
   border-bottom: thin solid #f3f3f3; // Add separator line between sections

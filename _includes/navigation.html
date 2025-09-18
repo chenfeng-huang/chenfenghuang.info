@@ -3,17 +3,17 @@
   <!-- <li class="nav-jr home-anc"><h4><a href="#home"><br></a></h4></li> -->
   {% assign current = page.url | downcase | split: '/' %}
   <div class="flexbox-parent" style="display: flex; flex-wrap: wrap">
-    <li class="about-anc" style="display: inline">
-      <a class="nav-underline home {% if page.url == '/' %}current{% endif %}" href="{{site.url}}?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Home</a>
+    <li style="display: inline">
+      <a class="nav-underline {% if page.url == '/' %}current{% endif %}" href="{{site.baseurl}}/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Home</a>
     </li>
-      <li class="about-anc" style="display: inline">
-        <a class="nav-underline home {% if page.url == '/about/' %}current{% endif %}" href="{{site.url}}/about?v={{ site.time | date: '%Y%m%d%H%M%S' }}">About</a>
-      </li>
-      <li class="beliefs-anc" style="display: inline">
-        <a class="nav-underline open-source {% if page.url == '/publications/' %}current{% endif %}" href="{{site.url}}/publications?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Publications & Projects</a>
+      <li style="display: inline">
+        <a class="nav-underline {% if page.url == '/about/' %}current{% endif %}" href="{{site.baseurl}}/about/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">About</a>
       </li>
       <li style="display: inline">
-        <a class="nav-underline blog {% if page.url == '/blog/' %}current{% endif %}" href="{{site.url}}/blog?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Blogs</a>
+        <a class="nav-underline {% if page.url == '/publications/' %}current{% endif %}" href="{{site.baseurl}}/publications/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Publications & Projects</a>
+      </li>
+      <li style="display: inline">
+        <a class="nav-underline {% if page.url == '/blog/' %}current{% endif %}" href="{{site.baseurl}}/blog/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Blogs</a>
       </li>
 
       <li>
