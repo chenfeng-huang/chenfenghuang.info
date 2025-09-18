@@ -17,7 +17,7 @@ bing_verification:
 
 # Optional features
 show_related_posts: True
-show_post_footers: True
+show_post_footers: False
 show_subscribe_cta: True
 show_social_icons: True
 ajaxify_contact_form: false
@@ -26,6 +26,7 @@ extended_fonts: false
 enable_anchorjs: true
 
 # Social icons
+email: chengfengeric@gmail.com
 github_username: chenfeng-huang
 linkedin_username: chenfeng-huang-941737176
 kaggle_username: alrickh

@@ -3,6 +3,7 @@ layout: post
 title: "Leaves Coffee Roaster Yasuo Ishii Meetup"
 date: 2025-03-05 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2025-03-05-Leaves-Coffee-Meetup/IMG_9793.JPG
 ---
 <!--more-->
 <style>

@@ -3,6 +3,7 @@ layout: post
 title: "Kaggle Competition Silver Medal: Child Mind Institute-Problematic Internet Use"
 date: 2024-12-20 10:00:00 -0500
 tags: blog
+preview_image: /images/2024-12-20-Kaggle-CMI-PIU/Kaggle.png
 ---
 <!--more-->
 <style>

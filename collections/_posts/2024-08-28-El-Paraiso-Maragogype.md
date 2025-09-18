@@ -3,6 +3,7 @@ layout: post
 title: "Columbia El Paraiso Maragogype"
 date: 2024-08-28 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2024-08-28-El-Paraiso-Maragogype/el-paraiso-maragogype.png
 ---
 <!--more-->
 <style>

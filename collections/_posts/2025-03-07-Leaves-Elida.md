@@ -3,6 +3,7 @@ layout: post
 title: "Leaves Panama Elida Torre 060324"
 date: 2025-03-07 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2025-03-07-Leaves-Elida/IMG_4035.JPG
 ---
 <!--more-->
 <style>

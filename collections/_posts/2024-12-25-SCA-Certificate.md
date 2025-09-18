@@ -3,6 +3,7 @@ layout: post
 title: "SCA CSP Brewing-Professional Certificate"
 date: 2024-12-25 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2024-12-25-SCA-Certificate/SCA-certificate.jpg
 ---
 <!--more-->
 <style>

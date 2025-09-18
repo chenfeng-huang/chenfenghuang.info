@@ -3,6 +3,7 @@ layout: post
 title: "Panama Geisha Cupping"
 date: 2024-06-25 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2024-06-25-Panama-Geisha-Cupping/IMG_2031.JPG
 ---
 <!--more-->
 <style>

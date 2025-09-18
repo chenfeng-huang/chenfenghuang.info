@@ -27,18 +27,29 @@ permalink: /coffee-note/
       <!-- SCA Post (Pinned) -->
       {% if sca_post %}
         <div class="coffee-note-item py3 post-item" data-index="0" data-pinned="true">
-          <p class="post-meta">{{ sca_post.date | date: site.date_format }} <span class="marker">📌</span></p>
-          <a href="{{ sca_post.url | prepend: site.baseurl }}" class="post-link">
-            <h3 class="h3 post-title">{{ sca_post.title }}</h3>
-          </a>
-          <p class="post-summary">
-            {% if sca_post.summary %}
-              {{ sca_post.summary }}
-            {% else %}
-              {% assign excerpt_parts = sca_post.excerpt | split: site.excerpt_separator %}
-              {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+          <div class="post-content-wrapper">
+            {% if sca_post.preview_image %}
+              <div class="post-image-preview">
+                <a href="{{ sca_post.url | prepend: site.baseurl }}">
+                  <img src="{{ sca_post.preview_image }}" alt="{{ sca_post.title }}" />
+                </a>
+              </div>
             {% endif %}
-          </p>
+            <div class="post-text-content">
+              <p class="post-meta">{{ sca_post.date | date: site.date_format }} <span class="marker">📌</span></p>
+              <a href="{{ sca_post.url | prepend: site.baseurl }}" class="post-link">
+                <h3 class="h3 post-title">{{ sca_post.title }}</h3>
+              </a>
+              <p class="post-summary">
+                {% if sca_post.summary %}
+                  {{ sca_post.summary }}
+                {% else %}
+                  {% assign excerpt_parts = sca_post.excerpt | split: site.excerpt_separator %}
+                  {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+                {% endif %}
+              </p>
+            </div>
+          </div>
         </div>
         <hr class="post-separator" data-index="0"/>
       {% endif %}
@@ -48,18 +59,29 @@ permalink: /coffee-note/
         {% assign item_index = forloop.index %}
         {% if sca_post %}{% assign item_index = forloop.index %}{% endif %}
         <div class="coffee-note-item py3 post-item" data-index="{{ item_index }}">
-          <p class="post-meta">{{ note.date | date: site.date_format }}</p>
-          <a href="{{ note.url | prepend: site.baseurl }}" class="post-link">
-            <h3 class="h3 post-title">{{ note.title }}</h3>
-          </a>
-          <p class="post-summary">
-            {% if note.summary %}
-              {{ note.summary }}
-            {% else %}
-              {% assign excerpt_parts = note.excerpt | split: site.excerpt_separator %}
-              {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+          <div class="post-content-wrapper">
+            {% if note.preview_image %}
+              <div class="post-image-preview">
+                <a href="{{ note.url | prepend: site.baseurl }}">
+                  <img src="{{ note.preview_image }}" alt="{{ note.title }}" />
+                </a>
+              </div>
             {% endif %}
-          </p>
+            <div class="post-text-content">
+              <p class="post-meta">{{ note.date | date: site.date_format }}</p>
+              <a href="{{ note.url | prepend: site.baseurl }}" class="post-link">
+                <h3 class="h3 post-title">{{ note.title }}</h3>
+              </a>
+              <p class="post-summary">
+                {% if note.summary %}
+                  {{ note.summary }}
+                {% else %}
+                  {% assign excerpt_parts = note.excerpt | split: site.excerpt_separator %}
+                  {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+                {% endif %}
+              </p>
+            </div>
+          </div>
         </div>
         {% unless forloop.last %}<hr class="post-separator" data-index="{{ item_index }}"/>{% endunless %}
       {% endfor %}
@@ -366,6 +388,38 @@ window.addEventListener('load', function() {
   border-color: #0066cc;
 }
 
+/* Image Preview Styles */
+.post-content-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.post-image-preview {
+  flex-shrink: 0;
+  width: 150px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.post-image-preview img:hover {
+  transform: scale(1.05);
+}
+
+.post-text-content {
+  flex: 1;
+  min-width: 0;
+}
+
 @media (max-width: 768px) {
   .pagination {
     flex-direction: column;
@@ -375,6 +429,16 @@ window.addEventListener('load', function() {
   .pagination-numbers {
     flex-wrap: wrap;
     justify-content: center;
+  }
+  
+  .post-content-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .post-image-preview {
+    width: 100%;
+    height: 150px;
   }
 }
 </style>

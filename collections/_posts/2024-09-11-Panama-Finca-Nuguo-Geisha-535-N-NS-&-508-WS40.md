@@ -3,6 +3,7 @@ layout: post
 title: "Panama Finca Nuguo Geisha 535-N-NS & 508-WS40"
 date: 2024-09-11 10:00:00 -0500
 tags: coffee-note
+preview_image: /images/2024-09-11-Panama-Finca-Nuguo-Geisha-535-N-NS-&-508-WS40/Finca-nuguo.JPG
 ---
 <!--more-->
 <style>
