@@ -3,13 +3,7 @@
 ## Personal webpage of Chenfeng Huang. 
 
 
-### What you can find there
-
 * [Home page](https://chenfenghuang.info/)
-* [About](https://chenfenghuang.info/about)
-* [Publication and Project](https://chenfenghuang.info/)
-* [Blog ](https://chenfenghuang.info/blog/)
-
 ----
 
 ### Development
