@@ -75,20 +75,21 @@
   transform: rotate(15deg) scale(1.1);
 }
 
-/* White sun in dark mode */
-[data-theme="dark"] #theme-toggle-icon {
-  color: #fff !important;
-}
-
-/* Make moon emoji appear in solid black color in light mode */
+/* Theme toggle icon styling - default (light mode) */
 #theme-toggle-icon {
+  /* Make moon emoji appear in solid black color in light mode */
   filter: brightness(0) saturate(100%);
+  color: #000 !important;
 }
 
-/* Keep sun normal color in dark mode */
+/* Dark mode - make sun appear white and remove black filter */
 [data-theme="dark"] #theme-toggle-icon {
-  filter: none;
+  filter: none !important;
   color: #fff !important;
+  /* Force white color on mobile devices */
+  -webkit-text-fill-color: #fff !important;
+  /* Additional mobile-specific properties */
+  text-shadow: none !important;
 }
 
 /* Responsive design for mobile */
@@ -109,6 +110,24 @@
     margin-left: 0.5rem;
     font-size: 1.8em;
     padding: 8px;
+  }
+  
+  /* Ensure sun is white in dark mode on mobile */
+  [data-theme="dark"] #theme-toggle-icon {
+    filter: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    -webkit-text-stroke: none !important;
+    text-shadow: none !important;
+    /* Force emoji to render as white on mobile */
+    font-feature-settings: "liga" off;
+  }
+  
+  /* Ensure moon is black in light mode on mobile */
+  #theme-toggle-icon {
+    filter: brightness(0) saturate(100%) !important;
+    color: #000 !important;
+    -webkit-text-fill-color: #000 !important;
   }
 }
 
