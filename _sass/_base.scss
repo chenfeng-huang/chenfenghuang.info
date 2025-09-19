@@ -32,3 +32,55 @@ body {
      -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
+
+// Mobile-friendly improvements
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+// Prevent horizontal scroll on mobile
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+// Responsive utilities
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-center {
+    text-align: center !important;
+  }
+  
+  .mobile-full-width {
+    width: 100% !important;
+  }
+}
+
+// Better touch targets for mobile
+@media (pointer: coarse) {
+  input[type="submit"],
+  input[type="button"],
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

@@ -1,0 +1,122 @@
+// Mobile content improvements
+// Responsive image containers for blog posts
+@media screen and (max-width: 768px) {
+  .image-container {
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .image-wrapper {
+    min-width: 100% !important;
+    flex: none !important;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  // Tables on mobile
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0.85rem;
+  }
+  
+  // Better spacing for post content
+  .post-content {
+    padding: 0 1rem;
+  }
+  
+  // Lists on mobile
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+  
+  // Coffee note specific improvements
+  .coffee-note-entry {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+  
+  .coffee-note-entry h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  // Publication cards on mobile
+  .publication-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+  }
+  
+  .publication-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  // Better button spacing on mobile
+  .btn, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  
+  // Pagination on mobile
+  .pagination {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .pagination a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 4px;
+    background: #f5f5f5;
+    text-decoration: none;
+  }
+}
+
+// Tablet improvements
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .image-container {
+    gap: 15px;
+  }
+  
+  .image-wrapper {
+    min-width: calc(50% - 7.5px);
+  }
+  
+  .post-content {
+    padding: 0 2rem;
+  }
+}
+
+// Touch-friendly improvements for all mobile devices
+@media (hover: none) and (pointer: coarse) {
+  a, button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav a {
+    padding: 0.75rem 1rem;
+  }
+}
