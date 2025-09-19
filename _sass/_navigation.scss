@@ -38,44 +38,11 @@ nav li {
   margin: 4vh auto;
 }
 
-// Mobile navigation improvements
-@media only screen and (max-width: 768px) {
+// Reduce vertical spacing on mobile.
+@media only screen and (max-width: 600px) {
   nav li {
     margin-top: 0;
     margin-bottom: 0;
-  }
-  
-  #main-menu li {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-  
-  .flexbox-parent {
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-  
-  .flexbox-parent li {
-    margin: 0.3rem 0 !important;
-    width: 100%;
-    text-align: center;
-  }
-  
-  // Social icons on mobile
-  .flexbox-parent li:last-child {
-    margin-top: 1rem !important;
-  }
-  
-  .flexbox-parent li:last-child a {
-    margin: 0 0.6em;
-    font-size: 1.3em !important;
-  }
-}
-
-// Tablet navigation improvements
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  #main-menu li {
-    padding: 10px 16px;
   }
 }
 
