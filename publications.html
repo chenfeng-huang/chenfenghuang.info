@@ -8,19 +8,23 @@ permalink: /publications/
     .publications-container {
         font-family: Arial, sans-serif;
         line-height: 1.6;
-        color: #333;
+        color: var(--text-color);
     }
     h1, h2 {
         margin-bottom: 15px;
+        color: var(--text-color);
     }
     hr {
         margin: 20px 0;
         border: none;
-        border-top: 1px solid #ddd;
+        border-top: 1px solid var(--border-color);
     }
     a {
-        color: black;
+        color: var(--link-color);
         text-decoration: none;
+    }
+    a:hover {
+        color: var(--link-hover);
     }
     .item {
         margin-bottom: 20px;
@@ -38,14 +42,14 @@ permalink: /publications/
       align-items: center;
       gap: 4px;
       margin-left: 8px;
-      color: #57606a;
+      color: var(--text-secondary);
       font-size: 0.9em;
       vertical-align: middle;
     }
     .gh-star-badge svg {
       width: 16px;
       height: 16px;
-      color: #f2cc60; /* yellow star */
+      color: #f2cc60; /* yellow star - keep this for visibility */
       fill: currentColor;
     }
 </style>
@@ -249,7 +253,7 @@ permalink: /publications/
     style="
       display: flex;
       align-items: center;
-      border-color: #999;
+      border-color: var(--border-color);
       border-width: 1px;
       border-style: solid;
       border-radius: 5px;
@@ -293,7 +297,7 @@ permalink: /publications/
     style="
       display: flex;
       align-items: center;
-      border-color: #999;
+      border-color: var(--border-color);
       border-width: 1px;
       border-style: solid;
       border-radius: 5px;
@@ -334,7 +338,7 @@ permalink: /publications/
     style="
       display: flex;
       align-items: center;
-      border-color: #999;
+      border-color: var(--border-color);
       border-width: 1px;
       border-style: solid;
       border-radius: 5px;

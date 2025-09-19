@@ -118,6 +118,97 @@ tags: blog
 </div>
 
 <style>
+/* Blog page color styling for dark mode */
+.home {
+  color: var(--text-color);
+}
+
+.home h1, .home h2, .home h3, .home h4 {
+  color: var(--text-color);
+}
+
+.home p {
+  color: var(--text-color);
+}
+
+.post-title {
+  color: var(--text-color) !important;
+}
+
+.post-link {
+  color: var(--text-color) !important;
+  text-decoration: none;
+}
+
+.post-link:hover {
+  color: var(--link-color) !important;
+}
+
+.post-meta {
+  color: var(--text-secondary) !important;
+}
+
+.post-summary {
+  color: var(--text-color) !important;
+}
+
+.coffee-note h1, .coffee-note h2, .coffee-note h3, .coffee-note h4 {
+  color: var(--text-color);
+}
+
+.coffee-note p {
+  color: var(--text-color);
+}
+
+.coffee-note .post-title {
+  color: var(--text-color) !important;
+}
+
+.coffee-note .post-link {
+  color: var(--text-color) !important;
+}
+
+.coffee-note .post-link:hover {
+  color: var(--link-color) !important;
+}
+
+/* Section headers */
+h2 {
+  color: var(--text-color) !important;
+}
+
+/* More posts link */
+.more-posts {
+  color: var(--link-color) !important;
+}
+
+.more-posts:hover {
+  color: var(--link-hover) !important;
+}
+
+/* Blog post item backgrounds */
+.post {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.posts .post {
+  background-color: var(--card-bg) !important;
+}
+
+.coffee-note .coffee-note-item {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Image preview styling for dark mode */
+.post-image-preview {
+  box-shadow: 0 2px 8px var(--shadow-color) !important;
+}
+
 .post-content-wrapper {
   display: flex;
   gap: 1.5rem;
@@ -177,7 +268,7 @@ tags: blog
 }
 
 .section-title-link:hover {
-  color: #0066cc;
+  color: var(--link-color);
   text-decoration: none;
 }
 </style>

@@ -1,36 +1,13 @@
-<nav class="">
-<ul id="main-menu" data-nav-showing="false">
-  <!-- <li class="nav-jr home-anc"><h4><a href="#home"><br></a></h4></li> -->
+<nav class="main-navigation">
   {% assign current = page.url | downcase | split: '/' %}
-  <div class="flexbox-parent" style="display: flex; flex-wrap: wrap">
-    <li style="display: inline">
+  <div class="nav-container">
+    <div class="nav-links">
       <a class="nav-underline {% if page.url == '/' %}current{% endif %}" href="{{site.baseurl}}/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Home</a>
-    </li>
-      <li style="display: inline">
-        <a class="nav-underline {% if page.url == '/publications/' %}current{% endif %}" href="{{site.baseurl}}/publications/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Publications & Projects</a>
-      </li>
-      <li style="display: inline">
-        <a class="nav-underline {% if page.url == '/blog/' %}current{% endif %}" href="{{site.baseurl}}/blog/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Blogs</a>
-      </li>
-
-      <li style="display: inline; margin-left: 1em;">
-        <a href="mailto:chengfengeric@gmail.com" style="color: #666; font-size: 1.1em; margin: 0 0.4em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="Email">
-          <i class="fa fa-envelope"></i>
-        </a>
-        {% if site.linkedin_username %}
-          <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" style="color: #0077B5; font-size: 1.1em; margin: 0 0.4em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        {% endif %}
-        {% if site.github_username %}
-          <a href="https://github.com/{{ site.github_username }}" style="color: #333; font-size: 1.1em; margin: 0 0.4em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="GitHub">
-            <i class="fa fa-github"></i>
-          </a>
-        {% endif %}
-        {% if site.kaggle_username %}
-          <a href="https://www.kaggle.com/{{ site.kaggle_username }}" style="color: #20BEFF; font-size: 1.1em; margin: 0 0.4em; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: bold;" target="_blank" rel="noopener noreferrer" title="Kaggle">K</a>
-        {% endif %}
-      </li>
+      <a class="nav-underline {% if page.url == '/publications/' %}current{% endif %}" href="{{site.baseurl}}/publications/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Publications & Projects</a>
+      <a class="nav-underline {% if page.url == '/blog/' %}current{% endif %}" href="{{site.baseurl}}/blog/?v={{ site.time | date: '%Y%m%d%H%M%S' }}">Blogs</a>
+      <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
+        <span id="theme-toggle-icon">☀</span>
+      </button>
+    </div>
   </div>
-</ul>
 </nav>
