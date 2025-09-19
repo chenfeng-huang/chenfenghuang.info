@@ -34,12 +34,18 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
 }
 
 /* Header and Navigation */
 .site-header {
   background-color: var(--header-bg);
   transition: background-color 0.3s ease;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .nav-underline {
@@ -84,11 +90,17 @@ pre, code {
 }
 
 [data-theme="dark"] .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  transform: scale(1.1);
 }
 
 [data-theme="dark"] .theme-toggle:focus {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(100, 149, 237, 0.4);
+}
+
+[data-theme="dark"] .theme-toggle:active {
+  transform: scale(0.95);
 }
 
 /* Dark mode specific adjustments */

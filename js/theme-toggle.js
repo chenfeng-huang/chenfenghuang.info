@@ -20,10 +20,16 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update theme icon
+    // Update theme icon with animation
     function updateThemeIcon(theme) {
         if (themeIcon) {
-            themeIcon.textContent = theme === DARK_THEME ? '☀' : '☽';
+            // Add a subtle animation during icon change
+            themeIcon.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                themeIcon.textContent = theme === DARK_THEME ? '☀' : '🌙';
+                themeIcon.style.transform = 'scale(1)';
+            }, 150);
         }
     }
     
