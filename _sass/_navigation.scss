@@ -82,9 +82,9 @@
   color: #000 !important;
 }
 
-/* Dark mode - make sun appear white and remove black filter */
+/* Dark mode - make sun appear white using filter */
 [data-theme="dark"] #theme-toggle-icon {
-  filter: none !important;
+  filter: brightness(0) invert(1) !important;
   color: #fff !important;
   /* Force white color on mobile devices */
   -webkit-text-fill-color: #fff !important;
@@ -114,7 +114,7 @@
   
   /* Ensure sun is white in dark mode on mobile */
   [data-theme="dark"] #theme-toggle-icon {
-    filter: none !important;
+    filter: brightness(0) invert(1) !important;
     color: #fff !important;
     -webkit-text-fill-color: #fff !important;
     -webkit-text-stroke: none !important;
