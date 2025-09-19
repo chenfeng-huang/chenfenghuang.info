@@ -57,7 +57,7 @@
 }
 
 .related-post-title {
-  border-bottom: thin solid #f3f3f3;
+  border-bottom: thin solid var(--border-color);
 }
 
 // Original in _posts.scss - duplicate rule removed since border is now removed above
@@ -66,7 +66,7 @@
 div.home {
   margin-bottom: 3rem;  // Add space after Blogs section
   padding-bottom: 2rem; // Add padding to create visual separation
-  border-bottom: thin solid #f3f3f3; // Add separator line between sections
+  border-bottom: thin solid var(--border-color); // Add separator line between sections
 }
 
 // Add or modify these rules
