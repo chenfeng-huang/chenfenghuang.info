@@ -20,16 +20,10 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update theme icon with animation
+    // Update theme icon immediately to avoid flicker during navigation
     function updateThemeIcon(theme) {
         if (themeIcon) {
-            // Add a subtle animation during icon change
-            themeIcon.style.transform = 'scale(0.8)';
-            
-            setTimeout(() => {
-                themeIcon.textContent = theme === DARK_THEME ? '☀' : '🌙';
-                themeIcon.style.transform = 'scale(1)';
-            }, 150);
+            themeIcon.textContent = theme === DARK_THEME ? '☀' : '🌙';
         }
     }
     

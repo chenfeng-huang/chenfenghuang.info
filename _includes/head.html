@@ -41,6 +41,40 @@
     <link rel="stylesheet" href="{{ "/css/portfolio.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
     {% endif %}
 
+    <!-- Apply saved theme BEFORE CSS loads to prevent flash on navigation -->
+    <script>
+      (function() {
+        try {
+          var key = 'theme-preference';
+          var theme = localStorage.getItem(key);
+          if (!theme) {
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            theme = prefersDark ? 'dark' : 'light';
+          }
+          if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+        } catch (e) {
+          // noop
+        }
+      })();
+    </script>
+
+    <!-- Prevent theme transition during first paint and provide dark fallback colors -->
+    <style id="theme-preload">*{transition:none!important}</style>
+    <style>
+      html[data-theme="dark"] body { background-color: #1a1a1a; color: #e0e0e0; }
+      html[data-theme="dark"] .site-header { background-color: #4a3728; }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var s = document.getElementById('theme-preload');
+        if (s && s.parentNode) s.parentNode.removeChild(s);
+      });
+    </script>
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ "/css/junior.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
 
