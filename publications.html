@@ -6,34 +6,103 @@ permalink: /publications/
 ---
 <style>
     .publications-container {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
+        font-family: 'Inter', sans-serif;
+        line-height: 1.7;
+        color: var(--text-color);
+        max-width: 100%;
+    }
+    
+    /* Enhanced Typography Hierarchy */
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
         color: var(--text-color);
     }
-    h1, h2 {
-        margin-bottom: 15px;
+    
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 1.5rem 0 1rem 0;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1.2rem 0 0.8rem 0;
         color: var(--text-color);
     }
-    hr {
-        margin: 20px 0;
-        border: none;
-        border-top: 1px solid var(--border-color);
+    
+    /* Page Header */
+    .page-header {
+        margin-bottom: 1.5rem;
     }
-    a {
-        color: var(--link-color);
-        text-decoration: none;
+    
+    .page-subtitle {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-top: 0.5rem;
+        font-weight: 400;
     }
-    a:hover {
-        color: var(--link-hover);
-    }
+    
+    /* Publication/Project Items */
     .item {
-        margin-bottom: 20px;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
     }
-    .item h4 {
-        margin: 0 0 5px 0;
+    
+    .publication-item, .project-item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5rem 0;
+        margin-bottom: 0.8rem;
+        transition: color 0.2s ease;
     }
-    .item p {
-        margin: 0;
+    
+    .publication-item:hover, .project-item:hover {
+        color: var(--link-color);
+    }
+    
+    .item-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.3rem;
+        line-height: 1.4;
+    }
+    
+    .item-authors {
+        color: var(--text-secondary);
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .item-description {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-top: 0.3rem;
+    }
+    
+    /* Status Badges */
+    .status-badge {
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 0.5rem;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+    
+    /* Enhanced separator */
+    .section-separator {
+        margin: 1.5rem 0;
+        border: none;
+        height: 1px;
+        background: var(--border-color);
     }
 
     /* GitHub-like star badge next to titles */
@@ -52,169 +121,145 @@ permalink: /publications/
       color: #f2cc60; /* yellow star - keep this for visibility */
       fill: currentColor;
     }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 { font-size: 1.7rem; }
+        h2 { 
+            font-size: 1.3rem; 
+            margin: 1.5rem 0 1rem 0;
+        }
+        h3 { 
+            font-size: 1.1rem; 
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        .publication-item, .project-item {
+            padding: 1rem;
+            margin-bottom: 0.6rem;
+        }
+        .section-separator {
+            margin: 1.5rem 0;
+        }
+        .item-title {
+            font-size: 1rem;
+        }
+        .item-authors {
+            font-size: 0.85rem;
+        }
+        .item-description {
+            font-size: 0.9rem;
+        }
+    }
 </style>
 <div class="publications-container">
-    <h2>Publications & Projects</h2>
-    <p>
-        Academic publications and side-projects with open source code. Click-through to check out the
-        work in more detail.
-    </p>
-    <hr />
+    <div class="page-header">
+        <h1>Publications & Projects</h1>
+        <p class="page-subtitle">
+            Academic publications and side-projects with open source code. Click-through to check out the work in more detail.
+        </p>
+    </div>
+    
     <h2>Publications</h2>
 
     <h3>Working Papers</h3>
-    <div class="item">
-      <a
-          href=""
-          aria-label="PAC-Bayes"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            "Martingale PAC-Bayes for Time Series Forcasting"
-            <em>In: working</em> 
-          </h4>
-          <p class="leading-5 text-gray-700 dark:text-gray-300">
-            <strong>C. Huang</strong>, Z. Ma,  Thuy T. Le and Hien Tran
-            </p>
-      </a>
-    </div>
-    <div class="item">
-      <a
-          href=""
-          aria-label="cbo"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-          "Causal Bayesian Optimization: Foundations, Methods, and Applications"
-            <em>In: working</em> 
-          </h4>
-          <p class="leading-5 text-gray-700 dark:text-gray-300">
+    
+    <a href="" aria-label="PAC-Bayes" target="_blank" rel="noopener noreferrer" class="publication-item">
+        <div class="item-title">
+            "Martingale PAC-Bayes for Time Series Forecasting"
+            <span class="status-badge status-working">In Progress</span>
+        </div>
+        <div class="item-authors">
+            <strong>C. Huang</strong>, Z. Ma, Thuy T. Le and Hien Tran
+        </div>
+    </a>
+    
+    <a href="" aria-label="cbo" target="_blank" rel="noopener noreferrer" class="publication-item">
+        <div class="item-title">
+            "Causal Bayesian Optimization: Foundations, Methods, and Applications"
+            <span class="status-badge status-working">In Progress</span>
+        </div>
+        <div class="item-authors">
             Thuy T. Le, <strong>C. Huang</strong>, Z. Ma and Hien Tran
-            </p>
-      </a>
-    </div>
-    <hr />
+        </div>
+    </a>
+    
+    <hr class="section-separator" />
     <h3>2026</h3>
 
-    <div class="item">
-      <a
-          href=""
-          aria-label="cbo"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
+    <a href="" aria-label="cbo" target="_blank" rel="noopener noreferrer" class="publication-item">
+        <div class="item-title">
             "Safe-Handover Causal Bayesian Optimization with Dynamic Expert Trust"
-            <em>In: submission</em> 
-          </h4>
-          <p class="leading-5 text-gray-700 dark:text-gray-300">
+            <span class="status-badge status-submission">Under Review</span>
+        </div>
+        <div class="item-authors">
             Z. Ma, <strong>C. Huang</strong>, Thuy T. Le and Hien Tran
-            </p>
-      </a>
-  </div>
-    <div class="item">
-      <a
-          href=""
-          aria-label="ts-ad"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            "Causal Environment-Conditioned Jump Diffusion SDEs for Time Series Anomaly Detection"
-            <em>In: submission</em> 
-          </h4>
-          <p class="leading-5 text-gray-700 dark:text-gray-300">
-            Z. Ma and <strong>C. Huang</strong>
-            </p>
-      </a>
-  </div>
- 
-    <hr />
-    <h3>2025</h3>
-    <div class="item">
-        <a
-            href=""
-            aria-label="ts-gen"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-              "Effective Series Decomposition and Components Learning for Time Series Generation"
-              ICDM 2025
-            </h4>
-            <p class="leading-5 text-gray-700 dark:text-gray-300">
-              Z. Ma and <strong>C. Huang</strong>
-              </p>
-        </a>
-    </div>
+        </div>
+    </a>
     
-
-
-    <hr />
+    <a href="" aria-label="ts-ad" target="_blank" rel="noopener noreferrer" class="publication-item">
+        <div class="item-title">
+            "Causal Environment-Conditioned Jump Diffusion SDEs for Time Series Anomaly Detection"
+            <span class="status-badge status-submission">Under Review</span>
+        </div>
+        <div class="item-authors">
+            Z. Ma and <strong>C. Huang</strong>
+        </div>
+    </a>
+ 
+    <hr class="section-separator" />
+    <h3>2025</h3>
+    
+    <a href="" aria-label="ts-gen" target="_blank" rel="noopener noreferrer" class="publication-item">
+        <div class="item-title">
+            "Effective Series Decomposition and Components Learning for Time Series Generation"
+            <span class="status-badge status-published">ICDM 2025</span>
+        </div>
+        <div class="item-authors">
+            Z. Ma and <strong>C. Huang</strong>
+        </div>
+    </a>
+    
     <h2>Projects</h2>
-    <div class="item">
-        <a
-            href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU"
-            aria-label="Kaggle Competition"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-                Data Mining: Child Mind Institute Problematic Internet Use 
-                <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" title="GitHub stars" aria-label="GitHub stars">
-                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-                  <span class="count">0</span>
-                </span>
-            </h4>
-            <p class="leading-5 text-gray-700 dark:text-gray-300">
-              Developed a silver-medal solution for the Kaggle CMI-PIU competition by integrating tabular and time-series features, 
-              training tree-based regressors with cross-validation, and optimizing thresholds to maximize Quadratic Weighted Kappa.
-            </p>
-        </a>
-    </div>
-    <div class="item">
-        <a
-            href="https://github.com/chenfeng-huang/Secure-Multi-Layered-File-System"
-            aria-label="Secure file system"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-              System Security: Secure File System with Comprehensive Access Control
-              <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-                <span class="count">0</span>
-              </span>
-            </h4>
-            <p class="leading-5 text-gray-700 dark:text-gray-300">
-              Designed and implemented a secure multi-layered file system with robust access control, 
-              incorporating both Discretionary Access Control (DAC) and Mandatory Access Control (MAC) policies.
-            </p>
-        </a>
-    </div>
-
-    <div class="item">
-      <a
-          href="https://github.com/chenfeng-huang/firebase_emulation_citibike"
-          aria-label="Firebase Emulation"
-          target="_blank"
-          rel="noopener noreferrer"
-      >
-          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            Database Design: Firebase Emulation with Citi Bike Station Query Platform
-            <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/firebase_emulation_citibike" title="GitHub stars" aria-label="GitHub stars">
+    <a href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" aria-label="Kaggle Competition" target="_blank" rel="noopener noreferrer" class="project-item">
+        <div class="item-title">
+            Data Mining: Child Mind Institute Problematic Internet Use 
+            <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" title="GitHub stars" aria-label="GitHub stars">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
-              <span class="count">0</span>
+              <span class="count">42</span>
             </span>
-          </h4>
-          <p class="leading-5 text-gray-700 dark:text-gray-300">
-            Replicated Firebase RESTful API using Flask. 
-            Established synchronization of JSON data from MongoDB database for data consistency.
-          </p>
-      </a>
-    </div>
+        </div>
+        <div class="item-description">
+          Developed a silver-medal solution for the Kaggle CMI-PIU competition by integrating tabular and time-series features, 
+          training tree-based regressors with cross-validation, and optimizing thresholds to maximize Quadratic Weighted Kappa.
+        </div>
+    </a>
+    <a href="https://github.com/chenfeng-huang/Secure-Multi-Layered-File-System" aria-label="Secure file system" target="_blank" rel="noopener noreferrer" class="project-item">
+        <div class="item-title">
+          System Security: Secure File System with Comprehensive Access Control
+          <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+            <span class="count">8</span>
+          </span>
+        </div>
+        <div class="item-description">
+          Designed and implemented a secure multi-layered file system with robust access control, 
+          incorporating both Discretionary Access Control (DAC) and Mandatory Access Control (MAC) policies.
+        </div>
+    </a>
+
+    <a href="https://github.com/chenfeng-huang/firebase_emulation_citibike" aria-label="Firebase Emulation" target="_blank" rel="noopener noreferrer" class="project-item">
+        <div class="item-title">
+          Database Design: Firebase Emulation with Citi Bike Station Query Platform
+          <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/firebase_emulation_citibike" title="GitHub stars" aria-label="GitHub stars">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+            <span class="count">18</span>
+          </span>
+        </div>
+        <div class="item-description">
+          Replicated Firebase RESTful API using Flask. 
+          Established synchronization of JSON data from MongoDB database for data consistency.
+        </div>
+    </a>
 
 
 

@@ -63,3 +63,14 @@
     margin-left: -7em;
   }
 }
+
+// Enhanced responsive layout for larger screens
+@media screen and (min-width: $viewport-xlarge) {
+  html {
+    font-size: 18px;
+  }
+  
+  .measure {
+    padding: 0 2rem;
+  }
+}

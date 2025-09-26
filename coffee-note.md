@@ -54,7 +54,6 @@ permalink: /coffee-note/
             </div>
           </div>
         </div>
-        {% unless forloop.last %}<hr class="post-separator" data-index="{{ item_index }}"/>{% endunless %}
       {% endfor %}
     </div>
 
@@ -87,10 +86,8 @@ function initializePagination() {
   console.log('Initializing coffee notes pagination...');
   
   const postItems = document.querySelectorAll('.post-item');
-  const separators = document.querySelectorAll('.post-separator');
   
   console.log('Found coffee note items:', postItems.length);
-  console.log('Found separators:', separators.length);
   
   totalPosts = postItems.length;
   totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
@@ -117,7 +114,6 @@ function initializePagination() {
 function showPage(page) {
   currentPage = page;
   const postItems = document.querySelectorAll('.post-item');
-  const separators = document.querySelectorAll('.post-separator');
   
   console.log('Showing page:', page, 'Total coffee notes:', postItems.length);
   
@@ -126,7 +122,7 @@ function showPage(page) {
   
   console.log('Start index:', startIndex, 'End index:', endIndex);
   
-  // Hide all posts and separators first
+  // Show/hide posts based on pagination
   postItems.forEach((item, index) => {
     if (index >= startIndex && index < endIndex) {
       item.style.display = 'block';
@@ -134,15 +130,6 @@ function showPage(page) {
     } else {
       item.style.display = 'none';
       console.log('Hiding coffee note', index);
-    }
-  });
-  
-  separators.forEach((separator, index) => {
-    // Show separator if it's between shown posts (not after the last post on page)
-    if (index >= startIndex && index < endIndex - 1 && index < postItems.length - 1) {
-      separator.style.display = 'block';
-    } else {
-      separator.style.display = 'none';
     }
   });
   
@@ -229,7 +216,7 @@ window.addEventListener('load', function() {
 }
 
 .page-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .page-header h2 {
@@ -260,11 +247,18 @@ window.addEventListener('load', function() {
 }
 
 .coffee-notes-archive .coffee-note-item {
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
   background-color: var(--card-bg) !important;
   border-radius: 8px;
-  padding: 1.5rem;
-  transition: background-color 0.3s ease;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.coffee-notes-archive .coffee-note-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-color);
 }
 
 .coffee-notes-archive .post-meta {
@@ -305,8 +299,8 @@ window.addEventListener('load', function() {
 }
 
 .archive-info {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -328,8 +322,8 @@ window.addEventListener('load', function() {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
   gap: 1rem;
 }
