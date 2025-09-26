@@ -20,31 +20,31 @@ permalink: /coffee-note/
   </div>
   
   {% if coffee_note_count > 0 %}
-    {% assign sca_post = coffee_notes | where: "title", "SCA CSP Brewing-Professional Certificate" | first %}
-    {% assign other_notes = coffee_notes | where_exp: "note", "note.title != 'SCA CSP Brewing-Professional Certificate'" | sort: "date" | reverse %}
+    {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
+    {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
     
     <div class="posts" id="posts-container">
-      <!-- SCA Post (Pinned) -->
-      {% if sca_post %}
+      <!-- Pinned Post -->
+      {% if pinned_post %}
         <div class="coffee-note-item py3 post-item" data-index="0" data-pinned="true">
           <div class="post-content-wrapper">
-            {% if sca_post.preview_image %}
+            {% if pinned_post.preview_image %}
               <div class="post-image-preview">
-                <a href="{{ sca_post.url | prepend: site.baseurl }}">
-                  <img src="{{ sca_post.preview_image }}" alt="{{ sca_post.title }}" />
+                <a href="{{ pinned_post.url | prepend: site.baseurl }}">
+                  <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}" />
                 </a>
               </div>
             {% endif %}
             <div class="post-text-content">
-              <p class="post-meta">{{ sca_post.date | date: site.date_format }} <span class="marker">📌</span></p>
-              <a href="{{ sca_post.url | prepend: site.baseurl }}" class="post-link">
-                <h3 class="h3 post-title">{{ sca_post.title }}</h3>
+              <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }} {% endunless %}<span class="marker">📌</span></p>
+              <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
+                <h3 class="h3 post-title">{{ pinned_post.title }}</h3>
               </a>
               <p class="post-summary">
-                {% if sca_post.summary %}
-                  {{ sca_post.summary }}
+                {% if pinned_post.summary %}
+                  {{ pinned_post.summary }}
                 {% else %}
-                  {% assign excerpt_parts = sca_post.excerpt | split: site.excerpt_separator %}
+                  {% assign excerpt_parts = pinned_post.excerpt | split: site.excerpt_separator %}
                   {{ excerpt_parts[0] | strip_html | truncate: 160 }}
                 {% endif %}
               </p>
@@ -57,7 +57,7 @@ permalink: /coffee-note/
       <!-- Other Notes -->
       {% for note in other_notes %}
         {% assign item_index = forloop.index %}
-        {% if sca_post %}{% assign item_index = forloop.index %}{% endif %}
+        {% if pinned_post %}{% assign item_index = forloop.index %}{% endif %}
         <div class="coffee-note-item py3 post-item" data-index="{{ item_index }}">
           <div class="post-content-wrapper">
             {% if note.preview_image %}
