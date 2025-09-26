@@ -146,7 +146,7 @@ pre, code {
 #theme-toggle-icon::before {
   content: var(--theme-icon);
   display: inline-block;
-  font-size: 1.2em;
+  font-size: 1.2rem; /* use root size so it doesn't inherit 0 */
   line-height: 1;
 }
 
