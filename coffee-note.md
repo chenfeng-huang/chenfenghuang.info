@@ -12,7 +12,8 @@ permalink: /coffee-note/
 
 <div class="coffee-notes-archive">
   {% assign coffee_notes = site.posts | where: "tags", "coffee-note" | sort: "date" | reverse %}
-  {% assign coffee_note_count = coffee_notes | size %}
+  {% assign regular_coffee_notes = coffee_notes | where_exp: "note", "note.pinned != true" %}
+  {% assign coffee_note_count = regular_coffee_notes | size %}
   
   <div class="archive-info">
     <p class="archive-count">{{ coffee_note_count }} coffee note{% if coffee_note_count != 1 %}s{% endif %} total</p>
@@ -24,36 +25,6 @@ permalink: /coffee-note/
     {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
     
     <div class="posts" id="posts-container">
-      <!-- Pinned Post -->
-      {% if pinned_post %}
-        <div class="coffee-note-item py3 post-item" data-index="0" data-pinned="true">
-          <div class="post-content-wrapper">
-            {% if pinned_post.preview_image %}
-              <div class="post-image-preview">
-                <a href="{{ pinned_post.url | prepend: site.baseurl }}">
-                  <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}" />
-                </a>
-              </div>
-            {% endif %}
-            <div class="post-text-content">
-              <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }}{% endunless %}</p>
-              <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
-                <h3 class="h3 post-title">{{ pinned_post.title }}</h3>
-              </a>
-              <p class="post-summary">
-                {% if pinned_post.summary %}
-                  {{ pinned_post.summary }}
-                {% else %}
-                  {% assign excerpt_parts = pinned_post.excerpt | split: site.excerpt_separator %}
-                  {{ excerpt_parts[0] | strip_html | truncate: 160 }}
-                {% endif %}
-              </p>
-            </div>
-          </div>
-        </div>
-        <hr class="post-separator" data-index="0"/>
-      {% endif %}
-
       <!-- Other Notes -->
       {% for note in other_notes %}
         {% assign item_index = forloop.index %}

@@ -5,7 +5,8 @@ tags: blog
 {% assign regular_posts = site.posts | where_exp:"post", "post.tags contains 'blog'" %}
 {% assign regular_posts_count = regular_posts | size %}
 {% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
-{% assign coffee_note_count = coffee_notes | size %}
+{% assign regular_coffee_notes = coffee_notes | where_exp: "note", "note.pinned != true" %}
+{% assign coffee_note_count = regular_coffee_notes | size %}
 
 <h2><a href="{{ site.baseurl }}/blog-archive" class="section-title-link">Blogs</a></h2>
 <div class="home">
