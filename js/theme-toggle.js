@@ -23,8 +23,8 @@
     // Update theme icon via CSS variable and update meta theme-color for mobile UI
     function updateThemeIcon(theme) {
         if (themeIcon) {
-            // icon comes from CSS var now; force reflow to ensure it updates instantly
-            // No textContent needed, avoids flicker
+            // Ensure no text node is present that could render alongside the pseudo-element
+            themeIcon.textContent = '';
         }
         // Update theme-color meta so iOS/Android top bars match theme immediately
         const meta = document.querySelector('meta[name="theme-color"]');

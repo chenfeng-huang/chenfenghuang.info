@@ -146,4 +146,11 @@ pre, code {
 #theme-toggle-icon::before {
   content: var(--theme-icon);
   display: inline-block;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* Hide any real text inside the span to prevent double icons if scripts set text */
+#theme-toggle-icon {
+  font-size: 0; /* pseudo-element supplies visible size */
 }
