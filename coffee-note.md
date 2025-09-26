@@ -419,7 +419,7 @@ window.addEventListener('load', function() {
 .post-content-wrapper {
   display: flex;
   gap: 1.5rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .post-image-preview {

@@ -79,6 +79,10 @@ tags: blog
           </div>
         </div>
       </div>
+      <!-- Light separator after pinned post -->
+      {% if other_notes.size > 0 %}
+        <div class="pinned-separator"></div>
+      {% endif %}
     {% endif %}
 
     {% for note in other_notes limit:4 %}
@@ -212,7 +216,7 @@ h2 {
 .post-content-wrapper {
   display: flex;
   gap: 1.5rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .post-image-preview {
@@ -257,7 +261,7 @@ h2 {
 .coffee-note-item .post-content-wrapper {
   display: flex;
   gap: 1.5rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* Section title link styling */
@@ -270,5 +274,13 @@ h2 {
 .section-title-link:hover {
   color: var(--link-color);
   text-decoration: none;
+}
+
+/* Light separator after pinned post */
+.pinned-separator {
+  margin: 1.5rem 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color, #e1e1e1) 20%, var(--border-color, #e1e1e1) 80%, transparent);
+  opacity: 0.5;
 }
 </style>

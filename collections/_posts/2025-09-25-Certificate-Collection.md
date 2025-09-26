@@ -65,6 +65,19 @@ no_date: true
   margin-top: 8px;
   color: #666;
 }
+
+/* Dark mode support for image captions */
+@media (prefers-color-scheme: dark) {
+  .image-caption {
+    color: #ccc;
+  }
+}
+
+/* Also support explicit dark mode class if used */
+.dark .image-caption,
+[data-theme="dark"] .image-caption {
+  color: #ccc;
+}
 </style>
 
 <div class="image-grid">
