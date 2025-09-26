@@ -20,6 +20,8 @@
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | xml_escape }}{% elsif page.summary %}{{ page.summary | xml_escape }}{% else %}{{ site.description | xml_escape }}{% endif %}">
+    <meta name="theme-color" content="#e8e8e8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Cache Control Headers -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -55,6 +57,12 @@
             document.documentElement.setAttribute('data-theme', 'dark');
           } else {
             document.documentElement.removeAttribute('data-theme');
+          }
+          // Set initial theme-color meta to match header/bg before paint
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            var bg = theme === 'dark' ? '#4a3728' : '#e8e8e8';
+            meta.setAttribute('content', bg);
           }
         } catch (e) {
           // noop

@@ -20,10 +20,18 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update theme icon immediately to avoid flicker during navigation
+    // Update theme icon via CSS variable and update meta theme-color for mobile UI
     function updateThemeIcon(theme) {
         if (themeIcon) {
-            themeIcon.textContent = theme === DARK_THEME ? '☀' : '🌙';
+            // icon comes from CSS var now; force reflow to ensure it updates instantly
+            // No textContent needed, avoids flicker
+        }
+        // Update theme-color meta so iOS/Android top bars match theme immediately
+        const meta = document.querySelector('meta[name="theme-color"]');
+        const bg = getComputedStyle(document.documentElement)
+            .getPropertyValue('--header-bg') || getComputedStyle(document.body).backgroundColor;
+        if (meta) {
+            meta.setAttribute('content', bg.trim());
         }
     }
     
