@@ -46,7 +46,6 @@ title: All Blog Posts
             </div>
           </div>
         </div>
-        {% unless forloop.last %}<hr class="post-separator" data-index="{{ forloop.index0 }}"/>{% endunless %}
       {% endfor %}
     </div>
 
@@ -79,10 +78,8 @@ function initializePagination() {
   console.log('Initializing pagination...');
   
   const postItems = document.querySelectorAll('.post-item');
-  const separators = document.querySelectorAll('.post-separator');
   
   console.log('Found post items:', postItems.length);
-  console.log('Found separators:', separators.length);
   
   totalPosts = postItems.length;
   totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
@@ -109,7 +106,6 @@ function initializePagination() {
 function showPage(page) {
   currentPage = page;
   const postItems = document.querySelectorAll('.post-item');
-  const separators = document.querySelectorAll('.post-separator');
   
   console.log('Showing page:', page, 'Total posts:', postItems.length);
   
@@ -118,7 +114,7 @@ function showPage(page) {
   
   console.log('Start index:', startIndex, 'End index:', endIndex);
   
-  // Hide all posts and separators first
+  // Show/hide posts based on pagination
   postItems.forEach((item, index) => {
     if (index >= startIndex && index < endIndex) {
       item.style.display = 'block';
@@ -126,15 +122,6 @@ function showPage(page) {
     } else {
       item.style.display = 'none';
       console.log('Hiding post', index);
-    }
-  });
-  
-  separators.forEach((separator, index) => {
-    // Show separator if it's between shown posts (not after the last post on page)
-    if (index >= startIndex && index < endIndex - 1 && index < postItems.length - 1) {
-      separator.style.display = 'block';
-    } else {
-      separator.style.display = 'none';
     }
   });
   
@@ -221,7 +208,7 @@ window.addEventListener('load', function() {
 }
 
 .page-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 .page-header h2 {
@@ -236,16 +223,25 @@ window.addEventListener('load', function() {
 .blog-archive .post-item {
   background-color: var(--card-bg) !important;
   border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  transition: background-color 0.3s ease;
+  padding: 1.2rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.blog-archive .post-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-color);
 }
 
 .blog-archive .post {
   background-color: var(--card-bg) !important;
   border-radius: 8px;
-  padding: 1.5rem;
-  transition: background-color 0.3s ease;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 .back-button {
@@ -263,8 +259,8 @@ window.addEventListener('load', function() {
 }
 
 .archive-info {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -281,9 +277,6 @@ window.addEventListener('load', function() {
   margin: 0;
 }
 
-.blog-archive .post {
-  margin-bottom: 2rem;
-}
 
 .blog-archive .post-meta {
   color: var(--text-secondary);
@@ -306,9 +299,25 @@ window.addEventListener('load', function() {
   color: var(--link-color);
 }
 
+.blog-archive .post-meta {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  margin-bottom: 0.5rem;
+}
+
+.blog-archive .post-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blog-archive .post-link:hover {
+  color: var(--link-color);
+}
+
 .blog-archive .post-title {
   margin: 0.5rem 0;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .blog-archive .post-summary {
@@ -327,17 +336,17 @@ window.addEventListener('load', function() {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-color);
   gap: 1rem;
 }
 
 .pagination-link {
-  color: var(--text-secondary);
-  background: white;
+  color: var(--text-color);
+  background: var(--card-bg);
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -352,7 +361,8 @@ window.addEventListener('load', function() {
 .pagination-link:disabled {
   color: var(--text-secondary);
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.6;
+  background: var(--card-bg);
 }
 
 .pagination-numbers {
@@ -363,9 +373,9 @@ window.addEventListener('load', function() {
 .pagination-number {
   display: inline-block;
   padding: 0.5rem 0.75rem;
-  color: var(--text-secondary);
-  background: white;
-  border: 1px solid #ddd;
+  color: var(--text-color);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   transition: all 0.2s ease;
   min-width: 2.5rem;
@@ -381,7 +391,7 @@ window.addEventListener('load', function() {
 
 .pagination-number.current {
   background-color: var(--link-color);
-  color: white;
+  color: var(--bg-color);
   border-color: var(--link-color);
 }
 

@@ -329,10 +329,10 @@ window.addEventListener('load', function() {
 }
 
 .pagination-link {
-  color: var(--text-secondary);
-  background: white;
+  color: var(--text-color);
+  background: var(--card-bg);
   padding: 0.5rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -347,7 +347,8 @@ window.addEventListener('load', function() {
 .pagination-link:disabled {
   color: var(--text-secondary);
   cursor: not-allowed;
-  opacity: 0.5;
+  opacity: 0.6;
+  background: var(--card-bg);
 }
 
 .pagination-numbers {
@@ -358,9 +359,9 @@ window.addEventListener('load', function() {
 .pagination-number {
   display: inline-block;
   padding: 0.5rem 0.75rem;
-  color: var(--text-secondary);
-  background: white;
-  border: 1px solid #ddd;
+  color: var(--text-color);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   transition: all 0.2s ease;
   min-width: 2.5rem;

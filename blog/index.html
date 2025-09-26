@@ -195,18 +195,51 @@ h2 {
 .post {
   background-color: var(--card-bg) !important;
   border-radius: 8px;
+  padding: 1.2rem !important;
+  margin: 0 !important;
   transition: background-color 0.3s ease;
+}
+
+/* Override py3 padding for consistent spacing */
+.home .posts .post.py3 {
+  padding: 1.2rem !important;
+  margin: 0 !important;
+}
+
+.home .posts .post {
+  margin: 0 !important;
+}
+
+/* Nuclear option - force zero spacing everywhere */
+div.home div.posts div.post {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+div.coffee-note div.coffee-note-item {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .posts .post {
   background-color: var(--card-bg) !important;
+  margin: 0 !important;
 }
 
 .coffee-note .coffee-note-item {
   background-color: var(--card-bg) !important;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.2rem !important;
+  margin: 0 !important;
   transition: background-color 0.3s ease;
+}
+
+/* Override py3 padding for coffee notes too */
+.coffee-note .coffee-note-item.py3 {
+  padding: 1.2rem !important;
+  margin: 0 !important;
 }
 
 /* Image preview styling for dark mode */
@@ -279,9 +312,33 @@ h2 {
 
 /* Light separator after pinned post */
 .pinned-separator {
-  margin: 1.5rem 0;
+  margin: 0 !important;
   height: 1px;
   background: linear-gradient(to right, transparent, var(--border-color, #e1e1e1) 20%, var(--border-color, #e1e1e1) 80%, transparent);
   opacity: 0.5;
+}
+
+/* FINAL OVERRIDE - This should be last to ensure it wins */
+.py3 {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 1.2rem !important;
+  padding-bottom: 1.2rem !important;
+}
+
+* {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Restore some essential margins for readability */
+h1, h2, h3 {
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+p {
+  margin-bottom: 0.5rem !important;
 }
 </style>
