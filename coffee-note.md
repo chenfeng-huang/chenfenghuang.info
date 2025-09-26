@@ -36,7 +36,7 @@ permalink: /coffee-note/
               </div>
             {% endif %}
             <div class="post-text-content">
-              <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }} {% endunless %}<span class="marker">📌</span></p>
+              <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }}{% endunless %}</p>
               <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
                 <h3 class="h3 post-title">{{ pinned_post.title }}</h3>
               </a>
