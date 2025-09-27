@@ -5,7 +5,7 @@ headshot: /images/headshot.jpg
 ---
 
 <!-- Hero Section -->
-<div class="profile-layout" style="display: flex; gap: 3em; margin-bottom: 3.5em; align-items: flex-start; padding: 2.5em 0;">
+<div class="profile-layout" style="display: flex; gap: 3em; margin-bottom: 1.5em; align-items: flex-start; padding: 2.5em 0;">
   <div class="profile-card" style="text-align: center; max-width: 300px; min-width: 280px; padding: 0; flex-shrink: 0;">
     <img 
       style="border-radius: 1em; width: 200px; height: 200px; object-fit: cover; margin-bottom: 1.5em; box-shadow: 0 4px 16px rgba(0,0,0,0.1);" 
@@ -119,7 +119,7 @@ function toggleInterest(id) {
   <div class="interests-education" style="display: flex; gap: 2.5em; max-width: 100%;">
     
     <!-- Interests Section -->
-    <div style="flex: 1; padding: 2em 0;">
+    <div style="flex: 1;">
       <h2 style="color: var(--text-color); margin-top: 0; margin-bottom: 1.5em; font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5em;">
         Interests
       </h2>
@@ -175,7 +175,7 @@ function toggleInterest(id) {
     </div>
       
     <!-- Education Section -->
-    <div style="flex: 1; padding: 2em 0;">
+    <div style="flex: 1; ">
       <h2 style="color: var(--text-color); margin-top: 0; margin-bottom: 1.5em; font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5em;">
         Education
       </h2>
