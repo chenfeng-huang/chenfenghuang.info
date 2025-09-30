@@ -61,3 +61,17 @@ em img {
 .page-body.page-swipe-out.swipe-out-right {
   transform: translateX(50px);
 }
+
+/* Faster, smoother animation for mobile */
+.page-body.mobile-swipe {
+  transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              opacity 0.25s ease !important;
+}
+
+.page-body.mobile-swipe.swipe-out-left {
+  transform: translateX(-30px);
+}
+
+.page-body.mobile-swipe.swipe-out-right {
+  transform: translateX(30px);
+}

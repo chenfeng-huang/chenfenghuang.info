@@ -35,6 +35,40 @@
       }
     }
 
+    // Restore menu state from sessionStorage on page load
+    function restoreMenuState() {
+      if (window.innerWidth <= 768) {
+        const wasMenuOpen = sessionStorage.getItem('mobileMenuOpen') === 'true';
+        if (wasMenuOpen) {
+          // Disable transitions temporarily
+          navLinks.style.transition = 'none';
+          
+          // Apply immediately without animation for instant visibility
+          menuToggle.classList.add('active');
+          navLinks.classList.add('active');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          
+          // Position the dropdown after DOM is ready
+          requestAnimationFrame(() => {
+            positionDropdown();
+            
+            // Re-enable transitions after a frame
+            requestAnimationFrame(() => {
+              navLinks.style.transition = '';
+            });
+          });
+          
+          // Clear the state after a short delay to ensure it's applied
+          setTimeout(() => {
+            sessionStorage.removeItem('mobileMenuOpen');
+          }, 100);
+        }
+      }
+    }
+
+    // Restore menu state on page load (run immediately)
+    restoreMenuState();
+
     // Toggle menu on button click
     menuToggle.addEventListener('click', function() {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -63,15 +97,9 @@
       }
     });
 
-    // Close menu when clicking on a navigation link
-    const navItems = navLinks.querySelectorAll('a');
-    navItems.forEach(function(item) {
-      item.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+    // Don't auto-close menu when clicking navigation links
+    // Let the navigation handle the transition and keep menu open
+    // (The page will navigate anyway, so menu closing is not needed)
 
     // Close menu on escape key
     document.addEventListener('keydown', function(event) {

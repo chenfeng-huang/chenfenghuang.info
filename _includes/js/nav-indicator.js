@@ -54,13 +54,26 @@
     // Prevent immediate navigation
     e.preventDefault();
     
+    // Check if we're in mobile view
+    const isMobile = window.innerWidth <= 768;
+    
+    // Save mobile menu state if open
+    if (isMobile) {
+      const navLinks = document.getElementById('nav-links');
+      if (navLinks && navLinks.classList.contains('active')) {
+        sessionStorage.setItem('mobileMenuOpen', 'true');
+      }
+    }
+    
     // Determine swipe direction based on navigation indices
     const currentIndex = currentNavItem ? parseInt(currentNavItem.getAttribute('data-nav-index')) : 0;
     const targetIndex = parseInt(clickedLink.getAttribute('data-nav-index'));
     const direction = targetIndex > currentIndex ? 'left' : 'right';
     
-    // Animate indicator to the clicked item
-    positionIndicator(clickedLink, true);
+    // Animate indicator to the clicked item (desktop only)
+    if (!isMobile) {
+      positionIndicator(clickedLink, true);
+    }
     
     // Add a scaling effect for feedback
     clickedLink.style.transform = 'scale(0.95)';
@@ -68,27 +81,34 @@
       clickedLink.style.transform = '';
     }, 150);
     
-    // Add page swipe animation
-    addPageSwipeAnimation(direction);
+    // Add page swipe animation with faster timing for mobile
+    addPageSwipeAnimation(direction, isMobile);
     
-    // Navigate after animation
+    // Navigate after animation (faster on mobile)
     const href = clickedLink.getAttribute('href');
+    const delay = isMobile ? 250 : 400;
     setTimeout(() => {
       window.location.href = href;
-    }, 400);
+    }, delay);
   }
 
-  function addPageSwipeAnimation(direction) {
+  function addPageSwipeAnimation(direction, isMobile = false) {
     const pageBody = document.querySelector('.page-body');
     if (!pageBody) return;
     
     // Add the swipe animation class
     pageBody.classList.add('page-swipe-out', `swipe-out-${direction}`);
     
+    // Faster animation for mobile
+    if (isMobile) {
+      pageBody.classList.add('mobile-swipe');
+    }
+    
     // Remove classes after animation
+    const duration = isMobile ? 250 : 400;
     setTimeout(() => {
-      pageBody.classList.remove('page-swipe-out', `swipe-out-${direction}`);
-    }, 400);
+      pageBody.classList.remove('page-swipe-out', `swipe-out-${direction}`, 'mobile-swipe');
+    }, duration);
   }
 
   function positionIndicator(targetElement, animate = true) {

@@ -37,6 +37,14 @@
     if (nextIndex >= 0 && nextIndex < pages.length) {
       const nextPage = pages[nextIndex];
       
+      // Save mobile menu state if open
+      if (window.innerWidth <= 768) {
+        const navLinks = document.getElementById('nav-links');
+        if (navLinks && navLinks.classList.contains('active')) {
+          sessionStorage.setItem('mobileMenuOpen', 'true');
+        }
+      }
+      
       // Add page transition animation
       addPageTransition(direction);
       
@@ -369,8 +377,10 @@
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyDown);
 
-    // Optional: Show navigation hints
-    // createNavigationHints();
+    // Show navigation hints on mobile
+    if (window.innerWidth <= 768) {
+      createNavigationHints();
+    }
 
     // Add CSS for transitions
     addTransitionStyles();
