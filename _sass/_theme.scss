@@ -51,6 +51,12 @@ body {
   overflow-y: visible;
 }
 
+@media only screen and (max-width: 768px) {
+  .site-header {
+    overflow: visible;
+  }
+}
+
 .nav-underline {
   color: var(--nav-link-color) !important;
   transition: color 0.3s ease;

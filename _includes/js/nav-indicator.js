@@ -41,6 +41,33 @@
         positionIndicator(currentNavItem);
       }
     }, 150));
+
+    // Watch for mobile menu open/close to reposition indicator
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const isActive = navLinks.classList.contains('active');
+          const isMobile = window.innerWidth <= 768;
+          
+          console.log('Menu state changed:', { isActive, isMobile, hasCurrentNavItem: !!currentNavItem });
+          
+          if (isActive && isMobile && currentNavItem) {
+            // Ensure indicator is visible and positioned after menu animation
+            indicator.classList.add('active');
+            console.log('Positioning indicator for mobile menu...');
+            // Wait for menu animation to complete (350ms transition + buffer)
+            setTimeout(() => {
+              positionIndicator(currentNavItem, false);
+            }, 400);
+          }
+        }
+      });
+    });
+    
+    observer.observe(navLinks, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
   }
 
   function handleNavClick(e) {
@@ -118,16 +145,46 @@
     const rect = targetElement.getBoundingClientRect();
     const navRect = navLinks.getBoundingClientRect();
     
-    // Calculate position relative to nav-links container
-    const left = rect.left - navRect.left;
-    const width = rect.width;
+    // Check if we're in mobile view (vertical layout)
+    const isMobile = window.innerWidth <= 768;
     
-    // Add some padding to the indicator
-    const padding = 12;
-    
-    // Apply the position and size
-    indicator.style.left = `${left - padding}px`;
-    indicator.style.width = `${width + (padding * 2)}px`;
+    if (isMobile) {
+      // Mobile: vertical layout - position from top
+      const top = rect.top - navRect.top;
+      const height = rect.height;
+      const verticalPadding = 4;
+      
+      console.log('Mobile indicator positioning:', {
+        top: top - verticalPadding,
+        height: height + (verticalPadding * 2),
+        targetElement: targetElement,
+        indicatorDisplay: window.getComputedStyle(indicator).display,
+        indicatorOpacity: window.getComputedStyle(indicator).opacity
+      });
+      
+      // Clear desktop positioning
+      indicator.style.left = '';
+      indicator.style.width = '';
+      
+      // Apply mobile positioning
+      indicator.style.top = `${top - verticalPadding}px`;
+      indicator.style.height = `${height + (verticalPadding * 2)}px`;
+    } else {
+      // Desktop: horizontal layout - position from left
+      const left = rect.left - navRect.left;
+      const width = rect.width;
+      const height = rect.height;
+      const padding = 12;
+      const verticalPadding = 6;
+      
+      // Clear mobile positioning
+      indicator.style.top = '';
+      
+      // Apply desktop positioning
+      indicator.style.left = `${left - padding}px`;
+      indicator.style.width = `${width + (padding * 2)}px`;
+      indicator.style.height = `${height + (verticalPadding * 2)}px`;
+    }
     
     if (!animate) {
       indicator.style.transition = 'none';
@@ -156,20 +213,25 @@
     const navRect = navLinks.getBoundingClientRect();
     
     const padding = 12;
+    const verticalPadding = 6;
     
     // Calculate interpolated position
     const currentLeft = currentRect.left - navRect.left - padding;
     const nextLeft = nextRect.left - navRect.left - padding;
     const currentWidth = currentRect.width + (padding * 2);
     const nextWidth = nextRect.width + (padding * 2);
+    const currentHeight = currentRect.height + (verticalPadding * 2);
+    const nextHeight = nextRect.height + (verticalPadding * 2);
     
     const interpolatedLeft = currentLeft + (nextLeft - currentLeft) * progress;
     const interpolatedWidth = currentWidth + (nextWidth - currentWidth) * progress;
+    const interpolatedHeight = currentHeight + (nextHeight - currentHeight) * progress;
     
     // Apply the interpolated position
     indicator.style.transition = 'none';
     indicator.style.left = `${interpolatedLeft}px`;
     indicator.style.width = `${interpolatedWidth}px`;
+    indicator.style.height = `${interpolatedHeight}px`;
   }
 
   // Reset indicator to current position

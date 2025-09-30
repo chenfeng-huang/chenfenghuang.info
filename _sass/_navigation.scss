@@ -44,7 +44,6 @@
 /* Apple-style navigation indicator */
 .nav-indicator {
   position: absolute;
-  height: 36px;
   background: var(--nav-indicator-bg, rgba(0, 0, 0, 0.08));
   border-radius: 10px;
   transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -213,10 +212,10 @@
 /* Responsive design for mobile */
 @media only screen and (max-width: 768px) {
   .main-navigation {
+    margin-top: 0;
     border-bottom: none;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    position: relative;
+    overflow: visible;
   }
 
   .menu-toggle {
@@ -231,7 +230,10 @@
   .nav-container {
     padding: 0.75rem 1rem;
     justify-content: space-between;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--header-bg);
   }
   
   .nav-primary {
@@ -248,14 +250,13 @@
     left: 0;
     right: 0;
     margin: 0;
+    margin-top: -1px;
     background-color: var(--header-bg);
-    box-shadow: 0 4px 6px var(--shadow-color);
+    box-shadow: 0 4px 6px -2px var(--shadow-color);
     padding: 0;
     z-index: 9999;
     max-height: 0;
     overflow: hidden;
-    overflow-y: auto;
-    overflow-x: hidden;
     box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
@@ -265,10 +266,11 @@
 
   .nav-links.active {
     max-height: calc(100vh - 100px);
-    padding: 0.75rem 0;
+    padding: 0;
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    overflow-y: auto;
   }
 
   .nav-links a {
@@ -279,6 +281,7 @@
     box-sizing: border-box;
     position: relative;
     display: block;
+    z-index: 1;
   }
 
   .nav-links a:not(:last-of-type)::after {
@@ -289,9 +292,29 @@
     display: none;
   }
   
-  /* Hide the indicator in mobile menu */
+  /* Style the indicator for mobile menu - vertical layout */
   .nav-indicator {
-    display: none;
+    display: block !important;
+    position: absolute;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 8px;
+    background: var(--nav-indicator-bg, rgba(0, 120, 255, 0.2)) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 0 !important;
+    opacity: 0 !important;
+  }
+  
+  /* Show indicator only when menu is active */
+  .nav-links.active .nav-indicator {
+    opacity: 1 !important;
+  }
+  
+  /* Dark theme */
+  [data-theme="dark"] .nav-links .nav-indicator {
+    background: var(--nav-indicator-bg, rgba(255, 255, 255, 0.12)) !important;
   }
 }
 

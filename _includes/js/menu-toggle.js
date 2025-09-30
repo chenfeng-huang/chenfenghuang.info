@@ -116,10 +116,16 @@
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
-        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-          menuToggle.classList.remove('active');
-          navLinks.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
+        if (window.innerWidth > 768) {
+          // Reset mobile menu state and inline styles when switching to desktop
+          if (navLinks.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+          // Clear any inline styles that were added for mobile
+          navLinks.style.top = '';
+          navLinks.style.removeProperty('--mobile-menu-max-height');
         } else if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
           // Reposition dropdown on resize when menu is open
           positionDropdown();
