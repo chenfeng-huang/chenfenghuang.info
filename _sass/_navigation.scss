@@ -38,6 +38,39 @@
   align-items: center;
   justify-content: center;
   margin-left: 7rem;
+  position: relative;
+}
+
+/* Apple-style navigation indicator */
+.nav-indicator {
+  position: absolute;
+  height: 36px;
+  background: var(--nav-indicator-bg, rgba(0, 0, 0, 0.08));
+  border-radius: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+
+[data-theme="dark"] .nav-indicator {
+  background: var(--nav-indicator-bg, rgba(255, 255, 255, 0.12));
+}
+
+.nav-indicator.active {
+  opacity: 1;
+}
+
+/* Ensure nav links are above the indicator */
+.nav-links a {
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.nav-links a:active {
+  transform: scale(0.95);
 }
 
 /* Theme toggle button styling */
@@ -252,6 +285,11 @@
   }
 
   .nav-links .nav-underline::before {
+    display: none;
+  }
+  
+  /* Hide the indicator in mobile menu */
+  .nav-indicator {
     display: none;
   }
 }

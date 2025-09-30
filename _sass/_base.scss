@@ -45,4 +45,19 @@ em img {
 .page-body {
   padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 6vw, 4rem);
   box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              opacity 0.4s ease;
+}
+
+/* Page swipe animations for navigation clicks */
+.page-body.page-swipe-out {
+  opacity: 0;
+}
+
+.page-body.page-swipe-out.swipe-out-left {
+  transform: translateX(-50px);
+}
+
+.page-body.page-swipe-out.swipe-out-right {
+  transform: translateX(50px);
 }
