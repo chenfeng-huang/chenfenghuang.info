@@ -118,11 +118,6 @@
         window.navIndicator.animateSwipe(direction, progress);
         swipeDirection = direction;
       }
-      
-      // Show swipe preview hint
-      if (absDeltaX > 30) {
-        showSwipeHint(direction, progress, deltaX);
-      }
     }
   }
 
@@ -134,9 +129,6 @@
     const deltaY = touchEndY - touchStartY;
     const absDeltaX = Math.abs(deltaX);
     const absDeltaY = Math.abs(deltaY);
-
-    // Hide swipe hint
-    hideSwipeHint();
 
     // Check if it's a horizontal swipe
     if (absDeltaX > minSwipeDistance && absDeltaX > absDeltaY && absDeltaY < maxVerticalDistance) {
@@ -376,11 +368,6 @@
 
     // Keyboard navigation
     document.addEventListener('keydown', handleKeyDown);
-
-    // Show navigation hints on mobile
-    if (window.innerWidth <= 768) {
-      createNavigationHints();
-    }
 
     // Add CSS for transitions
     addTransitionStyles();

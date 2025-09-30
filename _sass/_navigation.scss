@@ -231,6 +231,7 @@
   .nav-container {
     padding: 0.75rem 1rem;
     justify-content: space-between;
+    position: relative;
   }
   
   .nav-primary {
@@ -242,8 +243,8 @@
     flex-direction: column;
     gap: 0;
     width: 100vw;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
     margin: 0;
@@ -259,7 +260,7 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-0.5rem);
-    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease, top 0.3s ease;
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease;
   }
 
   .nav-links.active {
