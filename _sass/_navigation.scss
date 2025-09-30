@@ -181,6 +181,9 @@
 @media only screen and (max-width: 768px) {
   .main-navigation {
     border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   .menu-toggle {
@@ -205,11 +208,12 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    width: 100%;
+    width: 100vw;
     position: fixed;
-    top: calc(var(--header-height, 60px));
+    top: 0;
     left: 0;
     right: 0;
+    margin: 0;
     background-color: var(--header-bg);
     box-shadow: 0 4px 6px var(--shadow-color);
     padding: 0;
@@ -222,11 +226,11 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-0.5rem);
-    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease;
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease, top 0.3s ease;
   }
 
   .nav-links.active {
-    max-height: calc(100vh - var(--header-height, 60px));
+    max-height: calc(100vh - 100px);
     padding: 0.75rem 0;
     opacity: 1;
     pointer-events: auto;
@@ -234,12 +238,13 @@
   }
 
   .nav-links a {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1.5rem;
     text-align: left;
-    margin: 0 1rem;
-    width: calc(100% - 2rem);
+    margin: 0;
+    width: 100%;
     box-sizing: border-box;
     position: relative;
+    display: block;
   }
 
   .nav-links a:not(:last-of-type)::after {

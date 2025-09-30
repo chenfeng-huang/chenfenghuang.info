@@ -26,7 +26,12 @@
     function positionDropdown() {
       if (navContainer && window.innerWidth <= 768) {
         const rect = navContainer.getBoundingClientRect();
-        navLinks.style.top = (rect.bottom) + 'px';
+        const topPosition = rect.bottom + window.scrollY;
+        navLinks.style.top = topPosition + 'px';
+        
+        // Update max-height to account for the actual header height
+        const maxHeight = window.innerHeight - rect.bottom;
+        navLinks.style.setProperty('--mobile-menu-max-height', maxHeight + 'px');
       }
     }
 
@@ -78,7 +83,7 @@
       }
     });
 
-    // Handle window resize - close menu if switching to desktop view
+    // Handle window resize - close menu if switching to desktop view and reposition if needed
     let resizeTimer;
     window.addEventListener('resize', function() {
       clearTimeout(resizeTimer);
@@ -87,8 +92,22 @@
           menuToggle.classList.remove('active');
           navLinks.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
+        } else if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+          // Reposition dropdown on resize when menu is open
+          positionDropdown();
         }
       }, 250);
+    });
+    
+    // Reposition on scroll (if needed on some mobile browsers)
+    let scrollTimer;
+    window.addEventListener('scroll', function() {
+      if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+          positionDropdown();
+        }, 50);
+      }
     });
   }
 })();
