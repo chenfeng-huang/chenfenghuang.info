@@ -49,12 +49,9 @@
           const isActive = navLinks.classList.contains('active');
           const isMobile = window.innerWidth <= 768;
           
-          console.log('Menu state changed:', { isActive, isMobile, hasCurrentNavItem: !!currentNavItem });
-          
           if (isActive && isMobile && currentNavItem) {
             // Ensure indicator is visible and positioned after menu animation
             indicator.classList.add('active');
-            console.log('Positioning indicator for mobile menu...');
             // Wait for menu animation to complete (350ms transition + buffer)
             setTimeout(() => {
               positionIndicator(currentNavItem, false);
@@ -100,23 +97,26 @@
     // Animate indicator to the clicked item (desktop only)
     if (!isMobile) {
       positionIndicator(clickedLink, true);
-    }
-    
-    // Add a scaling effect for feedback
-    clickedLink.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      clickedLink.style.transform = '';
-    }, 150);
-    
-    // Add page swipe animation with faster timing for mobile
-    addPageSwipeAnimation(direction, isMobile);
-    
-    // Navigate after animation (faster on mobile)
-    const href = clickedLink.getAttribute('href');
-    const delay = isMobile ? 250 : 400;
-    setTimeout(() => {
+      
+      // Add a scaling effect for feedback
+      clickedLink.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        clickedLink.style.transform = '';
+      }, 150);
+      
+      // Add page swipe animation
+      addPageSwipeAnimation(direction, false);
+      
+      // Navigate after animation
+      const href = clickedLink.getAttribute('href');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 400);
+    } else {
+      // Mobile: Navigate immediately without animation
+      const href = clickedLink.getAttribute('href');
       window.location.href = href;
-    }, delay);
+    }
   }
 
   function addPageSwipeAnimation(direction, isMobile = false) {
@@ -153,14 +153,6 @@
       const top = rect.top - navRect.top;
       const height = rect.height;
       const verticalPadding = 4;
-      
-      console.log('Mobile indicator positioning:', {
-        top: top - verticalPadding,
-        height: height + (verticalPadding * 2),
-        targetElement: targetElement,
-        indicatorDisplay: window.getComputedStyle(indicator).display,
-        indicatorOpacity: window.getComputedStyle(indicator).opacity
-      });
       
       // Clear desktop positioning
       indicator.style.left = '';
