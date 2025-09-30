@@ -6,10 +6,8 @@
 <body class="site">
   {% include header.html %}
   <div class="site-wrap">
-
-
-    <div class="post p2 p-responsive wrap" role="main">
-      <div class="measure">
+    <div class="site-content">
+      <div class="page-body" role="main">
         {{ content }}
       </div>
     </div>
@@ -17,5 +15,7 @@
 
   <!-- Theme Toggle Script -->
   <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}"></script>
+  <!-- Menu Toggle Script -->
+  <script>{% include js/menu-toggle.js %}</script>
 </body>
 </html>

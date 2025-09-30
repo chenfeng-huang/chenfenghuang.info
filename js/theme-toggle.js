@@ -8,7 +8,8 @@
     
     // Get DOM elements
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-toggle-icon');
+    const themeThumb = document.querySelector('.theme-toggle-thumb');
+    const themeTrack = document.querySelector('.theme-toggle-track');
     
     // Get stored theme or default to light
     function getStoredTheme() {
@@ -20,11 +21,16 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update theme icon via CSS variable and update meta theme-color for mobile UI
-    function updateThemeIcon(theme) {
-        if (themeIcon) {
-            // Ensure no text node is present that could render alongside the pseudo-element
-            themeIcon.textContent = '';
+    // Update theme icon and update meta theme-color for mobile UI
+    function updateThemeToggle(theme) {
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', theme === DARK_THEME ? 'true' : 'false');
+        }
+        if (themeThumb) {
+            themeThumb.dataset.theme = theme;
+        }
+        if (themeTrack) {
+            themeTrack.dataset.theme = theme;
         }
         // Update theme-color meta so iOS/Android top bars match theme immediately
         const meta = document.querySelector('meta[name="theme-color"]');
@@ -42,7 +48,7 @@
         } else {
             document.documentElement.removeAttribute('data-theme');
         }
-        updateThemeIcon(theme);
+        updateThemeToggle(theme);
         storeTheme(theme);
     }
     

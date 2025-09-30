@@ -8,7 +8,7 @@
     
     // Get DOM elements
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-toggle-icon');
+    const themeThumb = document.querySelector('.theme-toggle-thumb');
     
     // Get stored theme or default to light
     function getStoredTheme() {
@@ -20,10 +20,19 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update theme icon
-    function updateThemeIcon(theme) {
-        if (themeIcon) {
-            themeIcon.textContent = theme === DARK_THEME ? '☀️' : '🌙';
+    // Update toggle visuals and meta
+    function updateThemeToggle(theme) {
+        if (themeToggle) {
+            themeToggle.setAttribute('aria-pressed', theme === DARK_THEME ? 'true' : 'false');
+        }
+        if (themeThumb) {
+            themeThumb.dataset.theme = theme;
+        }
+        const meta = document.querySelector('meta[name="theme-color"]');
+        const bg = getComputedStyle(document.documentElement)
+            .getPropertyValue('--header-bg') || getComputedStyle(document.body).backgroundColor;
+        if (meta) {
+            meta.setAttribute('content', bg.trim());
         }
     }
     
@@ -34,7 +43,7 @@
         } else {
             document.documentElement.removeAttribute('data-theme');
         }
-        updateThemeIcon(theme);
+        updateThemeToggle(theme);
         storeTheme(theme);
     }
     
@@ -49,7 +58,6 @@
     function initTheme() {
         const storedTheme = getStoredTheme();
         
-        // Check for system preference if no stored theme
         if (!localStorage.getItem(THEME_KEY)) {
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const initialTheme = prefersDark ? DARK_THEME : LIGHT_THEME;
@@ -64,7 +72,6 @@
         if (window.matchMedia) {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             mediaQuery.addEventListener('change', function(e) {
-                // Only auto-switch if user hasn't manually set a preference
                 if (!localStorage.getItem(THEME_KEY)) {
                     const newTheme = e.matches ? DARK_THEME : LIGHT_THEME;
                     applyTheme(newTheme);
@@ -78,13 +85,8 @@
         initTheme();
         watchSystemTheme();
         
-        // Add click event listener to toggle button
         if (themeToggle) {
             themeToggle.addEventListener('click', toggleTheme);
-        }
-        
-        // Add keyboard support
-        if (themeToggle) {
             themeToggle.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -94,7 +96,6 @@
         }
     }
     
-    // Initialize immediately if DOM is already loaded, otherwise wait
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {

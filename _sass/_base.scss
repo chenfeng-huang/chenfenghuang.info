@@ -12,10 +12,15 @@ MIT License http://opensource.org/licenses/MIT
 
 */
 
-html, body {
-  z-index: -10;
-  height: auto;
+html {
   min-height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  min-height: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 img {
@@ -27,8 +32,17 @@ em img {
   margin-left: 0;
 }
 
-body {
-          box-sizing: border-box;
-     -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+.site-wrap {
+  width: 100%;
+}
+
+.site-content {
+  width: 100%;
+  max-width: var(--layout-max-width, 1060px);
+  margin: 0 auto;
+}
+
+.page-body {
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 6vw, 4rem);
+  box-sizing: border-box;
 }
