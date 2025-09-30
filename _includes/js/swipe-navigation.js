@@ -110,6 +110,11 @@
         window.navIndicator.animateSwipe(direction, progress);
         swipeDirection = direction;
       }
+      
+      // Show swipe preview hint
+      if (absDeltaX > 30) {
+        showSwipeHint(direction, progress, deltaX);
+      }
     }
   }
 
@@ -121,6 +126,9 @@
     const deltaY = touchEndY - touchStartY;
     const absDeltaX = Math.abs(deltaX);
     const absDeltaY = Math.abs(deltaY);
+
+    // Hide swipe hint
+    hideSwipeHint();
 
     // Check if it's a horizontal swipe
     if (absDeltaX > minSwipeDistance && absDeltaX > absDeltaY && absDeltaY < maxVerticalDistance) {
@@ -285,6 +293,63 @@
     }, 3000);
   }
 
+  // Swipe hint element
+  let swipeHintElement = null;
+  let currentHintDirection = 0;
+
+  // Show swipe hint during gesture
+  function showSwipeHint(direction, progress, deltaX) {
+    const currentIndex = getCurrentPageIndex();
+    if (currentIndex === -1) return;
+
+    const nextIndex = currentIndex + direction;
+    if (nextIndex < 0 || nextIndex >= pages.length) return;
+
+    // Create hint element if it doesn't exist
+    if (!swipeHintElement) {
+      swipeHintElement = document.createElement('div');
+      swipeHintElement.className = 'swipe-preview-hint';
+      document.body.appendChild(swipeHintElement);
+    }
+
+    // Update hint content if direction changed
+    if (currentHintDirection !== direction) {
+      const nextPage = pages[nextIndex];
+      const arrow = direction > 0 ? '→' : '←';
+      swipeHintElement.innerHTML = `
+        <span class="hint-arrow">${arrow}</span>
+        <span class="hint-text">${nextPage.name}</span>
+      `;
+      currentHintDirection = direction;
+    }
+
+    // Position hint based on swipe direction
+    const side = deltaX > 0 ? 'left' : 'right';
+    swipeHintElement.className = `swipe-preview-hint active ${side}`;
+    
+    // Adjust opacity based on progress
+    const opacity = Math.min(progress * 1.5, 1);
+    swipeHintElement.style.opacity = opacity;
+    
+    // Slide in effect based on progress
+    const slideAmount = Math.min(progress * 100, 100);
+    if (deltaX > 0) {
+      swipeHintElement.style.transform = `translateX(${-100 + slideAmount}%)`;
+    } else {
+      swipeHintElement.style.transform = `translateX(${100 - slideAmount}%)`;
+    }
+  }
+
+  // Hide swipe hint
+  function hideSwipeHint() {
+    if (swipeHintElement) {
+      swipeHintElement.classList.remove('active');
+      swipeHintElement.style.opacity = '0';
+      swipeHintElement.style.transform = '';
+      currentHintDirection = 0;
+    }
+  }
+
   // Initialize
   function init() {
     // Only activate on main navigation pages
@@ -382,6 +447,79 @@
         .swipe-hint {
           font-size: 0.8rem;
           padding: 0.75rem 1rem;
+        }
+      }
+
+      /* Swipe preview hint (mobile) */
+      .swipe-preview-hint {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 1rem 1.5rem;
+        background: var(--header-bg, rgba(255, 255, 255, 0.98));
+        border: 2px solid var(--link-color, #0076ff);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px var(--shadow-color, rgba(0, 0, 0, 0.2));
+        z-index: 9999;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      [data-theme="dark"] .swipe-preview-hint {
+        background: var(--header-bg, rgba(30, 30, 30, 0.98));
+        border-color: var(--link-color, #0a84ff);
+      }
+
+      .swipe-preview-hint.left {
+        left: 0;
+      }
+
+      .swipe-preview-hint.right {
+        right: 0;
+      }
+
+      .swipe-preview-hint .hint-arrow {
+        font-size: 1.8rem;
+        font-weight: 300;
+        color: var(--link-color, #0076ff);
+        line-height: 1;
+      }
+
+      .swipe-preview-hint .hint-text {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-color, #333);
+        white-space: nowrap;
+        max-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Show only on mobile/tablet */
+      @media (min-width: 1025px) {
+        .swipe-preview-hint {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .swipe-preview-hint {
+          padding: 0.75rem 1rem;
+        }
+
+        .swipe-preview-hint .hint-arrow {
+          font-size: 1.4rem;
+        }
+
+        .swipe-preview-hint .hint-text {
+          font-size: 0.8rem;
+          max-width: 140px;
         }
       }
     `;
