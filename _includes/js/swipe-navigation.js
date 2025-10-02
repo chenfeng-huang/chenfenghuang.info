@@ -149,13 +149,21 @@
     swipeDirection = 0;
   }
 
-  // Mouse/trackpad swipe handling (for desktop)
+  // Mouse/trackpad swipe handling (for mobile only)
   let mouseStartX = 0;
   let mouseStartY = 0;
   let isMouseSwiping = false;
   let mouseSwipeDirection = 0;
 
+  // Check if device is mobile
+  function isMobileDevice() {
+    return window.innerWidth <= 768;
+  }
+
   function handleMouseDown(e) {
+    // Only enable mouse swipe on mobile devices
+    if (!isMobileDevice()) return;
+    
     // Only handle left mouse button
     if (e.button !== 0) return;
     
@@ -172,7 +180,7 @@
   }
 
   function handleMouseMove(e) {
-    if (!isMouseSwiping) return;
+    if (!isMouseSwiping || !isMobileDevice()) return;
     
     const deltaX = e.clientX - mouseStartX;
     const deltaY = e.clientY - mouseStartY;
@@ -201,6 +209,9 @@
     if (!isMouseSwiping) return;
     isMouseSwiping = false;
     document.body.style.cursor = '';
+
+    // Only navigate on mobile devices
+    if (!isMobileDevice()) return;
 
     const deltaX = e.clientX - mouseStartX;
     const deltaY = e.clientY - mouseStartY;
