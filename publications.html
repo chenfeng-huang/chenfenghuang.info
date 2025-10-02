@@ -174,10 +174,140 @@ permalink: /publications/
         border-color: #6f42c1;
     }
     
+    .btn-bibtex {
+        border-color: #28a745;
+        color: #28a745;
+    }
+    
+    .btn-bibtex:hover {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+    
     .btn svg {
         width: 16px;
         height: 16px;
         fill: currentColor;
+    }
+    
+    /* BibTeX Modal */
+    .bibtex-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.2s ease;
+    }
+    
+    .bibtex-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .bibtex-modal-content {
+        background: var(--bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.3s ease;
+    }
+    
+    .bibtex-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .bibtex-modal-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--text-color);
+    }
+    
+    .bibtex-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    }
+    
+    .bibtex-close:hover {
+        background: var(--bg-secondary);
+        color: var(--text-color);
+    }
+    
+    .bibtex-content {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--text-color);
+        overflow-x: auto;
+        white-space: pre;
+    }
+    
+    .bibtex-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+    
+    .bibtex-copy-btn {
+        padding: 0.5rem 1rem;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+    }
+    
+    .bibtex-copy-btn:hover {
+        background: #218838;
+    }
+    
+    .bibtex-copy-btn.copied {
+        background: #5cb85c;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
     /* Publication cards */
     .publication-card {
@@ -494,6 +624,12 @@ permalink: /publications/
                 </svg>
                 GitHub
             </a>
+            <button class="btn btn-bibtex" onclick="showBibTeX('stdiffusion2025')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V19H7V13H9M17,13V19H15V13H17M13,13V19H11V13H13Z" fill="currentColor"/>
+                </svg>
+                BibTeX
+            </button>
         </div>
         <div class="card-body" hidden>
             <div class="abstract-content">
@@ -961,6 +1097,118 @@ initializeGitHubStars();
     });
   });
 })();
+
+// BibTeX modal functionality
+var bibtexCitations = {
+  'stdiffusion2025': `@inproceedings{2025stdiffusion,
+  title={STDiffusion: Structure-aware Time Series Generation with Diffusion Models},
+  author={Ma, Zixuan and Huang, Chenfeng},
+  booktitle={IEEE International Conference on Data Mining (ICDM)},
+  year={2025}
+}`
+};
+
+function showBibTeX(citationKey) {
+  var citation = bibtexCitations[citationKey];
+  if (!citation) {
+    console.error('Citation not found:', citationKey);
+    return;
+  }
+  
+  var modal = document.getElementById('bibtex-modal');
+  var content = document.getElementById('bibtex-text');
+  content.textContent = citation;
+  modal.classList.add('show');
+  
+  // Reset copy button
+  var copyBtn = document.getElementById('bibtex-copy-btn');
+  copyBtn.textContent = 'Copy to Clipboard';
+  copyBtn.classList.remove('copied');
+}
+
+function closeBibTeX() {
+  var modal = document.getElementById('bibtex-modal');
+  modal.classList.remove('show');
+}
+
+function copyBibTeX() {
+  var text = document.getElementById('bibtex-text').textContent;
+  
+  // Use modern clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('bibtex-copy-btn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy to Clipboard';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Failed to copy:', err);
+      fallbackCopyBibTeX(text);
+    });
+  } else {
+    fallbackCopyBibTeX(text);
+  }
+}
+
+function fallbackCopyBibTeX(text) {
+  // Fallback for older browsers
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.top = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  
+  try {
+    var successful = document.execCommand('copy');
+    if (successful) {
+      var btn = document.getElementById('bibtex-copy-btn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy to Clipboard';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+    alert('Failed to copy. Please copy manually.');
+  }
+  
+  document.body.removeChild(textarea);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+  var modal = document.getElementById('bibtex-modal');
+  if (event.target === modal) {
+    closeBibTeX();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeBibTeX();
+  }
+});
 </script>
+
+<!-- BibTeX Modal -->
+<div id="bibtex-modal" class="bibtex-modal">
+    <div class="bibtex-modal-content">
+        <div class="bibtex-modal-header">
+            <h3>BibTeX Citation</h3>
+            <button class="bibtex-close" onclick="closeBibTeX()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="bibtex-content" id="bibtex-text"></div>
+        <div class="bibtex-actions">
+            <button class="bibtex-copy-btn" id="bibtex-copy-btn" onclick="copyBibTeX()">Copy to Clipboard</button>
+        </div>
+    </div>
+</div>
 
 </div>
