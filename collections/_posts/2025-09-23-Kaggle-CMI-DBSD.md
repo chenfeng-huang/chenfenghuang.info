@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Kaggle Competition Silver Medal: Child Mind Institute-Problematic Internet Use"
+title: "Kaggle Competition Silver Medal: Child Mind Institute-Detect Behavior with Sensor Data"
 date: 2025-09-23 10:00:00 -0500
 tags: blog
 preview_image: /images/2025-09-23-Kaggle-CMI-DBSD/Kaggle.png
