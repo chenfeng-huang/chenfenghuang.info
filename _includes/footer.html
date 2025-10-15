@@ -1,0 +1,92 @@
+<footer class="center">
+  <div class="footer-container">
+    <div class="footer-each">
+      <h5>
+        <a href="https://www.google.com/maps/place/Los+Angeles,+CA/@34.0206532,-118.5768797,11z/data=!4m15!1m8!3m7!1s0x80c2c75ddc27da13:0xe22fdf6f254608f4!2sLos+Angeles,+CA!3b1!8m2!3d34.0549076!4d-118.242643!16s%2Fm%2F030qb3t!3m5!1s0x80c2c75ddc27da13:0xe22fdf6f254608f4!8m2!3d34.0549076!4d-118.242643!16s%2Fm%2F030qb3t?entry=ttu&g_ep=EgoyMDI0MDkyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+          <span>Los Angeles</span><br><span>CA</span><br><span>USA</span></span>
+        </a>
+      </h5>
+    </div>
+    <div class="footer-each">
+      <h5><a href="https://www.linkedin.com/in/chenfeng-huang-941737176/" target="_blank" rel="noopener noreferrer" alt="LinkedIn"><span>LinkedIn</span></a></h5>
+      <h5><a href="https://github.com/chenfeng-huang" target="_blank" rel="noopener noreferrer" alt="Github"><span>Github</span></a></h5>
+      <h5><a href="https://www.kaggle.com/alrickh" target="_blank" rel="noopener noreferrer" alt="Kaggle"><span>Kaggle</span></a></h5>
+    </div>
+  </div>
+</footer>
+
+<style>
+
+footer {
+    margin-bottom: 30px;
+    visibility: visible;
+    -webkit-transform: translateY(0) scale(1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    transition: transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+}
+
+footer .footer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .footer-container .footer-each {
+    float: left;
+    display: block;
+    margin: 0 2%;
+    width: 19em;
+}
+
+footer .footer-each a {
+  text-decoration: none;
+  background-image: none;
+  color: #000;
+  font-weight: 300;
+  word-wrap: normal;
+}
+
+footer .footer-each a:active, footer .footer-each a:hover {
+    outline-width: 0;
+}
+
+.footer-each span, footer, sub, sup {
+    position: relative;
+}
+
+.footer-each span:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid #000;
+    transition: .4s;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.footer-each a:hover span:before {
+    content: '';
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+}
+
+@media screen and (max-width: 1000px) {
+  footer h5 {
+    font-size: 1.5em;
+  }
+}
+</style>
+
+{% if site.enable_anchorjs %}<!-- AnchorJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.0.0/anchor.min.js"></script>
+<script>
+    anchors.options.visible = 'hover';
+    anchors.options.placement = 'left';
+    anchors.add('article h2, article h3, article h5, article h5, article h6');
+</script>{% endif %}

@@ -1,0 +1,41 @@
+a {
+  color: $link-color;
+}
+a[href]:after {
+  content: none !important;
+}
+a:hover,
+a:focus,
+a:active {
+  border: 0;
+  color: $link-hover-color;
+  text-decoration: none;
+}
+
+// Correct issues with buttons
+button,
+.button {
+  text-shadow: none;
+  background-image: none;
+}
+
+.button:hover,
+.button:focus,
+.button:active {
+  color: white;
+  text-shadow: none;
+  background-image: none;
+}
+
+.anchorjs-link {
+  color: #aaa;
+}
+
+.anchorjs-link:hover,
+.anchorjs-link:focus,
+.anchorjs-link:active{
+    border: 0;
+    color: $link-color;
+    text-shadow: none;
+    background-image: none;
+}

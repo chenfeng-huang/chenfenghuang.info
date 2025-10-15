@@ -1,0 +1,402 @@
+---
+layout: default
+tags: blog
+---
+{% assign regular_posts = site.posts | where_exp:"post", "post.tags contains 'blog'" %}
+{% assign regular_posts_count = regular_posts | size %}
+{% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
+{% assign regular_coffee_notes = coffee_notes | where_exp: "note", "note.pinned != true" %}
+{% assign coffee_note_count = regular_coffee_notes | size %}
+
+<h2><a href="{{ site.baseurl }}/blog-archive" class="section-title-link">Blogs</a></h2>
+<div class="home">
+  {% if regular_posts_count > 0 %}
+    <div class="posts">
+      {% for post in regular_posts limit:5 %}
+        <div class="post py3">
+          <div class="post-content-wrapper">
+            {% if post.preview_image %}
+              <div class="post-image-preview">
+                <a href="{{ post.url | prepend: site.baseurl }}">
+                  <img src="{{ post.preview_image }}" alt="{{ post.title }}" />
+                </a>
+              </div>
+            {% endif %}
+            <div class="post-text-content">
+              <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+              <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">
+                <h3 class="h3 post-title">{{ post.title }}</h3>
+              </a>
+              <p class="post-summary">
+                {% if post.summary %}
+                  {{ post.summary }}
+                {% else %}
+                  {% assign excerpt_parts = post.excerpt | split: site.excerpt_separator %}
+                  {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% if regular_posts_count > 5 %}
+      <a href="{{ site.baseurl }}/blog-archive" class="more-posts">See all blog posts</a>
+    {% endif %}
+  {% else %}
+    <h1 class="center">{{ site.text.index.coming_soon }}</h1>
+  {% endif %}
+</div>
+
+<h2><a href="{{ site.baseurl }}/coffee-note" class="section-title-link">Coffee Notes</a></h2>
+<div class="coffee-note">
+  {% if coffee_note_count > 0 %}
+    {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
+    {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
+    
+    {% if pinned_post %}
+      <div class="coffee-note-item py3">
+        <div class="post-content-wrapper">
+          {% if pinned_post.preview_image %}
+            <div class="post-image-preview">
+              <a href="{{ pinned_post.url | prepend: site.baseurl }}">
+                <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}" />
+              </a>
+            </div>
+          {% endif %}
+          <div class="post-text-content">
+            <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }}{% endunless %}</p>
+            <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
+              <h3 class="h3 post-title">{{ pinned_post.title }}</h3>
+            </a>
+            <p class="post-summary">
+              {% if pinned_post.summary %}
+                {{ pinned_post.summary }}
+              {% else %}
+                {% assign excerpt_parts = pinned_post.excerpt | split: site.excerpt_separator %}
+                {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Light separator after pinned post -->
+      {% if other_notes.size > 0 %}
+        <div class="pinned-separator"></div>
+      {% endif %}
+    {% endif %}
+
+    {% for note in other_notes limit:4 %}
+      <div class="coffee-note-item py3">
+        <div class="post-content-wrapper">
+          {% if note.preview_image %}
+            <div class="post-image-preview">
+              <a href="{{ note.url | prepend: site.baseurl }}">
+                <img src="{{ note.preview_image }}" alt="{{ note.title }}" />
+              </a>
+            </div>
+          {% endif %}
+          <div class="post-text-content">
+            <p class="post-meta">{{ note.date | date: site.date_format }}</p>
+            <a href="{{ note.url | prepend: site.baseurl }}" class="post-link">
+              <h3 class="h3 post-title">{{ note.title }}</h3>
+            </a>
+            <p class="post-summary">
+              {% if note.summary %}
+                {{ note.summary }}
+              {% else %}
+                {% assign excerpt_parts = note.excerpt | split: site.excerpt_separator %}
+                {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    {% if coffee_note_count > 5 %}
+      <a href="{{ site.baseurl }}/coffee-note" class="more-coffee-note">See all Coffee Notes</a>
+    {% endif %}
+  {% else %}
+    <p>No coffee note entries yet. Stay tuned!</p>
+  {% endif %}
+</div>
+
+<style>
+/* Blog page color styling for dark mode */
+.home {
+  color: var(--text-color);
+}
+
+.home h1, .home h2, .home h3, .home h4 {
+  color: var(--text-color);
+}
+
+.home p {
+  color: var(--text-color);
+}
+
+.post-title {
+  color: var(--text-color) !important;
+}
+
+.post-link {
+  color: var(--text-color) !important;
+  text-decoration: none;
+}
+
+.post-link:hover {
+  color: var(--link-color) !important;
+}
+
+.post-meta {
+  color: var(--text-secondary) !important;
+}
+
+.post-summary {
+  color: var(--text-color) !important;
+}
+
+.coffee-note h1, .coffee-note h2, .coffee-note h3, .coffee-note h4 {
+  color: var(--text-color);
+}
+
+.coffee-note p {
+  color: var(--text-color);
+}
+
+.coffee-note .post-title {
+  color: var(--text-color) !important;
+}
+
+.coffee-note .post-link {
+  color: var(--text-color) !important;
+}
+
+.coffee-note .post-link:hover {
+  color: var(--link-color) !important;
+}
+
+/* Section headers */
+h2 {
+  color: var(--text-color) !important;
+}
+
+/* More posts link */
+.more-posts {
+  color: var(--link-color) !important;
+}
+
+.more-posts:hover {
+  color: var(--link-hover) !important;
+}
+
+/* Blog post item backgrounds */
+.post {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px;
+  padding: 1.2rem !important;
+  margin: 0 !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Override py3 padding for consistent spacing */
+.home .posts .post.py3 {
+  padding: 1.2rem !important;
+  margin: 0 !important;
+}
+
+.home .posts .post {
+  margin: 0 !important;
+}
+
+/* Nuclear option - force zero spacing everywhere */
+div.home div.posts div.post {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+div.coffee-note div.coffee-note-item {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.posts .post {
+  background-color: var(--card-bg) !important;
+  margin: 0 !important;
+}
+
+.coffee-note .coffee-note-item {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px;
+  padding: 1.2rem !important;
+  margin: 0 !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Override py3 padding for coffee notes too */
+.coffee-note .coffee-note-item.py3 {
+  padding: 1.2rem !important;
+  margin: 0 !important;
+}
+
+/* Image preview styling for dark mode */
+.post-image-preview {
+  box-shadow: 0 2px 8px var(--shadow-color) !important;
+}
+
+.post-content-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.post-image-preview {
+  flex-shrink: 0;
+  width: 150px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.post-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.post-image-preview img:hover {
+  transform: scale(1.05);
+}
+
+.post-text-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .post-content-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .post-image-preview {
+    width: 100%;
+    height: 150px;
+    align-self: center;
+  }
+  
+  /* Adjust separators for mobile */
+  .home .posts .post.py3:not(:last-child)::after,
+  .coffee-note .coffee-note-item.py3:not(:last-child)::after {
+    left: 5%;
+    right: 5%;
+  }
+  
+  /* Ensure proper alignment for mobile */
+  .post-text-content {
+    width: 100%;
+    text-align: left;
+  }
+  
+  /* Override universal margin reset for better mobile spacing */
+  .post-title {
+    margin-bottom: 0.3rem !important;
+  }
+  
+  .post-meta {
+    margin-bottom: 0.3rem !important;
+  }
+  
+  .post-summary {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Ensure coffee note items have consistent styling */
+.coffee-note-item .post-content-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Adjust positioning for pinned Certificate Collection post */
+.coffee-note .coffee-note-item:first-child .post-text-content {
+  transform: translateY(-0.8rem);
+}
+
+/* Section title link styling */
+.section-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.section-title-link:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* Light separator after pinned post */
+.pinned-separator {
+  margin: 0 !important;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color, #e1e1e1) 20%, var(--border-color, #e1e1e1) 80%, transparent);
+  opacity: 0.7;
+}
+
+/* FINAL OVERRIDE - This should be last to ensure it wins */
+.py3 {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 1.2rem !important;
+  padding-bottom: 1.2rem !important;
+  position: relative;
+}
+
+/* Light separators between blog posts and coffee notes */
+.home .posts .post.py3:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+  opacity: 0.6;
+}
+
+.coffee-note .coffee-note-item.py3:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+  opacity: 0.6;
+}
+
+.home *,
+.coffee-note * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Restore some essential margins for readability */
+h1, h2, h3 {
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+p {
+  margin-bottom: 0.5rem !important;
+}
+</style>

@@ -1,0 +1,1245 @@
+---
+layout: uncompressed
+title: Publications & Projects
+tags: publications
+permalink: /publications/
+---
+<style>
+    .publications-container {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.7;
+        color: var(--text-color);
+        max-width: 100%;
+    }
+    
+    /* Enhanced Typography Hierarchy */
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 1.5rem 0 1rem 0;
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1.2rem 0 0.8rem 0;
+        color: var(--text-color);
+    }
+    
+    /* Page Header */
+    .page-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-top: 0.5rem;
+        font-weight: 400;
+    }
+    
+    /* Publication/Project Items */
+    .item {
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .publication-item, .project-item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5rem 0;
+        margin-bottom: 0.8rem;
+        transition: color 0.2s ease;
+    }
+    
+    .publication-item:hover, .project-item:hover {
+        color: var(--link-color);
+    }
+    
+    .item-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 0.3rem;
+        line-height: 1.4;
+    }
+    
+    .item-authors {
+        color: var(--text-secondary);
+        margin-bottom: 0.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .item-description {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-top: 0.3rem;
+    }
+    
+    /* Status Badges */
+    .status-badge {
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 0.5rem;
+        color: var(--text-secondary);
+        font-style: italic;
+        white-space: nowrap;
+    }
+    
+    /* Enhanced separator */
+    .section-separator {
+        margin: 1.5rem 0;
+        border: none;
+        height: 1px;
+        background: var(--border-color);
+    }
+
+    /* GitHub-like star badge next to titles */
+    .gh-star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+      color: var(--text-secondary);
+      font-size: 0.9em;
+      vertical-align: middle;
+    }
+    .gh-star-badge svg {
+      width: 16px;
+      height: 16px;
+      color: #f2cc60; /* yellow star - keep this for visibility */
+      fill: currentColor;
+    }
+    
+    /* Publication Action Buttons */
+    .item-actions {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        background: var(--bg-color);
+    }
+    
+    .btn:hover {
+        color: var(--link-color);
+        border-color: var(--link-color);
+        background: var(--bg-secondary);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .btn-pdf {
+        border-color: #dc3545;
+        color: #dc3545;
+    }
+    
+    .btn-pdf:hover {
+        background: #dc3545;
+        color: white;
+        border-color: #dc3545;
+    }
+    
+    .btn-github {
+        border-color: #6f42c1;
+        color: #6f42c1;
+    }
+    
+    .btn-github:hover {
+        background: #6f42c1;
+        color: white;
+        border-color: #6f42c1;
+    }
+    
+    .btn-bibtex {
+        border-color: #28a745;
+        color: #28a745;
+    }
+    
+    .btn-bibtex:hover {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+    
+    .btn-arxiv {
+        border-color: #b31b1b;
+        color: #b31b1b;
+    }
+    
+    .btn-arxiv:hover {
+        background: #b31b1b;
+        color: white;
+        border-color: #b31b1b;
+    }
+    
+    .btn svg {
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+    }
+    
+    /* BibTeX Modal */
+    .bibtex-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.2s ease;
+    }
+    
+    .bibtex-modal.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .bibtex-modal-content {
+        background: var(--bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.3s ease;
+    }
+    
+    .bibtex-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .bibtex-modal-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--text-color);
+    }
+    
+    .bibtex-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    }
+    
+    .bibtex-close:hover {
+        background: var(--bg-secondary);
+        color: var(--text-color);
+    }
+    
+    .bibtex-content {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: var(--text-color);
+        overflow-x: auto;
+        white-space: pre;
+    }
+    
+    .bibtex-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+    
+    .bibtex-copy-btn {
+        padding: 0.5rem 1rem;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: background 0.2s ease;
+    }
+    
+    .bibtex-copy-btn:hover {
+        background: #218838;
+    }
+    
+    .bibtex-copy-btn.copied {
+        background: #5cb85c;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    /* Publication cards */
+    .publication-card {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.6rem 0.8rem;
+        margin-bottom: 0.8rem;
+        background: var(--bg-color);
+        transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .publication-card:hover {
+        border-color: var(--link-color);
+        background: var(--bg-secondary);
+    }
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        cursor: pointer;
+    }
+    .card-title {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        min-width: 0;
+    }
+    .card-chevron {
+        width: 18px;
+        height: 18px;
+        color: var(--text-secondary);
+        transition: transform 0.2s ease;
+        flex: 0 0 auto;
+    }
+    .publication-card.open .card-chevron {
+        transform: rotate(90deg);
+    }
+    .card-body {
+        margin-top: 0.6rem;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 280ms ease, opacity 220ms ease;
+    }
+    .publication-card.open .card-body {
+        opacity: 1;
+    }
+    /* Title row with right-side expand control */
+    .item-title-with-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+    .item-title-with-toggle .item-title-text {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.5rem;
+    }
+    .expand-btn {
+        margin-left: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .expand-btn:hover {
+        color: var(--link-color);
+        border-color: var(--link-color);
+        background: var(--bg-secondary);
+    }
+    .expand-btn .chevron {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.2s ease;
+    }
+    .expand-btn[aria-expanded="true"] .chevron {
+        transform: rotate(90deg);
+    }
+    /* Hidden abstract panel */
+    .abstract-panel {
+        margin-top: 0.6rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--bg-secondary);
+        padding: 0.75rem;
+    }
+
+    /* Expandable abstract tab */
+    .abstract-collapse {
+        margin-top: 0.6rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background: var(--bg-secondary);
+    }
+    .abstract-collapse > summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 0.5rem 0.75rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+    .abstract-collapse[open] > summary {
+        border-bottom: 1px solid var(--border-color);
+        background: var(--bg-color);
+    }
+    .abstract-content {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 1rem;
+        padding: 0.75rem;
+    }
+    .abstract-image {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        object-fit: cover;
+    }
+    /* If no preview image is provided, switch to single-column layout */
+    .abstract-content.no-image { grid-template-columns: 1fr; }
+    @supports selector(:has(*)) {
+        .abstract-content:not(:has(.abstract-image)) { grid-template-columns: 1fr; }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 { font-size: 1.7rem; }
+        h2 { 
+            font-size: 1.3rem; 
+            margin: 1.5rem 0 1rem 0;
+        }
+        h3 { 
+            font-size: 1.1rem; 
+            margin: 1.2rem 0 0.8rem 0;
+        }
+        .publication-item, .project-item {
+            padding: 1rem;
+            margin-bottom: 0.6rem;
+        }
+        .section-separator {
+            margin: 1.5rem 0;
+        }
+        .item-title {
+            font-size: 1rem;
+        }
+        .item-authors {
+            font-size: 0.85rem;
+        }
+        .item-description {
+            font-size: 0.9rem;
+        }
+    }
+    @media (max-width: 768px) {
+        .abstract-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+<div class="publications-container">
+    <div class="page-header">
+        <h1>Publications & Competitions</h1>
+        <p class="page-subtitle">
+            Academic publications and Kaggle competition solutions with open source code. Click-through to check out the work in more detail.
+        </p>
+    </div>
+    
+    <h2>Publications</h2>
+
+    <h3>Working Papers</h3>
+    
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "Martingale PAC-Bayes for Time Series Forecasting"
+                <span class="status-badge status-working">In Progress</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            <strong>C. Huang</strong>, Z. Ma, Thuy T. Le and Hien Tran
+        </div>
+        <div class="card-body" hidden></div>
+    </div>
+    
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "Causal Bayesian Optimization: Foundations, Methods, and Applications"
+                <span class="status-badge status-working">In Progress</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            Thuy T. Le, <strong>C. Huang</strong>, Z. Ma and Hien Tran
+        </div>
+        <div class="card-body" hidden></div>
+    </div>
+    
+    <hr class="section-separator" />
+    <h3>2026</h3>
+
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "Confidence-Based Handover for Causal Bayesian Optimization with Adaptive Expert Trust"
+                <span class="status-badge status-submission">Under Review</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            Z. Ma, <strong>C. Huang</strong>, Thuy T. Le and Hien Tran
+        </div>
+        <div class="item-actions">
+          <a href="/assets/ECBO/ECBO.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pdf">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+              </svg>
+              PDF
+          </a>
+          <!-- </a>
+          <a href="https://github.com/mobkageyama/STDiffusion" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" fill="currentColor"/>
+              </svg>
+              GitHub
+          </a> -->
+      </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content no-image">
+              <div class="item-description">
+                Causal Bayesian Optimization (CBO) has emerged as a powerful paradigm for decision-making under uncertainty, effectively leveraging causal structures to guide interventions. However, existing CBO methods do not adequately integrate domain-specific expertise, potentially leading to inefficient exploration and suboptimal outcomes in real-world applications involving complex human decision-making and economic considerations. To bridge this gap, we propose Expert-guided Causal Bayesian Optimization (ECBO), a framework that integrates human expert knowledge into the CBO process. We introduce an expert weighting mechanism that adaptively modulates the Expected Improvement (EI) acquisition function, reflecting expert endorsements or exclusions of candidate solutions. By embedding these expert-derived preferences, our model proactively balances exploration and exploitation. Additionally, we implement a robust harm-free mechanism to guard against potentially detrimental expert interventions, alongside an adaptive trust parameter that dynamically adjusts expert influence based on observed discrepancies. Our experimental results underscore the practical value of effectively incorporating expert knowledge in complex causal environments.
+              </div>
+          </div>
+      </div>
+    </div>
+    
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "A Causal Perspective on Jump-Diffusion for Time-Series Anomaly Detection"
+                <span class="status-badge status-submission">Under Review</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            Z. Ma and <strong>C. Huang</strong>
+        </div>
+        <div class="item-actions">
+           <a href="/assets/CSJAD/CSJAD.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pdf">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+              </svg>
+              PDF
+          </a>
+          <!--<a href="https://github.com/mobkageyama/STDiffusion" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" fill="currentColor"/>
+              </svg>
+              GitHub
+          </a> -->
+      </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content">
+              <img class="abstract-image" src="/assets/CSJAD/Model_structure.jpg" alt="CSJAD model structure preview" />
+                <div class="item-description">
+                  Time series anomaly detection is essential for maintaining robustness in dynamic real-world systems. However, most existing methods rely on static distribution assumptions, while overlooking the latent causal structures and structural shifts that underlie real-world temporal dynamics. This often leads to poor explanation of anomalies and misclassification of environment-induced variations. To address these shortcomings, we propose Causal Soft Jump Diffusion Anomaly Detection (CSJD-AD), a novel framework that models both latent dynamics and soft-gated expected jumps through a structural jump diffusion process. We adopt a causal perspective grounded in environment-conditioned invariance by inferring discrete environment states and conditioning the jump-augmented process on them, yielding a practical detector for unlabeled sensor streams without aiming to identify true interventions. By generating paired counterfactual and factual trajectories, the model explicitly contrasts causally consistent behavior with unexplained deviations. Our method achieves state-of-the-art performance across benchmark datasets, demonstrating the importance of incorporating causal reasoning and jump-aware dynamics into time series anomaly detection.
+              </div>
+          </div>
+      </div>
+    </div>
+ 
+    <hr class="section-separator" />
+    <h3>2025</h3>
+    
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "Effective Series Decomposition and Components Learning for Time Series Generation"
+                <span class="status-badge status-published">ICDM 2025</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            Z. Ma and <strong>C. Huang</strong>
+        </div>
+        <div class="item-actions">
+            <a href="/assets/STDiffusion/STDiffusion_paper.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pdf">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+                </svg>
+                PDF
+            </a>
+            <a href="https://arxiv.org/pdf/2511.00747" target="_blank" rel="noopener noreferrer" class="btn btn-arxiv">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+                </svg>
+                arXiv
+            </a>
+            <a href="https://github.com/chenfeng-huang/STDiffusion" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" fill="currentColor"/>
+                </svg>
+                GitHub
+            </a>
+            <button class="btn btn-bibtex" onclick="showBibTeX('stdiffusion2025')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V19H7V13H9M17,13V19H15V13H17M13,13V19H11V13H13Z" fill="currentColor"/>
+                </svg>
+                BibTeX
+            </button>
+        </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content">
+                <img class="abstract-image" src="/assets/STDiffusion/Model_structure.jpg" alt="STDiffusion model structure preview" />
+                <div class="item-description">
+                    We introduce STDiffusion, a generative framework for time series that explicitly
+                    decomposes each sequence into trend, seasonal and stochastic components. A
+                    lightweight decomposition module produces component-wise representations; dedicated
+                    component learners capture long-term trend and periodicity, while a diffusion
+                    backbone models residual innovations conditioned on those components. This design
+                    yields faithful, structure-aware samples and enables controllable generation and
+                    augmentation for downstream forecasting tasks. The figure on the left shows the
+                    overall architecture.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2>Competitions</h2>
+    <a href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-DBSD" aria-label="Kaggle Competition" target="_blank" rel="noopener noreferrer" class="project-item">
+      <div class="item-title">
+          Data Mining: Child Mind Institute Detect Behavior with Sensor Data
+          <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-DBSD" title="GitHub stars" aria-label="GitHub stars">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+            <span class="count">...</span>
+          </span>
+      </div>
+      <div class="item-description">
+        Developed a top 1% silver-medal solution for the Kaggle CMI-DBSD competition by designing a multimodal time-series model with CNN+SE, physics-inspired IMU features, and subject-level Hungarian assignment
+      </div>
+  </a>
+    <a href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" aria-label="Kaggle Competition" target="_blank" rel="noopener noreferrer" class="project-item">
+        <div class="item-title">
+            Data Mining: Child Mind Institute Problematic Internet Use 
+            <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-PIU" title="GitHub stars" aria-label="GitHub stars">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+              <span class="count">...</span>
+            </span>
+        </div>
+        <div class="item-description">
+          Developed a top 3% silver-medal solution for the Kaggle CMI-PIU competition by integrating tabular and time-series features, 
+          training tree-based regressors with cross-validation, and optimizing thresholds to maximize Quadratic Weighted Kappa.
+        </div>
+    </a>
+    <a href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solution_MAP" aria-label="Kaggle Competition" target="_blank" rel="noopener noreferrer" class="project-item">
+      <div class="item-title">
+          Large Language Model: MAP - Charting Student Math Misunderstandings 
+          <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Kaggle_Silver_Medal_Solutioun_MAP" title="GitHub stars" aria-label="GitHub stars">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+            <span class="count">...</span>
+          </span>
+      </div>
+      <div class="item-description">
+        Developed a top 5% silver-medal solution for the Kaggle MAP competition by training LLM models with LoRA, using family prefix filtering and cross-model consistency weighted ensemble to improve accuracy.
+      </div>
+  </a>
+    <!-- <a href="https://github.com/chenfeng-huang/Secure-Multi-Layered-File-System" aria-label="Secure file system" target="_blank" rel="noopener noreferrer" class="project-item">
+      <div class="item-title">
+        System Security: Secure File System with Comprehensive Access Control
+        <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/Secure-Multi-Layered-File-System" title="GitHub stars" aria-label="GitHub stars">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+          <span class="count">...</span>
+        </span>
+      </div>
+      <div class="item-description">
+        Designed and implemented a secure multi-layered file system with robust access control, 
+        incorporating both Discretionary Access Control (DAC) and Mandatory Access Control (MAC) policies.
+      </div>
+  </a>
+
+  <a href="https://github.com/chenfeng-huang/firebase_emulation_citibike" aria-label="Firebase Emulation" target="_blank" rel="noopener noreferrer" class="project-item">
+      <div class="item-title">
+        Database Design: Firebase Emulation with Citi Bike Station Query Platform
+        <span class="gh-stars gh-star-badge" data-repo="chenfeng-huang/firebase_emulation_citibike" title="GitHub stars" aria-label="GitHub stars">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+          <span class="count">...</span>
+        </span>
+      </div>
+      <div class="item-description">
+        Replicated Firebase RESTful API using Flask. 
+        Established synchronization of JSON data from MongoDB database for data consistency.
+      </div>
+  </a> -->
+
+
+    <!-- <div class="item">
+      <a
+          href=""
+          aria-label="Aspect-based sentiment analysis"
+          target="_blank"
+          rel="noopener noreferrer"
+      >
+          <h4 class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100">
+            Aspect-based Customer Review Analysis
+          </h4>
+          <p class="leading-5 text-gray-700 dark:text-gray-300">
+            Developed an aspect-based sentiment analysis classifier with PyTorch, 
+            tailored for restaurants and laptops, targeting the SemEval 2014 Task 4 dataset. 
+            By discerning topics within customer reviews, classifier accomplished 95.6% accuracy.
+          </p>
+      </a>
+    </div>
+  <hr />
+    -->
+
+<!-- 
+<h2>Project</h2>
+
+<a
+  style="color: black"
+  href="https://modal.com/"
+  aria-label="Modal labs"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <div
+    class="active-project"
+    style="
+      display: flex;
+      align-items: center;
+      border-color: var(--border-color);
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 5px;
+      margin-bottom: 1em;
+    "
+  >
+    <div class="">
+      <span class="sr-only">Modal labs</span>
+      <img
+        src="{{ site.url }}/images/modal_labs_logo.jpeg"
+        height="75px"
+        width="75px"
+        style="
+          min-width: 75px;
+          margin: 12.5px;
+        "
+      />
+    </div>
+    <div>
+      <h4
+        class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      >
+        Modal
+      </h4>
+      <p class="leading-5 text-gray-700 dark:text-gray-300">
+        Your end-to-end stack for cloud compute. My day-job.
+      </p>
+    </div>
+  </div>
+</a>
+
+<a
+  style="color: black"
+  href="https://whitelist.sh/"
+  aria-label="Whitelist newsfeed"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <div
+    class="active-project"
+    style="
+      display: flex;
+      align-items: center;
+      border-color: var(--border-color);
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 5px;
+      margin-bottom: 1em;
+    "
+  >
+    <div style="display: flex; align-items: center">
+      <span class="sr-only">Whitelist.sh newsfeed</span>
+      <img
+        src="https://whitelist-assets.s3.amazonaws.com/0.75x/whitelist-logo-dark-ldpi.png"
+        height="100px"
+        width="100px"
+        style="min-width: 100px"
+      />
+    </div>
+    <div>
+      <h4
+        class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      >
+        Whitelist.sh
+      </h4>
+      <p class="leading-5 text-gray-700 dark:text-gray-300">
+        An educational content feed for your long-term engineering goals.
+      </p>
+    </div>
+  </div>
+</a>
+
+<a
+  style="color: black"
+  href="https://ddiaflashcards.com/"
+  aria-label="DDIA flashcards"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <div
+    class="active-project"
+    style="
+      display: flex;
+      align-items: center;
+      border-color: var(--border-color);
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 5px;
+    "
+  >
+    <div style="display: flex; align-items: center">
+      <span class="sr-only">DDIA Flashcards</span>
+      <img
+        src="https://d1wqzb5bdbcre6.cloudfront.net/6f99c62f0006e13e54286791513157f25e462dba7a17ae271b1dfc4f030cd010/68747470733a2f2f66696c65732e7374726970652e636f6d2f6c696e6b732f4d44423859574e6a644638785356706862314a4c516d5a5859336c7552335a3466475a7358327870646d5666616a4d7965465234616e6c5a5746527256574e6a56554e4c53454643516a424a30307257336557767742"
+        height="75px"
+        width="75px"
+        style="min-width: 75px; border-radius: 0.25em; margin: 12.5px"
+      />
+    </div>
+    <div>
+      <h4
+        class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100"
+      >
+        DDIA Flashcards
+      </h4>
+      <p class="leading-5 text-gray-700 dark:text-gray-300">
+        Flashcards to help with learning the insights of Kleppmann's Designing
+        Data Intensive Applications textbook.
+      </p>
+    </div>
+  </div>
+</a>
+
+<hr /> -->
+<!-- 
+<h2>Public Repos</h2>
+
+<div id="display-projects"></div>
+
+<div class="circle-button">
+  <div
+    class="top-circle"
+    data-sr-id="80"
+    style="
+      visibility: visible;
+      -webkit-transform: scale(1);
+      opacity: 1;
+      transform: scale(1);
+      opacity: 1;
+      -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1)
+          0s,
+        opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+      transition: transform 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s,
+        opacity 0.5s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+    "
+  >
+    <img src="{{ site.url }}/images/logos/top.png" />
+  </div>
+</div>
+
+{% for js in page.js %}
+<script type="text/javascript">
+  {% include {{ js }} %}
+</script>
+{% endfor %}
+
+<script src="https://cdn.jsdelivr.net/emojione/3.0.3/lib/js/emojione.min.js"></script>
+<script type="text/javascript">
+  $(function () {
+    $("#display-projects").getRepos(
+      "thundergolfer"
+    ); /* Add your github username. */
+  });
+</script>
+
+<style>
+  .active-project {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .active-project:hover {
+    transform: scale(1.01);
+  }
+</style> -->
+
+<script>
+// Define functions globally first to ensure they're always available
+function updateGitHubStars() {
+      console.log('=== GitHub stars script starting ===');
+      console.log('Document ready state:', document.readyState);
+      console.log('Fetch API available:', typeof fetch !== 'undefined');
+      
+      // Find all elements with data-repo attribute
+      var elements = document.querySelectorAll('[data-repo]');
+      console.log('Found', elements.length, 'elements with data-repo');
+      
+      // Log all elements found
+      for (var i = 0; i < elements.length; i++) {
+        console.log('Element', i, ':', elements[i], 'data-repo:', elements[i].getAttribute('data-repo'));
+      }
+      
+      if (elements.length === 0) {
+        console.warn('No elements with data-repo found');
+        console.log('All elements on page:', document.querySelectorAll('*').length);
+        return;
+      }
+
+      elements.forEach(function(element, index) {
+        var repo = element.getAttribute('data-repo');
+        if (!repo) {
+          console.warn('Element', index, 'has no data-repo attribute');
+          return;
+        }
+        
+        console.log('Processing repo:', repo);
+        
+        // Find the count element
+        var countElement = element.querySelector('.count');
+        if (!countElement) {
+          console.warn('No .count element found for', repo);
+          return;
+        }
+
+        // Set loading state
+        countElement.textContent = '...';
+        
+        // First check for cached value
+        try {
+          var cached = localStorage.getItem('gh-stars-v5:' + repo);
+          if (cached) {
+            var cachedData = JSON.parse(cached);
+            var ageMs = Date.now() - cachedData.timestamp;
+            // Use cache if less than 1 hour old
+            if (ageMs < 3600000) {
+              console.log('Using cached value for', repo, ':', cachedData.count);
+              countElement.textContent = cachedData.count.toString();
+              return;
+            }
+          }
+        } catch (e) {
+          console.warn('Cache error for', repo, ':', e);
+        }
+        
+        // Fetch from GitHub API
+        console.log('Fetching data for:', repo);
+        
+        // Check if fetch is available
+        if (typeof fetch === 'undefined') {
+          console.error('Fetch API not available');
+          countElement.textContent = '?';
+          return;
+        }
+        
+        fetch('https://api.github.com/repos/' + repo)
+          .then(function(response) {
+            console.log('Response status for', repo, ':', response.status);
+            if (!response.ok) {
+              throw new Error('HTTP ' + response.status);
+            }
+            return response.json();
+          })
+          .then(function(data) {
+            console.log('Success for', repo, '- stars:', data.stargazers_count);
+            var stars = data.stargazers_count || 0;
+            countElement.textContent = stars.toString();
+            
+            // Cache the result
+            try {
+              localStorage.setItem('gh-stars-v5:' + repo, JSON.stringify({
+                count: stars,
+                timestamp: Date.now()
+              }));
+              console.log('Cached result for', repo, ':', stars);
+            } catch (e) {
+              console.warn('Failed to cache for', repo, ':', e);
+            }
+          })
+          .catch(function(error) {
+            console.error('Failed to fetch stars for', repo, ':', error.message);
+            countElement.textContent = '0';
+          });
+      });
+    }
+
+// Manual API test function
+function testAPI() {
+  console.log('=== Testing GitHub API directly ===');
+  fetch('https://api.github.com/repos/chenfeng-huang/Secure-Multi-Layered-File-System')
+    .then(function(response) {
+      console.log('API Response status:', response.status);
+      console.log('API Response headers:', response.headers);
+      return response.json();
+    })
+    .then(function(data) {
+      console.log('API Success! Stars:', data.stargazers_count);
+      alert('API works! Stars: ' + data.stargazers_count);
+    })
+    .catch(function(error) {
+      console.error('API Error:', error);
+      alert('API Error: ' + error.message);
+    });
+}
+
+// Alias for convenience
+function testGitHubStars() {
+  updateGitHubStars();
+}
+
+// Initialization function
+function initializeGitHubStars() {
+  try {
+
+  // Multiple ways to ensure the script runs
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateGitHubStars);
+  } else {
+    updateGitHubStars();
+  }
+
+  // Backup execution
+  window.addEventListener('load', updateGitHubStars);
+
+  // Final fallback with delay
+  setTimeout(updateGitHubStars, 500);
+
+  // Debug info
+  console.log('=== GitHub Stars Script Initialization Complete ===');
+  console.log('Script loaded successfully.');
+  console.log('Available functions:');
+  console.log('- testGitHubStars() - Test the star updating function');
+  console.log('- testAPI() - Test GitHub API directly');
+  console.log('- updateGitHubStars() - Main function to update star counts');
+  console.log('Document ready state:', document.readyState);
+  console.log('jQuery available:', typeof $ !== 'undefined');
+  console.log('Fetch available:', typeof fetch !== 'undefined');
+
+  } catch (error) {
+    console.error('Script error:', error);
+    alert('Script error: ' + error.message);
+  }
+}
+
+// Initialize the script
+initializeGitHubStars();
+
+// Generic expand/collapse for publication cards
+(function(){
+  var cards = document.querySelectorAll('[data-card]');
+  cards.forEach(function(card){
+    var header = card.querySelector('.card-header');
+    var body = card.querySelector('.card-body');
+    if (!header || !body) return;
+    header.addEventListener('click', function(){
+      var expanded = header.getAttribute('aria-expanded') === 'true';
+      header.setAttribute('aria-expanded', String(!expanded));
+      if (expanded) {
+        // collapse with animation
+        var currentHeight = body.scrollHeight;
+        body.style.maxHeight = currentHeight + 'px';
+        requestAnimationFrame(function(){
+          body.style.maxHeight = '0px';
+        });
+        card.classList.remove('open');
+        setTimeout(function(){ body.setAttribute('hidden', ''); }, 300);
+      } else {
+        // expand with animation
+        body.removeAttribute('hidden');
+        body.style.maxHeight = '0px';
+        var full = body.scrollHeight;
+        requestAnimationFrame(function(){
+          body.style.maxHeight = full + 'px';
+        });
+        card.classList.add('open');
+        setTimeout(function(){ body.style.maxHeight = 'none'; }, 300);
+      }
+    });
+  });
+})();
+
+// BibTeX modal functionality
+var bibtexCitations = {
+  'stdiffusion2025': `@inproceedings{2025stdiffusion,
+  title={Effective Series Decomposition and Components
+Learning for Time Series Generation},
+  author={Ma, Zixuan and Huang, Chenfeng},
+  booktitle={IEEE International Conference on Data Mining (ICDM)},
+  year={2025}
+}`
+};
+
+function showBibTeX(citationKey) {
+  var citation = bibtexCitations[citationKey];
+  if (!citation) {
+    console.error('Citation not found:', citationKey);
+    return;
+  }
+  
+  var modal = document.getElementById('bibtex-modal');
+  var content = document.getElementById('bibtex-text');
+  content.textContent = citation;
+  modal.classList.add('show');
+  
+  // Reset copy button
+  var copyBtn = document.getElementById('bibtex-copy-btn');
+  copyBtn.textContent = 'Copy to Clipboard';
+  copyBtn.classList.remove('copied');
+}
+
+function closeBibTeX() {
+  var modal = document.getElementById('bibtex-modal');
+  modal.classList.remove('show');
+}
+
+function copyBibTeX() {
+  var text = document.getElementById('bibtex-text').textContent;
+  
+  // Use modern clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('bibtex-copy-btn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy to Clipboard';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function(err) {
+      console.error('Failed to copy:', err);
+      fallbackCopyBibTeX(text);
+    });
+  } else {
+    fallbackCopyBibTeX(text);
+  }
+}
+
+function fallbackCopyBibTeX(text) {
+  // Fallback for older browsers
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.top = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  
+  try {
+    var successful = document.execCommand('copy');
+    if (successful) {
+      var btn = document.getElementById('bibtex-copy-btn');
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'Copy to Clipboard';
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  } catch (err) {
+    console.error('Fallback copy failed:', err);
+    alert('Failed to copy. Please copy manually.');
+  }
+  
+  document.body.removeChild(textarea);
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+  var modal = document.getElementById('bibtex-modal');
+  if (event.target === modal) {
+    closeBibTeX();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeBibTeX();
+  }
+});
+</script>
+
+<!-- BibTeX Modal -->
+<div id="bibtex-modal" class="bibtex-modal">
+    <div class="bibtex-modal-content">
+        <div class="bibtex-modal-header">
+            <h3>BibTeX Citation</h3>
+            <button class="bibtex-close" onclick="closeBibTeX()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="bibtex-content" id="bibtex-text"></div>
+        <div class="bibtex-actions">
+            <button class="bibtex-copy-btn" id="bibtex-copy-btn" onclick="copyBibTeX()">Copy to Clipboard</button>
+        </div>
+    </div>
+</div>
+
+</div>

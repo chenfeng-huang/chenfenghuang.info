@@ -1,0 +1,81 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: "Curriculum Vitae" }}</title>
+    <style>
+        :root {
+          --bg-color: #ffffff;
+          --text-color: #333333;
+          --text-secondary: #666666;
+          --border-color: #cccccc;
+          --card-bg: #ffffff;
+          --header-bg: #ffffff;
+          --link-color: #0076df;
+          --link-hover: #00369f;
+          --nav-link-color: #333333;
+          --shadow-color: rgba(0, 0, 0, 0.1);
+          --code-bg: #fafafa;
+        }
+
+        [data-theme="dark"] {
+          --bg-color: #1a1a1a;
+          --text-color: #e0e0e0;
+          --text-secondary: #b0b0b0;
+          --border-color: #404040;
+          --card-bg: #2a2a2a;
+          --header-bg: #1a1a1a;
+          --link-color: #4da6ff;
+          --link-hover: #80bfff;
+          --nav-link-color: #e0e0e0;
+          --shadow-color: rgba(0, 0, 0, 0.3);
+          --code-bg: #2d2d2d;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+        #back-link:hover {
+            background-color: var(--link-color);
+        }
+    </style>
+</head>
+<body>
+    {{ content }}
+    
+    <!-- Theme Toggle Script -->
+    <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}"></script>
+    <!-- Menu Toggle Script -->
+    <script>{% include js/menu-toggle.js %}</script>
+</body>
+</html>

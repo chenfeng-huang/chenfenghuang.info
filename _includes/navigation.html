@@ -1,0 +1,21 @@
+<nav class="main-navigation">
+  {% assign current = page.url | downcase | split: '/' %}
+  <div class="nav-container">
+    <div class="nav-primary">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-icon"></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+        <a class="nav-underline {% if page.url == '/' %}current{% endif %}" href="{{site.baseurl}}/?v={{ site.time | date: '%Y%m%d%H%M%S' }}" data-nav-index="0">Home</a>
+        <a class="nav-underline {% if page.url == '/publications/' %}current{% endif %}" href="{{site.baseurl}}/publications/?v={{ site.time | date: '%Y%m%d%H%M%S' }}" data-nav-index="1">Publications & Competitions</a>
+        <a class="nav-underline {% if page.url == '/blog/' %}current{% endif %}" href="{{site.baseurl}}/blog/?v={{ site.time | date: '%Y%m%d%H%M%S' }}" data-nav-index="2">Blogs</a>
+      </div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode" aria-pressed="false">
+      <span class="theme-toggle-track" aria-hidden="true" data-theme="light">
+        <span class="theme-toggle-thumb" data-theme="light"></span>
+      </span>
+    </button>
+  </div>
+</nav>

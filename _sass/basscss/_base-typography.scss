@@ -1,0 +1,121 @@
+/* Basscss Base Typography */
+
+body {
+  font-family: $font-family;
+  line-height: $line-height;
+  font-size: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
+  line-height: $heading-line-height;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+p,
+dl,
+ol,
+ul {
+  font-size: $h4;
+  margin-top: 0;
+  margin-bottom: $space-2;
+}
+
+ol,
+ul {
+  padding-left: $space-3;
+  margin-bottom: $space-2;
+}
+
+ol ul, ul ol, ol ol, ul ul {
+  margin-bottom: 0;
+}
+
+pre,
+code,
+samp {
+  font-family: $monospace-font-family;
+  font-size: inherit;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: $space-2;
+  overflow-x: scroll;
+}
+
+hr {
+  margin-top: $space-3;
+  margin-bottom: $space-3;
+}
+
+blockquote {
+  border-left: 5px solid #7a7a7a;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  padding-left: 1em;
+}
+
+blockquote footer {
+  background-color: #fff;
+  border-color: transparent;
+  color: #7a7a7a;
+  font-size: 1rem;
+  font-style: normal;
+  text-align: left;
+  padding: 0;
+  margin-bottom: 0;
+  margin-top: 1%;
+}
+
+blockquote p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0;
+}
+
+
+h1,
+.h1 {
+  font-size: $h1;
+}
+
+h2,
+.h2 {
+  font-size: $h2;
+}
+
+h3,
+.h3 {
+  font-size: $h3;
+}
+
+h4,
+.h4 {
+  font-size: $h4;
+}
+
+h5,
+.h5 {
+  font-size: $h5;
+}
+
+h6,
+.h6 {
+  font-size: $h6;
+}
+
+.list-reset {
+  list-style: none;
+  padding-left: 0;
+}

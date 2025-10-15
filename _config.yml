@@ -1,0 +1,69 @@
+# Site settings
+title: Chenfeng Huang
+author: Chenfeng Huang
+description: ""
+baseurl: ""
+url: "https://chenfenghuang.info"
+date_format: "%b %-d, %Y"
+
+# Google services
+google_verification:
+# Use either direct GA implementation or set up GTM account
+# - using both will skew your data (leave blank to not use at all)
+google_analytics: UA-113168316-1
+google_tag_manager:
+# Bing services
+bing_verification:
+
+# Optional features
+show_related_posts: True
+show_post_footers: False
+show_subscribe_cta: True
+show_social_icons: True
+ajaxify_contact_form: false
+enable_mathjax: false
+extended_fonts: false
+enable_anchorjs: true
+
+# Social icons
+email: chengfengeric@gmail.com
+github_username: chenfeng-huang
+linkedin_username: chenfeng-huang-941737176
+kaggle_username: alrickh
+google_scholar_id: your_google_scholar_id_here
+
+text:
+  pagination:
+    newer: "Newer"
+    older: "Older"
+  post:
+    updated: "Updated"
+    minute_read: "minute read"
+    related_posts: "More to read"
+  index:
+    coming_soon: "Coming soon..."
+  og_locale: "en_US"
+
+# Build settings
+markdown: kramdown
+redcarpet:
+  extensions: ["smart", "tables", "with_toc_data", "footnotes"]
+permalink: pretty
+paginate: 12
+paginate_path: "/blog/:num/"
+sass:
+  compressed: true
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+# https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor]
+excerpt_separator: <!--more-->
+collections_dir: collections
+collections:
+  reviews:
+    output: true
+  portfolio:
+    output: true
+ 
+ 

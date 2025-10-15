@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<article class="post">
+  <div class="post-header">
+    <a href="/blog" class="back-button">← Back to Blog</a>
+    <h1>{{ page.title }}</h1>
+    {% unless page.no_date %}
+      <p class="meta">{{ page.date | date: "%B %-d, %Y" }}</p>
+    {% endunless %}
+  </div>
+
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <!-- Optionally keep or remove the following section -->
+  <!--
+  <div class="post-footer">
+    <p>Thanks for reading. Did I make a mistake? Please consider <a href="[Your GitHub repo URL]">sending a pull request</a>.</p>
+    <p>Follow me on <a href="[Your GitHub URL]">Github</a> or <a href="[Your Twitter URL]">Twitter</a>.</p>
+  </div>
+  -->
+</article>
+
+<style>
+.post .post-header {
+  margin-bottom: 2rem;
+}
+
+.post .back-button {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.2s ease;
+}
+
+.post .back-button:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.post .back-button:before {
+  content: '';
+  margin-right: 0.25rem;
+}
+</style>

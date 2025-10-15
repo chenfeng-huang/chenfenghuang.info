@@ -1,0 +1,340 @@
+/* Main navigation container */
+.main-navigation {
+  width: 100%;
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.nav-primary {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+/* Navigation margin setting */
+.nav-links {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: center;
+  margin-left: 7rem;
+  position: relative;
+}
+
+/* Apple-style navigation indicator */
+.nav-indicator {
+  position: absolute;
+  background: var(--nav-indicator-bg, rgba(0, 0, 0, 0.08));
+  border-radius: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+
+[data-theme="dark"] .nav-indicator {
+  background: var(--nav-indicator-bg, rgba(255, 255, 255, 0.12));
+}
+
+.nav-indicator.active {
+  opacity: 1;
+}
+
+/* Ensure nav links are above the indicator */
+.nav-links a {
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.nav-links a:active {
+  transform: scale(0.95);
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 60px;
+  height: 32px;
+  border-radius: 999px;
+  margin-right: 6.5rem;
+}
+
+.theme-toggle:focus {
+  outline: none;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 4px;
+}
+
+
+.theme-toggle-track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  padding: 0 3px;
+  background: #797979;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18), 0 0 1px rgba(0, 0, 0, 0.04);
+  transform: translate(0, -50%);
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.theme-toggle-track[data-theme="dark"],
+[data-theme="dark"] .theme-toggle-track {
+  background: #34c759;
+}
+
+.theme-toggle-thumb[data-theme="dark"],
+[data-theme="dark"] .theme-toggle-thumb {
+  transform: translate(28px, -50%);
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 768px) {
+  .theme-toggle {
+    margin-left: auto;
+    margin-right: 1.5rem;
+    width: 56px;
+    height: 30px;
+  }
+
+  .theme-toggle-thumb {
+    width: 24px;
+    height: 24px;
+    left: 3px;
+  }
+
+  .theme-toggle-thumb[data-theme="dark"],
+  [data-theme="dark"] .theme-toggle-thumb {
+    transform: translate(26px, -50%);
+  }
+}
+
+/* Hamburger menu button - hidden on desktop */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: var(--nav-link-color);
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: var(--nav-link-color);
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.hamburger-icon::before {
+  top: -8px;
+}
+
+.hamburger-icon::after {
+  top: 8px;
+}
+
+/* Animate hamburger to X when menu is open */
+.menu-toggle.active .hamburger-icon {
+  background-color: transparent;
+}
+
+.menu-toggle.active .hamburger-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.menu-toggle.active .hamburger-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* Responsive design for mobile */
+@media only screen and (max-width: 768px) {
+  .main-navigation {
+    margin-top: 0;
+    border-bottom: none;
+    position: relative;
+    overflow: visible;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 0;
+  }
+
+  .nav-container {
+    padding: 0.75rem 1rem;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--header-bg);
+  }
+  
+  .nav-primary {
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100vw;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    margin-top: -1px;
+    background-color: var(--header-bg);
+    box-shadow: 0 4px 6px -2px var(--shadow-color);
+    padding: 0;
+    z-index: 9999;
+    max-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.5rem);
+    transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease;
+  }
+
+  .nav-links.active {
+    max-height: calc(100vh - 100px);
+    padding: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    overflow-y: auto;
+  }
+
+  .nav-links a {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    z-index: 1;
+  }
+
+  .nav-links a:not(:last-of-type)::after {
+    display: none;
+  }
+
+  .nav-links .nav-underline::before {
+    display: none;
+  }
+  
+  /* Style the indicator for mobile menu - vertical layout */
+  .nav-indicator {
+    display: block !important;
+    position: absolute;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 8px;
+    background: var(--nav-indicator-bg, rgba(0, 120, 255, 0.2)) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 0 !important;
+    opacity: 0 !important;
+  }
+  
+  /* Show indicator only when menu is active */
+  .nav-links.active .nav-indicator {
+    opacity: 1 !important;
+  }
+  
+  /* Dark theme */
+  [data-theme="dark"] .nav-links .nav-indicator {
+    background: var(--nav-indicator-bg, rgba(255, 255, 255, 0.12)) !important;
+  }
+}
+
+/* Navigation underlines with animation */
+nav a {
+  position: relative;
+  text-decoration: none;
+}
+
+/* Base underline for all nav items (always visible) */
+nav .nav-underline:before {
+  display: none;
+}
+
+/* Hover animation - scales down the underline */
+nav .nav-underline:hover:before {
+  display: none;
+}
+
+.current {
+  font-weight: bold !important;
+}
+

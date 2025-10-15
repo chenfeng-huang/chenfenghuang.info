@@ -1,0 +1,108 @@
+#display-projects dl dt a {
+  color: black;
+}
+
+#display-projects dl dt a:hover {
+  color: #0076df;
+}
+
+dt {
+  	margin-bottom: 5%;
+	border: solid 1px #999;
+	border-radius: 5px;
+	padding: 2%;
+}
+
+dt p {
+	font-weight: 100;
+}
+
+@media screen and (min-width: 770px) {
+	.clients .top-circle {
+		margin-bottom: 100px;
+	}
+}
+
+.circle-button .top-circle {
+    width: 100px;
+    height: 100px;
+    background: #000;
+    border-radius: 50px;
+    margin: 0 auto;
+    display: block;
+}
+
+.circle-button .top-circle, .down-circle, .down-circle-click, .home .contact-btn, nav .nav-jr {
+    cursor: pointer;
+}
+
+.circle-button:last-child {
+    margin-right: 0;
+}
+
+.circle-button {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 100%;
+}
+
+.circle-button .top-circle img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding-top: 28px;
+}
+
+/* For Stars/Forks */
+/* --------------- */
+.tag, .lang {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	white-space:nowrap;
+	position:relative;
+	margin:0 0px 0 0px;
+	displaY:inline-block;
+	height: 40px;
+	padding: 0 25px 0 10px;
+	background:#E8EDF0;
+	color:#999;
+	line-height: 40px;
+}
+
+.lang {
+	border-radius: 10px;
+    display: inline-block;
+    *display:inline; /* ie 7 fix */
+    vertical-align: top;
+	position:relative;
+	display:inline-block;
+	padding: 0 0px 0 10px;
+	color:#999;
+}
+
+.numbertag{
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	white-space:nowrap;
+	position:relative;
+	margin:0 0px 0 0px;
+  	margin-right: 10px;
+  	margin-left: -5px;
+	display:inline-block;
+	height: 40px;
+	padding: 0 25px 0 15px;
+	background: #000;
+	color: #fff;
+	line-height: 40px;
+}
+.numbertag:after{
+	position:absolute;
+	content:"";
+	left:-20px;
+	width: 1px;
+	height:0px;
+	border-right: 20px solid #000;
+	border-top:  20px solid transparent;
+	border-bottom:  20px solid transparent;
+}

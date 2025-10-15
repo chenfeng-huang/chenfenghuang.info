@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/*!
+
+Junior Theme
+
+A striking black-white Jekyll theme to be used as a blog, portfolio.
+
+Built upon BASSCSS (http://jxnblk.github.io/basscss).
+
+Crafted with <3 by Jonathon Belotti (@jonobelotti_IO) - ©2017 Jonathon Belotti
+MIT License http://opensource.org/licenses/MIT
+
+*/
+
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+em img {
+  max-width: 100%;
+  margin-left: 0;
+}
+
+.site-wrap {
+  width: 100%;
+}
+
+.site-content {
+  width: 100%;
+  max-width: var(--layout-max-width, 1060px);
+  margin: 0 auto;
+}
+
+.page-body {
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 6vw, 4rem);
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              opacity 0.4s ease;
+}
+
+/* Page swipe animations for navigation clicks */
+.page-body.page-swipe-out {
+  opacity: 0;
+}
+
+.page-body.page-swipe-out.swipe-out-left {
+  transform: translateX(-50px);
+}
+
+.page-body.page-swipe-out.swipe-out-right {
+  transform: translateX(50px);
+}
+
+/* Faster, smoother animation for mobile */
+.page-body.mobile-swipe {
+  transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              opacity 0.25s ease !important;
+}
+
+.page-body.mobile-swipe.swipe-out-left {
+  transform: translateX(-30px);
+}
+
+.page-body.mobile-swipe.swipe-out-right {
+  transform: translateX(30px);
+}

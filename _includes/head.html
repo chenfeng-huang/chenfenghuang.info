@@ -1,0 +1,137 @@
+<head>
+    {% if site.google_analytics %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag("config", "{{ site.google_analytics }}");
+    </script>
+    {% endif %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <title>{% if page.title %}{{ page.title | strip_html }} &#8211; {% endif %}{{ site.title | strip_html }}</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdn.mathjax.org">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | xml_escape }}{% elsif page.summary %}{{ page.summary | xml_escape }}{% else %}{{ site.description | xml_escape }}{% endif %}">
+    <meta name="theme-color" content="#e8e8e8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Cache Control Headers -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    {% if page.meta_robots %}<meta name="robots" content="{{ page.meta_robots }}">
+    {% else %}<meta name="robots" content="all">{% endif %}
+    <meta name="author" content="{{ site.author }}">
+    {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl }}" />
+
+    <!-- JQuery (Required for menu, Github Projects Page, and Resume Page for PDF printing) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    {% if page.categories contains "project" or page.tags contains "portfolio" %}
+    <!-- Page-type specific CSS -->
+    <link rel="stylesheet" href="{{ "/css/960.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
+    <link rel="stylesheet" href="{{ "/css/portfolio.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
+    {% endif %}
+
+    <!-- Apply saved theme BEFORE CSS loads to prevent flash on navigation -->
+    <script>
+      (function() {
+        try {
+          var key = 'theme-preference';
+          var theme = localStorage.getItem(key);
+          if (!theme) {
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            theme = prefersDark ? 'dark' : 'light';
+          }
+          if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.removeAttribute('data-theme');
+          }
+          // Set initial theme-color meta to match header/bg before paint
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            var bg = theme === 'dark' ? '#4a3728' : '#e8e8e8';
+            meta.setAttribute('content', bg);
+          }
+        } catch (e) {
+          // noop
+        }
+      })();
+    </script>
+
+    <!-- Prevent theme transition during first paint and provide dark fallback colors -->
+    <style id="theme-preload">*{transition:none!important}</style>
+    <style>
+      html[data-theme="dark"] body { background-color: #1a1a1a; color: #e0e0e0; }
+      html[data-theme="dark"] .site-header { background-color: #4a3728; }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var s = document.getElementById('theme-preload');
+        if (s && s.parentNode) s.parentNode.removeChild(s);
+      });
+    </script>
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ "/css/junior.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
+
+    {% if page.tags contains "projects" %}
+    <link rel="stylesheet" href="{{ "/css/projects.css" | prepend: site.baseurl }}?{{ site.time | date: "%Y%m%d%H%M" }}" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/emojione/3.0.3/extras/css/emojione.min.css"/>
+    {% endif %}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Inter:300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    {% if site.show_social_icons or site.show_sharing_icons %}
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    {% endif %}
+
+    {% if site.enable_mathjax or page.mathjax == true %}
+    <!-- MathJax -->
+    <script async type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    {% endif %}
+
+    {% if site.google_verification %}
+    <!-- Google Verification -->
+      <meta name="google-site-verification" content="{{ site.google_verification }}" />
+    {% endif %}
+    {% if site.bing_verification %}
+    <!-- Bing Verification -->
+      <meta name="msvalidate.01" content="{{ site.bing_verification }}" />
+    {% endif %}
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="{{ site.text.og_locale }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{% if page.title %}{{ page.title | xml_escape }}{% else %}{{ site.title | xml_escape }}{% endif %}">
+    <meta property="og:description" content="{% if page.summary %}{{ page.summary | xml_escape }}{% else %}{{ site.description | xml_escape }}{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:site_name" content="{{ site.title | xml_escape }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    {% if site.twitter_username %}
+        <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+    {% endif %}
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+    <meta name="twitter:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}" />
+    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+
+    <!-- Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><path d=%22M50 10 L90 90 L50 70 L10 90 Z%22 fill=%22none%22 stroke=%22black%22 stroke-width=%224%22/></svg>">
+</head>

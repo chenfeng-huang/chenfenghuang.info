@@ -1,0 +1,86 @@
+
+.posts {
+  margin: 0;
+}
+
+.posts .post {
+  background-color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* border-bottom: thin solid #f3f3f3; */ /* Removed border between blog posts */
+}
+
+.posts .post:last-child {
+  border-bottom: none;
+  margin-bottom: .375em;
+  padding-bottom: 0;
+}
+
+.post-link .post-title {
+  margin-top: 0;
+  font-weight: 600;
+  color: #111;
+}
+
+.post-content {
+  font-weight: 300;
+}
+
+.post-footer {
+  @extend .italic;
+
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.post-footer .avatar {
+  margin: 2rem 0;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.meta,
+.post-meta {
+  width: auto;
+  font-weight: 300;
+  margin: 0;
+  padding: .25em 0;
+  color: #7a7a7a;
+}
+
+.post-meta-popular-tag {
+  margin-left: 0.5em;
+  color: white;
+  background-color: #aedbf9;
+  text-align: center;
+  padding: 0.25em;
+}
+
+.related-post-title {
+  border-bottom: thin solid var(--border-color);
+}
+
+// Original in _posts.scss - duplicate rule removed since border is now removed above
+
+// Add proper separation between Blogs and Coffee Notes sections
+div.home {
+  margin-bottom: 3rem;  // Add space after Blogs section
+  padding-bottom: 2rem; // Add padding to create visual separation
+  border-bottom: thin solid var(--border-color); // Add separator line between sections
+}
+
+// Add or modify these rules
+.post.py3,
+.coffee-note-item.py3 {
+  padding-top: 0.5rem;    // Reduce from default py3 padding
+  padding-bottom: 0.5rem; // Reduce from default py3 padding
+}
+
+// Optional: also reduce space between title and content
+.post-title {
+  margin-bottom: 0.5rem;  // Reduce title bottom margin
+}
+
+.post-summary {
+  margin-top: 0.5rem;    // Reduce summary top margin
+}
