@@ -16,29 +16,31 @@ headshot: /images/headshot.jpg
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 400;">University of Southern California</p>
     <p style="color: var(--text-secondary); margin: 0.15em 0 1.5em 0; font-style: italic;">Applied Data Science</p>
     
-    <div style="margin-top: 1em;">
-      <a href="mailto:chengfengeric@gmail.com" style="color: var(--text-secondary); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="Email">
-        <i class="fa fa-envelope"></i>
-      </a>
-      {% if site.linkedin_username %}
-        <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" style="color: #0077B5; font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
-          <i class="fa fa-linkedin"></i>
+    {% if site.show_social_icons %}
+      <div style="margin-top: 1em;">
+        <a href="mailto:chengfengeric@gmail.com" style="color: var(--text-secondary); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="Email">
+          <i class="fa fa-envelope"></i>
         </a>
-      {% endif %}
-      {% if site.github_username %}
-        <a href="https://github.com/{{ site.github_username }}" style="color: var(--text-color); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
-          <i class="fa fa-github"></i>
-        </a>
-      {% endif %}
-      {% if site.kaggle_username %}
-        <a href="https://www.kaggle.com/{{ site.kaggle_username }}" style="color: #20BEFF; font-size: 1.2em; margin: 0 0.3em; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: bold;" target="_blank" rel="noopener noreferrer">K</a>
-      {% endif %}
-      {% if site.google_scholar_id %}
-        <a href="https://scholar.google.com/citations?user={{ site.google_scholar_id }}" style="color: #4285F4; font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
-          <i class="ai ai-google-scholar"></i>
-        </a>
-      {% endif %}
-    </div>
+        {% if site.linkedin_username %}
+          <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" style="color: #0077B5; font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        {% endif %}
+        {% if site.github_username %}
+          <a href="https://github.com/{{ site.github_username }}" style="color: var(--text-color); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-github"></i>
+          </a>
+        {% endif %}
+        {% if site.kaggle_username %}
+          <a href="https://www.kaggle.com/{{ site.kaggle_username }}" style="color: #20BEFF; font-size: 1.2em; margin: 0 0.3em; text-decoration: none; font-family: 'Inter', sans-serif; font-weight: bold;" target="_blank" rel="noopener noreferrer">K</a>
+        {% endif %}
+        {% if site.google_scholar_id %}
+          <a href="https://scholar.google.com/citations?user={{ site.google_scholar_id }}" style="color: #4285F4; font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer">
+            <i class="ai ai-google-scholar"></i>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 
   <div class="about-content" style="flex: 1; min-width: 0; padding-left: 1em;">
