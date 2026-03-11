@@ -1,24 +1,24 @@
 ---
 layout: default
 tags: home
-headshot: /images/headshot.jpg
+headshot: /images/headshot.png
 ---
 
 <!-- Hero Section -->
 <div class="profile-layout" style="display: flex; gap: 3em; margin-bottom: 1.5em; align-items: flex-start; padding: 2.5em 0;">
-  <div class="profile-card" style="text-align: center; max-width: 300px; min-width: 280px; padding: 0; flex-shrink: 0;">
+  <div class="profile-card" style="text-align: center; max-width: 340px; min-width: 310px; padding: 0; flex-shrink: 0;">
     <img 
       style="border-radius: 1em; width: 200px; height: 200px; object-fit: cover; margin-bottom: 1.5em; box-shadow: 0 4px 16px rgba(0,0,0,0.1);" 
       src="{{ page.headshot }}"
     >
     <h1 style="margin: 0 0 0.75em 0; color: var(--text-color); font-size: 1.5rem; font-weight: 700;">Chenfeng Huang</h1>
-    <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 500; font-size: 1.05em;">Master Student</p>
-    <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 400;">University of Southern California</p>
-    <p style="color: var(--text-secondary); margin: 0.15em 0 1.5em 0; font-style: italic;">Applied Data Science</p>
+    <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 500; font-size: 1.05em;">Ph.D. Student</p>
+    <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 400;">University of California, Los Angeles</p>
+    <p style="color: var(--text-secondary); margin: 0.15em 0 1.5em 0; font-style: italic;">Statistics</p>
     
     {% if site.show_social_icons %}
       <div style="margin-top: 1em;">
-        <a href="mailto:chengfengeric@gmail.com" style="color: var(--text-secondary); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="Email">
+        <a href="mailto:chenfenghuang@ucla.edu" style="color: var(--text-secondary); font-size: 1.2em; margin: 0 0.3em; text-decoration: none;" target="_blank" rel="noopener noreferrer" title="Email">
           <i class="fa fa-envelope"></i>
         </a>
         {% if site.linkedin_username %}
@@ -47,11 +47,21 @@ headshot: /images/headshot.jpg
     <h2 style="margin-top: 0; margin-bottom: 1.25em; color: var(--text-color); font-weight: 700; font-size: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5em;">About Me</h2>
     
     <div style="line-height: 1.7; font-size: 1.05em;">
-      <p style="margin-bottom: 1.25em;">I am a master student in Applied Data Science at the University of Southern California, working as a research assistant at North Carolina State University under the guidance of <a href="https://math.sciences.ncsu.edu/people/tran/" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Dr. Tran</a>. My research focuses on <strong style="color: var(--text-color); font-weight: 600;">Interpretable Machine Learning</strong> and I am currently working on <strong style="color: var(--text-color); font-weight: 600;">Time Series OOD Generalization</strong>.</p>
+      <p style="margin-bottom: 1.25em;">I am a Ph.D. student in Statistics at the University of California, Los Angeles. I am fortunate to be advised by <a href="https://georgemichailidis.github.io" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Dr. George Michailidis</a>. My research focuses on <strong style="color: var(--text-color); font-weight: 600;">Interpretable Machine Learning</strong>, <strong style="color: var(--text-color); font-weight: 600;">Time Series Analysis</strong>, and <strong style="color: var(--text-color); font-weight: 600;">Out-of-Distribution (OOD) Generalization</strong>.</p>
 
-      <p style="margin-bottom: 1.25em;">I am actively participating in <a href="https://www.kaggle.com/alrickh" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Kaggle</a> competitions and currently hold <strong style="color: var(--text-color); font-weight: 600;">Expert</strong> level status.</p>
+      <p style="margin-bottom: 1.25em;">
+      I also enjoy participating in
+      <a href="https://www.kaggle.com/alrickh" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Kaggle</a>
+      competitions and currently hold
+      <strong style="color: var(--text-color); font-weight: 600;">Expert</strong> status.
+    </p>
 
-      <p style="margin-bottom: 0;">I am also a professional coffee brewer and cupper with SCA certificates. I share brewing techniques and coffee tasting feedback in my <a href="{{ site.baseurl }}/coffee-note/" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Coffee Notes</a>.</p>
+    <p style="margin-bottom: 0;">
+      Beyond academia, I am a certified
+      <a href="https://education.sca.coffee/q-grader" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Q Grader</a>
+      and hold several certifications through the
+      <a href="https://education.sca.coffee/coffee-skills-program" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">SCA Coffee Skills Program</a>.
+    </p>
     </div>
   </div>
 </div>
@@ -169,7 +179,7 @@ function toggleInterest(id) {
           </div>
           <div id="details-coffee" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; color: var(--text-secondary); font-size: 0.9em; font-weight: 400; line-height: 1.5;">
             <div style="padding: 0.8em 1em; border-top: 1px solid var(--border-color);">
-              Certified SCA professional specializing in coffee brewing techniques and sensory evaluation. I explore the science behind extraction parameters, grind consistency, and water chemistry to achieve optimal flavor profiles. My expertise includes cupping protocols, brewing method optimization, and coffee quality assessment.
+              Certified Q Grader and SCA professional with expertise in brewing, sensory evaluation, and green coffee. I was among the first certified Q Graders in Chengdu, China. My interests include extraction science, grind consistency, water chemistry, cupping protocols, brewing optimization, and coffee quality assessment.
             </div>
           </div>
         </div>
@@ -182,6 +192,17 @@ function toggleInterest(id) {
         Education
       </h2>
       <div style="color: var(--text-secondary);">
+          <a href="https://statistics.ucla.edu/index.php/about/statistics-and-data-science/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
+            <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+              <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                <img src="/images/school_icons/UCLA.png" alt="UCLA Logo" style="width: 60px; height: 60px; object-fit: contain;" />
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; color: var(--text-color); font-size: 1em;">Ph.D. in Statistics</div>
+                <div style="font-size: 0.9em; color: var(--text-secondary); font-weight: 400;">University of California, Los Angeles, 2026-Present</div>
+              </div>
+          </div>
+        </a>
         <a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/data-science/ms-applied-data-science/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
           <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
@@ -194,7 +215,7 @@ function toggleInterest(id) {
           </div>
         </a>
         <a href="https://www.scu.edu/cas/mathcs/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
-          <div style="margin-bottom: 0; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+          <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
               <img src="/images/school_icons/SCU.jpg" alt="Santa Clara University Logo" style="width: 60px; height: 60px; object-fit: contain;" />
             </div>
@@ -204,6 +225,7 @@ function toggleInterest(id) {
             </div>
           </div>
         </a>
+
       </div>
     </div>
   </div>

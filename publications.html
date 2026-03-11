@@ -406,6 +406,24 @@ permalink: /publications/
     .expand-btn[aria-expanded="true"] .chevron {
         transform: rotate(90deg);
     }
+    .paper-link-icon {
+        display: inline-flex;
+        align-items: center;
+        margin-left: 1rem;
+        color: var(--text-secondary);
+        transition: color 0.1s ease;
+    }
+    .paper-link-icon svg {
+        width: 1em;
+        height: 1em;
+        vertical-align: -0.5em;
+    }
+    .paper-link-icon:hover {
+        color: #b31b1b;
+    }
+    .badge-group {
+        display: inline;
+    }
     /* Hidden abstract panel */
     .abstract-panel {
         margin-top: 0.6rem;
@@ -496,7 +514,7 @@ permalink: /publications/
     
     <h2>Publications</h2>
 
-    <h3>Working Papers</h3>
+    <!-- <h3>Working Papers</h3>
     
     <div class="publication-card" data-card>
         <div class="card-header" role="button" aria-expanded="false">
@@ -530,8 +548,54 @@ permalink: /publications/
         <div class="card-body" hidden></div>
     </div>
     
-    <hr class="section-separator" />
+    <hr class="section-separator" /> -->
     <h3>2026</h3>
+    
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "Model-Agnostic Online Certificate-Driven Calibration for Time Series Forecasting Under Distribution Shift"
+                <span class="status-badge status-submission">Under Review</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            <strong>C. Huang</strong>, Z. Ma and G. Michailidis
+        </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content no-image">
+                <div class="item-description">
+                    Time series out-of-distribution generalization requires forecasters to remain reliable when deployment dynamics differ from training conditions due to covariate shift, concept shift, and temporal dependence. Probably Approximately Correct Bayesian domain adaptation provides computable certificates by decomposing target risk into a source risk term, a source-to-target mismatch term, and a complexity term, but standard analyses rely on independent sampling and distributional stability, assumptions that are violated in time series by serial dependence and nonstationary shift. We propose a model-agnostic online martingale Probably Approximately Correct Bayesian framework that yields finite-sample certificates under temporal dependence and distribution shift. The certificate replaces independent-sample concentration with martingale concentration that adapts to loss scale and predictable variation. We use the certificate as a surrogate regularizer for online calibration by training a gated residual Bayesian head on top of a fixed forecasting backbone, producing a corrective update that reverts to the backbone prediction when the gate is closed. Online calibration combines a source risk anchor, a posterior-shift penalty, and a time-adaptive mismatch term computed from target windows observed before forecasting. It follows a predict-then-update protocol in which outcomes become available only after forecasting and are used to update subsequent predictions. Experiments across convolutional, attention-based, and large language model-based forecasters show improved stability and accuracy under covariate and concept shift.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
+                "PAC-Bayesian Meta-Learning for Few-Shot Identification of Linear Dynamical Systems"
+                <span class="status-badge status-submission">Under Review</span>
+            </div>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            <strong>C. Huang</strong>, G. Michailidis
+        </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content no-image">
+                <div class="item-description">
+                    Identifying linear time-invariant (LTI) dynamical systems from data is especially challenging when trajectories are short, noisy, or high-dimensional. Traditional system identification methods typically treat each system in isolation and therefore discard shared information that may exist across related systems. We propose a PAC-Bayesian Meta-Learning framework for LTI system identification (PBML-LTI) that explicitly leverages cross-task structure while preserving task-level heterogeneity. Each task corresponds to an unknown LTI system, and a meta-learner uses a collection of training trajectories to learn a data-dependent prior over system parameters. Given a new system with limited trajectory data, the method performs Bayesian inference to produce a posterior distribution over the new system's parameters, enabling calibrated uncertainty quantification and principled adaptation in the few-shot regime.
+                    <br><br>
+                    A key technical challenge is temporal dependence: trajectories generated by LTI systems violate i.i.d. assumptions underlying standard learning theory. To address this, we develop generalization guarantees for meta-learned priors under sequential dependence using martingale-based PAC-Bayes analysis with sub-normalized concentration tools. The resulting bounds characterize how the quality of the learned prior controls expected identification error on unseen systems, with explicit dependence on trajectory length, noise, and the divergence between task posteriors and the meta-prior. This connects uncertainty-aware meta-identification with finite-sample theory for dependent dynamical data.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="publication-card" data-card>
         <div class="card-header" role="button" aria-expanded="false">
@@ -544,7 +608,7 @@ permalink: /publications/
             </svg>
         </div>
         <div class="item-authors">
-            Z. Ma, <strong>C. Huang</strong>, Thuy T. Le and Hien Tran
+            Z. Ma, <strong>C. Huang</strong>, T. Le and H. Tran
         </div>
         <div class="item-actions">
           <a href="/assets/ECBO/ECBO.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pdf">
@@ -614,7 +678,15 @@ permalink: /publications/
         <div class="card-header" role="button" aria-expanded="false">
             <div class="item-title card-title">
                 "Effective Series Decomposition and Components Learning for Time Series Generation"
-                <span class="status-badge status-published">ICDM 2025</span>
+                <span class="badge-group">
+                    <span class="status-badge status-published">ICDM 2025</span>
+                    <a href="https://ieeexplore.ieee.org/document/11391900" target="_blank" rel="noopener noreferrer" class="paper-link-icon" title="arXiv" onclick="event.stopPropagation();">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </span>
             </div>
             <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -630,12 +702,7 @@ permalink: /publications/
                 </svg>
                 PDF
             </a>
-            <a href="https://arxiv.org/pdf/2511.00747" target="_blank" rel="noopener noreferrer" class="btn btn-arxiv">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
-                </svg>
-                arXiv
-            </a>
+       
             <a href="https://github.com/chenfeng-huang/STDiffusion" target="_blank" rel="noopener noreferrer" class="btn btn-github">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" fill="currentColor"/>
