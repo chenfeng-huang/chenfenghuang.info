@@ -78,6 +78,45 @@ no_date: true
 [data-theme="dark"] .image-caption {
   color: #ccc;
 }
+
+.pdf-wrapper {
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+}
+
+.image-item .pdf-wrapper {
+  width: 100%;
+  max-width: 100%;
+  height: 400px;
+}
+
+.pdf-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-fallback {
+  text-align: center;
+  margin-top: 6px;
+  font-size: 0.9em;
+}
+
+.pdf-fallback a {
+  color: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pdf-fallback a {
+    color: #93c5fd;
+  }
+}
+
+.dark .pdf-fallback a,
+[data-theme="dark"] .pdf-fallback a {
+  color: #93c5fd;
+}
 </style>
 
 <div class="image-grid">
@@ -105,6 +144,26 @@ no_date: true
       <img src="/images/Certificate-Collection/SCA-CVA.jpg" alt="sca">
     </div>
     <div class="image-caption">SCA CVA</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="image-grid">
+  <div class="image-item">
+    <div class="pdf-wrapper">
+      <iframe src="/images/Certificate-Collection/Q_grader.pdf" title="CQI Q Grader certificate"></iframe>
+    </div>
+    <div class="image-caption">CQI Q Grader</div>
+    <p class="pdf-fallback"><a href="/images/Certificate-Collection/Q_grader.pdf" target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
+  </div>
+
+  <div class="image-item">
+    <div class="pdf-wrapper">
+      <iframe src="/images/Certificate-Collection/SCA-certificate-GreenCoffee-Intermediate.pdf" title="SCA Green Coffee Intermediate certificate"></iframe>
+    </div>
+    <div class="image-caption">SCA Green Coffee Intermediate</div>
+    <p class="pdf-fallback"><a href="/images/Certificate-Collection/SCA-certificate-GreenCoffee-Intermediate.pdf" target="_blank" rel="noopener noreferrer">Open PDF in new tab</a></p>
   </div>
 </div>
 
