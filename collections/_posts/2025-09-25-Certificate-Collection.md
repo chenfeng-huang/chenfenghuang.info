@@ -9,12 +9,6 @@ no_date: true
 ---
 <!--more-->
 <style>
-.image-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
 .image-wrapper {
   width: 100%;
   max-width: 800px;
