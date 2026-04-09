@@ -109,9 +109,9 @@ no_date: true
 
   <div class="image-item">
     <div class="image-wrapper">
-      <img src="/images/Certificate-Collection/Q_grader.jpg" alt="CQI Q Grader certificate">
+      <img src="/images/Certificate-Collection/Q_grader.jpg" alt="Q Grader certificate">
     </div>
-    <div class="image-caption">CQI Q Grader</div>
+    <div class="image-caption">Q Grader</div>
   </div>
 </div>
 
