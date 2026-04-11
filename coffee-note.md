@@ -24,7 +24,7 @@ permalink: /coffee-note/
     {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
     {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
     
-    <div class="posts" id="posts-container">
+    <div class="posts posts-paginated-list" id="posts-container">
       <!-- Other Notes -->
       {% for note in other_notes %}
         {% assign item_index = forloop.index %}
@@ -107,47 +107,78 @@ function initializePagination() {
     document.getElementById('pagination').style.display = 'none';
   }
   
-  // Show first page
-  showPage(1);
+  // Show first page (no enter animation on load)
+  showPage(1, { skipAnimation: true });
 }
 
-function showPage(page) {
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function applyCoffeePageVisibility(page) {
   currentPage = page;
   const postItems = document.querySelectorAll('.post-item');
-  
-  console.log('Showing page:', page, 'Total coffee notes:', postItems.length);
-  
+
   const startIndex = (page - 1) * POSTS_PER_PAGE;
   const endIndex = startIndex + POSTS_PER_PAGE;
-  
-  console.log('Start index:', startIndex, 'End index:', endIndex);
-  
-  // Show/hide posts based on pagination
+
   postItems.forEach((item, index) => {
-    if (index >= startIndex && index < endIndex) {
-      item.style.display = 'block';
-      console.log('Showing coffee note', index);
-    } else {
-      item.style.display = 'none';
-      console.log('Hiding coffee note', index);
-    }
+    item.style.display = index >= startIndex && index < endIndex ? 'block' : 'none';
   });
-  
-  // Update page info
+
   document.getElementById('page-info').innerHTML = `Page ${page} of ${totalPages}`;
-  
-  // Update pagination buttons
+
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
-  
-  if (prevBtn) prevBtn.disabled = (page === 1);
-  if (nextBtn) nextBtn.disabled = (page === totalPages);
-  
-  // Update page numbers
+  if (prevBtn) prevBtn.disabled = page === 1;
+  if (nextBtn) nextBtn.disabled = page === totalPages;
+
   updatePageNumbers();
-  
-  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showPage(page, options) {
+  options = options || {};
+  const container = document.getElementById('posts-container');
+  const skipAnimation = options.skipAnimation === true;
+  const animate = !skipAnimation && container && !prefersReducedMotion();
+
+  if (!skipAnimation && page === currentPage) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  if (!animate) {
+    applyCoffeePageVisibility(page);
+    return;
+  }
+
+  const prevPage = currentPage;
+  const direction = page > prevPage ? 'next' : 'prev';
+  const outClass = direction === 'next' ? 'posts-slide-out-next' : 'posts-slide-out-prev';
+  const inClass = direction === 'next' ? 'posts-slide-in-next' : 'posts-slide-in-prev';
+
+  function clearSlideClasses() {
+    container.classList.remove(
+      'posts-slide-out-next', 'posts-slide-out-prev',
+      'posts-slide-in-next', 'posts-slide-in-prev'
+    );
+  }
+
+  clearSlideClasses();
+  container.classList.add(outClass);
+  setTimeout(function() {
+    applyCoffeePageVisibility(page);
+    container.classList.remove(outClass);
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        container.classList.add(inClass);
+        setTimeout(function() {
+          container.classList.remove(inClass);
+        }, 300);
+      });
+    });
+  }, 250);
 }
 
 function changePage(direction) {
@@ -315,6 +346,47 @@ window.addEventListener('load', function() {
   color: var(--text-secondary);
   font-size: 0.85em;
   margin: 0;
+}
+
+.posts-paginated-list.posts-slide-out-next,
+.posts-paginated-list.posts-slide-out-prev {
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  pointer-events: none;
+}
+.posts-paginated-list.posts-slide-out-next {
+  opacity: 0;
+  transform: translateX(-28px);
+}
+.posts-paginated-list.posts-slide-out-prev {
+  opacity: 0;
+  transform: translateX(28px);
+}
+@keyframes posts-slide-in-from-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes posts-slide-in-from-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.posts-paginated-list.posts-slide-in-next {
+  animation: posts-slide-in-from-right 0.28s ease forwards;
+}
+.posts-paginated-list.posts-slide-in-prev {
+  animation: posts-slide-in-from-left 0.28s ease forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .posts-paginated-list.posts-slide-out-next,
+  .posts-paginated-list.posts-slide-out-prev {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .posts-paginated-list.posts-slide-in-next,
+  .posts-paginated-list.posts-slide-in-prev {
+    animation: none;
+  }
 }
 
 /* Pagination Styles */

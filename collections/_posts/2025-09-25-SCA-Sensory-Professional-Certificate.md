@@ -3,7 +3,7 @@ layout: post
 title: "SCA CSP Sensory-Professional and CVA-Cupper Certificate"
 date: 2025-09-25 10:00:00 -0500
 tags: coffee-note
-preview_image: /images/2025-09-25-SCA-Certificate-Sensory-Professional/SCA-certificate-Sensory-Professional.jpg
+preview_image: /images/2025-09-25-SCA-Certificate-Sensory-Professional/Image_20260411160339_45_302.jpg
 ---
 <!--more-->
 <style>
@@ -24,6 +24,21 @@ preview_image: /images/2025-09-25-SCA-Certificate-Sensory-Professional/SCA-certi
   height: 100%;
   object-fit: contain;
 }
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 0 0 24px 0;
+}
+.photo-grid img {
+  max-width: 560px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
 </style>
 
 <div class="parallel-images-container" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
@@ -33,6 +48,12 @@ preview_image: /images/2025-09-25-SCA-Certificate-Sensory-Professional/SCA-certi
   <div class="image-wrapper" style="flex: 1; min-width: 300px; max-width: 400px;">
     <img src="/images/2025-09-25-SCA-Certificate-Sensory-Professional/SCA-CVA.jpg" alt="SCA CVA Certificate" style="width: 100%; height: auto; object-fit: contain;">
   </div>
+</div>
+
+Scenes from the course:
+
+<div class="photo-grid">
+  <img src="/images/2025-09-25-SCA-Certificate-Sensory-Professional/Image_20260411160339_45_302.jpg" alt="SCA Sensory Professional training">
 </div>
 
 Under mentor Ye Kuang's guidance, I successfully earned both the **SCA CSP Sensory-Professional Certificate** and the **CVA (Coffee Value Assessment) Certificate**. 

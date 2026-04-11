@@ -35,6 +35,53 @@ permalink: /publications/
         margin: 1.2rem 0 0.8rem 0;
         color: var(--text-color);
     }
+
+    /* Collapsible year sections under Publications */
+    .pub-year-group {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+    .pub-year-group > summary {
+        list-style: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1.2rem 0 0.8rem 0;
+        color: var(--text-color);
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.35rem;
+        user-select: none;
+        width: fit-content;
+        max-width: 100%;
+    }
+    .pub-year-group > summary::-webkit-details-marker {
+        display: none;
+    }
+    .pub-year-group > summary::marker {
+        content: '';
+    }
+    .pub-year-chevron {
+        width: 18px;
+        height: 18px;
+        color: var(--text-secondary);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+    .pub-year-group.pub-year-expanded > summary .pub-year-chevron {
+        transform: rotate(90deg);
+    }
+    .pub-year-body {
+        overflow: hidden;
+        transition: max-height 280ms ease, opacity 220ms ease;
+    }
+    .pub-year-group > summary:focus-visible {
+        outline: 2px solid var(--link-color);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
     
     /* Page Header */
     .page-header {
@@ -481,6 +528,10 @@ permalink: /publications/
             font-size: 1.1rem; 
             margin: 1.2rem 0 0.8rem 0;
         }
+        .pub-year-group > summary {
+            font-size: 1.1rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
         .publication-item, .project-item {
             padding: 1rem;
             margin-bottom: 0.6rem;
@@ -549,8 +600,14 @@ permalink: /publications/
     </div>
     
     <hr class="section-separator" /> -->
-    <h3>2026</h3>
-    
+    <details class="pub-year-group pub-year-expanded" open>
+    <summary aria-expanded="true">
+        <span>2026</span>
+        <svg class="pub-year-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </summary>
+    <div class="pub-year-body">
     <div class="publication-card" data-card>
         <div class="card-header" role="button" aria-expanded="false">
             <div class="item-title card-title">
@@ -670,10 +727,18 @@ permalink: /publications/
           </div>
       </div>
     </div>
- 
+    </div>
+    </details>
+
     <hr class="section-separator" />
-    <h3>2025</h3>
-    
+    <details class="pub-year-group pub-year-expanded" open>
+    <summary aria-expanded="true">
+        <span>2025</span>
+        <svg class="pub-year-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </summary>
+    <div class="pub-year-body">
     <div class="publication-card" data-card>
         <div class="card-header" role="button" aria-expanded="false">
             <div class="item-title card-title">
@@ -732,6 +797,8 @@ permalink: /publications/
             </div>
         </div>
     </div>
+    </div>
+    </details>
     
     <h2>Competitions</h2>
     <a href="https://github.com/chenfeng-huang/Kaggle_Silver_Medal_Solutioun_CMI-DBSD" aria-label="Kaggle Competition" target="_blank" rel="noopener noreferrer" class="project-item">
@@ -1193,6 +1260,72 @@ initializeGitHubStars();
       }
     });
   });
+})();
+
+// Animated expand/collapse for publication year sections
+(function(){
+  var DURATION = 280;
+  function initPubYearGroups() {
+    document.querySelectorAll('.pub-year-group').forEach(function(details) {
+      var summary = details.querySelector('summary');
+      var body = details.querySelector('.pub-year-body');
+      if (!summary || !body) return;
+
+      function syncAria() {
+        summary.setAttribute('aria-expanded', details.classList.contains('pub-year-expanded') ? 'true' : 'false');
+      }
+
+      summary.addEventListener('click', function(e) {
+        e.preventDefault();
+        var expanding = !details.classList.contains('pub-year-expanded');
+
+        if (expanding) {
+          details.open = true;
+          details.classList.add('pub-year-expanded');
+          syncAria();
+          body.style.opacity = '0';
+          body.style.maxHeight = '0px';
+          void body.offsetHeight;
+          var full = body.scrollHeight;
+          requestAnimationFrame(function() {
+            body.style.opacity = '1';
+            body.style.maxHeight = full + 'px';
+          });
+          window.setTimeout(function() {
+            body.style.maxHeight = 'none';
+            body.style.opacity = '';
+          }, DURATION);
+        } else {
+          details.classList.remove('pub-year-expanded');
+          syncAria();
+          var current = body.scrollHeight;
+          body.style.maxHeight = current + 'px';
+          void body.offsetHeight;
+          requestAnimationFrame(function() {
+            body.style.maxHeight = '0px';
+            body.style.opacity = '0';
+          });
+          window.setTimeout(function() {
+            details.open = false;
+            body.style.maxHeight = '';
+            body.style.opacity = '';
+          }, DURATION);
+        }
+      });
+
+      syncAria();
+    });
+
+    document.querySelectorAll('.pub-year-group.pub-year-expanded .pub-year-body').forEach(function(body) {
+      body.style.maxHeight = 'none';
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPubYearGroups);
+  } else {
+    initPubYearGroups();
+  }
 })();
 
 // BibTeX modal functionality
