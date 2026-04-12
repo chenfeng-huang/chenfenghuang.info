@@ -145,12 +145,20 @@ permalink: /publications/
         white-space: nowrap;
     }
     
-    /* Enhanced separator */
-    .section-separator {
-        margin: 1.5rem 0;
-        border: none;
+    /* Year dividers: single hairline (global portfolio.css hr uses border-top — avoid stacking with height+background) */
+    .publications-container hr.section-separator {
+        margin: 1.25rem 0;
+        padding: 0;
+        border: 0;
+        border-top: 0;
         height: 1px;
-        background: var(--border-color);
+        background-color: var(--border-color);
+        background-image: none;
+        overflow: hidden;
+    }
+    /* Last card’s box border + <hr> can read as one “thick” rule; drop extra bottom margin before the hr */
+    .pub-year-body > .publication-card:last-child {
+        margin-bottom: 0;
     }
 
     /* GitHub-like star badge next to titles */
@@ -536,8 +544,8 @@ permalink: /publications/
             padding: 1rem;
             margin-bottom: 0.6rem;
         }
-        .section-separator {
-            margin: 1.5rem 0;
+        .publications-container hr.section-separator {
+            margin: 1.25rem 0;
         }
         .item-title {
             font-size: 1rem;
@@ -599,6 +607,18 @@ permalink: /publications/
         <div class="card-body" hidden></div>
     </div>
     
+    <hr class="section-separator" /> -->
+    <!-- <details class="pub-year-group">
+    <summary aria-expanded="false">
+        <span>2027</span>
+        <svg class="pub-year-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </summary>
+    <div class="pub-year-body">
+    </div>
+    </details>
+
     <hr class="section-separator" /> -->
     <details class="pub-year-group pub-year-expanded" open>
     <summary aria-expanded="true">
