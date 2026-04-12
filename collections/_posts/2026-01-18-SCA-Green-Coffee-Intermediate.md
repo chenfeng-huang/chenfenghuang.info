@@ -54,7 +54,6 @@ Scenes from the course:
   <img src="/images/2026-01-18-SCA-Certificate-GreenCoffee-Intermediate/Image_20260409201550_40_302.jpg" alt="SCA Green Coffee Intermediate training">
   <img src="/images/2026-01-18-SCA-Certificate-GreenCoffee-Intermediate/Image_20260409201556_41_302.jpg" alt="SCA Green Coffee Intermediate training">
   <img src="/images/2026-01-18-SCA-Certificate-GreenCoffee-Intermediate/Image_20260409201600_42_302.jpg" alt="SCA Green Coffee Intermediate training">
-  <img src="/images/2026-01-18-SCA-Certificate-GreenCoffee-Intermediate/Image_20260409201615_44_302.jpg" alt="SCA Green Coffee Intermediate training">
 </div>
 
 I look forward to applying this on the buying side—asking sharper questions, spotting issues earlier, and connecting what we taste in the cup back to what happened before the coffee ever shipped.
