@@ -14,7 +14,8 @@ headshot: /images/headshot.png
     <h1 style="margin: 0 0 0.75em 0; color: var(--text-color); font-size: 1.5rem; font-weight: 700;">Chenfeng Huang</h1>
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 500; font-size: 1.05em;">Ph.D. Student</p>
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 400;">University of California, Los Angeles</p>
-    <p style="color: var(--text-secondary); margin: 0.15em 0 1.5em 0; font-style: italic;">Statistics</p>
+    <p style="color: var(--text-secondary); margin: 0.15em 0 0.35em 0; font-style: italic;">Statistics</p>
+    <p style="color: var(--text-secondary); margin: 0 0 1.25em 0; font-size: 0.88em; line-height: 1.45;">Q Grader · SCA Registered Instructor</p>
     
     {% if site.show_social_icons %}
       <div style="margin-top: 1em;">
@@ -58,9 +59,11 @@ headshot: /images/headshot.png
 
     <p style="margin-bottom: 0;">
       Beyond academia, I am a certified
-      <a href="https://education.sca.coffee/q-grader" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">Q Grader</a>
-      and hold several certifications through the
-      <a href="https://education.sca.coffee/coffee-skills-program" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">SCA Coffee Skills Program</a>.
+      <a href="{{ site.baseurl }}/2026/03/01/Q-Grader/" style="font-weight: 600;">Q Grader</a>
+      and an
+      <a href="{{ site.baseurl }}/2026/04/16/SCA-Registered-Instructor-Intro-to-Cupping/" style="font-weight: 600;">SCA Registered Instructor</a>. I also hold several certifications through the
+      <a href="{{ site.baseurl }}/2025/09/25/Certificate-Collection/" style="font-weight: 600;">SCA Coffee Skills Program</a>
+      in brewing, sensory evaluation, and green coffee.
     </p>
     </div>
   </div>
@@ -179,7 +182,7 @@ function toggleInterest(id) {
           </div>
           <div id="details-coffee" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; color: var(--text-secondary); font-size: 0.9em; font-weight: 400; line-height: 1.5;">
             <div style="padding: 0.8em 1em; border-top: 1px solid var(--border-color);">
-              Certified Q Grader and SCA professional with expertise in brewing, sensory evaluation, and green coffee. I was among the first certified Q Graders in Chengdu, China. My interests include extraction science, grind consistency, water chemistry, cupping protocols, brewing optimization, and coffee quality assessment.
+              Certified Q Grader and SCA Registered Instructor, holding SCA credentials in brewing, sensory evaluation, and green coffee. I was among the first certified Q Graders in Chengdu, China. My interests include extraction science, grind consistency, water chemistry, cupping protocols, brewing optimization, and coffee quality assessment.
             </div>
           </div>
         </div>

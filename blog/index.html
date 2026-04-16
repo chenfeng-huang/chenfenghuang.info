@@ -18,7 +18,7 @@ tags: blog
             {% if post.preview_image %}
               <div class="post-image-preview">
                 <a href="{{ post.url | prepend: site.baseurl }}">
-                  <img src="{{ post.preview_image }}" alt="{{ post.title }}" />
+                  <img src="{{ post.preview_image }}" alt="{{ post.title }}"{% if post.preview_image_object_position %} style="object-position: {{ post.preview_image_object_position }};"{% endif %} />
                 </a>
               </div>
             {% endif %}
@@ -62,7 +62,7 @@ tags: blog
           {% if pinned_post.preview_image %}
             <div class="post-image-preview">
               <a href="{{ pinned_post.url | prepend: site.baseurl }}">
-                <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}" />
+                <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}"{% if pinned_post.preview_image_object_position %} style="object-position: {{ pinned_post.preview_image_object_position }};"{% endif %} />
               </a>
             </div>
           {% endif %}
@@ -94,7 +94,7 @@ tags: blog
             {% if note.preview_image %}
               <div class="post-image-preview">
                 <a href="{{ note.url | prepend: site.baseurl }}">
-                  <img src="{{ note.preview_image }}" alt="{{ note.title }}" />
+                  <img src="{{ note.preview_image }}" alt="{{ note.title }}"{% if note.preview_image_object_position %} style="object-position: {{ note.preview_image_object_position }};"{% endif %} />
                 </a>
               </div>
             {% endif %}
@@ -129,13 +129,32 @@ tags: blog
 
 <script>
 (function() {
-  function createPaginator(itemSelector, paginationId, numbersId, prevBtnId, nextBtnId, scrollTargetId, perPage) {
+  function createPaginator(itemSelector, paginationId, numbersId, prevBtnId, nextBtnId, scrollTargetId, perPage, storageKey) {
     var POSTS_PER_PAGE = perPage;
     var currentPage = 1;
     var totalPages = 1;
 
     function getItems() {
       return document.querySelectorAll(itemSelector);
+    }
+
+    function readSavedPage() {
+      if (typeof storageKey !== 'string' || !storageKey) return 1;
+      try {
+        var raw = sessionStorage.getItem(storageKey);
+        if (raw === null || raw === '') return 1;
+        var p = parseInt(raw, 10);
+        return isNaN(p) ? 1 : p;
+      } catch (e) {
+        return 1;
+      }
+    }
+
+    function persistPage(page) {
+      if (typeof storageKey !== 'string' || !storageKey) return;
+      try {
+        sessionStorage.setItem(storageKey, String(page));
+      } catch (e) {}
     }
 
     function init() {
@@ -148,7 +167,10 @@ tags: blog
       } else {
         paginationEl.style.display = 'none';
       }
-      showPage(1, { skipAnimation: true });
+      var maxPage = Math.max(1, totalPages);
+      var saved = readSavedPage();
+      var startPage = Math.max(1, Math.min(saved, maxPage));
+      showPage(startPage, { skipAnimation: true });
     }
 
     function prefersReducedMotion() {
@@ -168,6 +190,7 @@ tags: blog
       document.getElementById(prevBtnId).disabled = (page === 1);
       document.getElementById(nextBtnId).disabled = (page === totalPages);
       updatePageNumbers();
+      persistPage(page);
     }
 
     function showPage(page, options) {
@@ -261,19 +284,68 @@ tags: blog
 
   var blogPaginator = createPaginator(
     '.blog-post-item', 'blog-pagination', 'blog-pagination-numbers',
-    'blog-prev-btn', 'blog-next-btn', 'blog-posts-container', 5
+    'blog-prev-btn', 'blog-next-btn', 'blog-posts-container', 5,
+    'cfh.blogIndex.blogPostsPage'
   );
   var coffeePaginator = createPaginator(
     '.coffee-post-item', 'coffee-pagination', 'coffee-pagination-numbers',
-    'coffee-prev-btn', 'coffee-next-btn', 'coffee-posts-container', 4
+    'coffee-prev-btn', 'coffee-next-btn', 'coffee-posts-container', 4,
+    'cfh.blogIndex.coffeePostsPage'
   );
 
   window.blogChangePage = function(d) { blogPaginator.changePage(d); };
   window.coffeeChangePage = function(d) { coffeePaginator.changePage(d); };
 
+  function scheduleBlogIndexRestoreScroll() {
+    window.requestAnimationFrame(function() {
+      window.requestAnimationFrame(function() {
+        var mode = '';
+        try {
+          mode = sessionStorage.getItem('cfh.blogIndex.lastOpenedList') || '';
+        } catch (e) {}
+        var blogP = 1;
+        var coffeeP = 1;
+        try {
+          blogP = parseInt(sessionStorage.getItem('cfh.blogIndex.blogPostsPage') || '1', 10);
+          coffeeP = parseInt(sessionStorage.getItem('cfh.blogIndex.coffeePostsPage') || '1', 10);
+        } catch (e2) {}
+        if (isNaN(blogP)) blogP = 1;
+        if (isNaN(coffeeP)) coffeeP = 1;
+
+        var blogEl = document.getElementById('blog-posts-container');
+        var coffeeEl = document.getElementById('coffee-posts-container');
+
+        if (mode === 'blog' && blogP > 1 && blogEl) {
+          blogEl.scrollIntoView({ block: 'start', behavior: 'auto' });
+        } else if (mode === 'coffee' && coffeeP > 1 && coffeeEl) {
+          coffeeEl.scrollIntoView({ block: 'start', behavior: 'auto' });
+        } else if (mode !== 'blog' && mode !== 'coffee') {
+          if (coffeeP > 1 && coffeeEl) coffeeEl.scrollIntoView({ block: 'start', behavior: 'auto' });
+          else if (blogP > 1 && blogEl) blogEl.scrollIntoView({ block: 'start', behavior: 'auto' });
+        }
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     blogPaginator.init();
     coffeePaginator.init();
+    scheduleBlogIndexRestoreScroll();
+
+    document.addEventListener('click', function(ev) {
+      var a = ev.target.closest && ev.target.closest('a[href]');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#') return;
+      if (/^https?:\/\//i.test(href)) return;
+      try {
+        if (a.closest('#blog-posts-container')) {
+          sessionStorage.setItem('cfh.blogIndex.lastOpenedList', 'blog');
+        } else if (a.closest('#coffee-posts-container')) {
+          sessionStorage.setItem('cfh.blogIndex.lastOpenedList', 'coffee');
+        }
+      } catch (e) {}
+    }, true);
   });
 
   window.addEventListener('load', function() {

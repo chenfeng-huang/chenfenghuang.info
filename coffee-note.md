@@ -34,7 +34,7 @@ permalink: /coffee-note/
             {% if note.preview_image %}
               <div class="post-image-preview">
                 <a href="{{ note.url | prepend: site.baseurl }}">
-                  <img src="{{ note.preview_image }}" alt="{{ note.title }}" />
+                  <img src="{{ note.preview_image }}" alt="{{ note.title }}"{% if note.preview_image_object_position %} style="object-position: {{ note.preview_image_object_position }};"{% endif %} />
                 </a>
               </div>
             {% endif %}
