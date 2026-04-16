@@ -15,7 +15,7 @@ headshot: /images/headshot.png
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 500; font-size: 1.05em;">Ph.D. Student</p>
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 400;">University of California, Los Angeles</p>
     <p style="color: var(--text-secondary); margin: 0.15em 0 0.35em 0; font-style: italic;">Statistics</p>
-    <p style="color: var(--text-secondary); margin: 0 0 1.25em 0; font-size: 0.88em; line-height: 1.45;">Q Grader · SCA Registered Instructor</p>
+  
     
     {% if site.show_social_icons %}
       <div style="margin-top: 1em;">
