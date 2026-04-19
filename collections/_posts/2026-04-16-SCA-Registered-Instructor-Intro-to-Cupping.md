@@ -13,17 +13,24 @@ preview_image_object_position: left center
   grid-template-columns: 1fr 1fr;
   column-gap: 24px;
   row-gap: 20px;
-  align-items: start;
+  align-items: stretch;
   margin: 20px 0 28px;
 }
 @media (max-width: 820px) {
   .instructor-grid { grid-template-columns: 1fr; }
 }
+.instructor-grid .image-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
 .instructor-grid .image-wrapper img {
   display: block;
+  flex: 1 1 auto;
   width: 100%;
-  height: auto;
+  min-height: 0;
   object-fit: contain;
+  object-position: center;
   border-radius: 4px;
   border: 1px solid var(--border-color, #e5e5e5);
 }
