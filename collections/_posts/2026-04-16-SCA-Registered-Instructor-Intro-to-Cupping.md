@@ -23,6 +23,10 @@ preview_image_object_position: left center
   display: flex;
   flex-direction: column;
   min-height: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid var(--border-color, #e5e5e5);
+  overflow: hidden;
 }
 .instructor-grid .image-wrapper img {
   display: block;
@@ -31,8 +35,7 @@ preview_image_object_position: left center
   min-height: 0;
   object-fit: contain;
   object-position: center;
-  border-radius: 4px;
-  border: 1px solid var(--border-color, #e5e5e5);
+  background-color: #fff;
 }
 </style>
 
