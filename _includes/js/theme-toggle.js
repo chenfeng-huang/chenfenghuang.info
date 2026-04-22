@@ -23,7 +23,7 @@
     // Update toggle visuals and meta
     function updateThemeToggle(theme) {
         if (themeToggle) {
-            themeToggle.setAttribute('aria-pressed', theme === DARK_THEME ? 'true' : 'false');
+            themeToggle.setAttribute('aria-pressed', theme === LIGHT_THEME ? 'true' : 'false');
         }
         if (themeThumb) {
             themeThumb.dataset.theme = theme;

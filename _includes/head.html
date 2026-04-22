@@ -61,7 +61,7 @@
           // Set initial theme-color meta to match header/bg before paint
           var meta = document.querySelector('meta[name="theme-color"]');
           if (meta) {
-            var bg = theme === 'dark' ? '#4a3728' : '#e8e8e8';
+            var bg = theme === 'dark' ? '#1e3a5f' : '#e8e8e8';
             meta.setAttribute('content', bg);
           }
         } catch (e) {
@@ -74,7 +74,7 @@
     <style id="theme-preload">*{transition:none!important}</style>
     <style>
       html[data-theme="dark"] body { background-color: #1a1a1a; color: #e0e0e0; }
-      html[data-theme="dark"] .site-header { background-color: #4a3728; }
+      html[data-theme="dark"] .site-header { background-color: #1e3a5f; }
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function(){
