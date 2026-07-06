@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0.6rem;
+  border-spacing: 0;
+
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: 12px;
+        line-height: 1.2;
+        vertical-align: top;
+        border: 1px solid #dddddd;
+        text-align: left;
+      }
+    }
+  }
+}

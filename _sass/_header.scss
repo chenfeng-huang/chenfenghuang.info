@@ -1,0 +1,18 @@
+.site-header a {
+  color: $header-fg;
+  font-size: $h3;
+  font-weight: 300;
+  background-image: none;
+}
+
+.site-header .site-title {
+  font-size: $h2;
+}
+
+.site-nav {
+  margin-top: $space-2;
+}
+
+#main-menu {
+  background-color: $header-bg;
+}

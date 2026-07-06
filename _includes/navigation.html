@@ -1,0 +1,35 @@
+<nav class="main-navigation">
+  {% assign current = page.url | downcase | split: '/' %}
+  <div class="nav-container">
+    <div class="nav-primary">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger-icon"></span>
+      </button>
+      <a class="mobile-home-link" href="{{site.baseurl}}/" aria-label="Home" data-home-logo-link>
+        <span class="home-link-brand-mark" aria-hidden="true">
+          <img class="home-link-logo home-link-logo--light" src="{{ '/assets/logo-full-transparent.png' | prepend: site.baseurl }}?v=20260705" alt="">
+          <img class="home-link-logo home-link-logo--dark" src="{{ '/assets/logo-full-transparent-white.png' | prepend: site.baseurl }}?v=20260705" alt="">
+        </span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <span class="nav-indicator" id="nav-indicator" aria-hidden="true"></span>
+        <span class="home-link-group">
+          <a class="home-link-brand-mark home-link-brand-mark-link" href="{{site.baseurl}}/" aria-label="Home" data-home-logo-link>
+            <img class="home-link-logo home-link-logo--light" src="{{ '/assets/logo-full-transparent.png' | prepend: site.baseurl }}?v=20260705" alt="">
+            <img class="home-link-logo home-link-logo--dark" src="{{ '/assets/logo-full-transparent-white.png' | prepend: site.baseurl }}?v=20260705" alt="">
+          </a>
+          <a class="nav-underline home-link {% if page.url == '/' %}current{% endif %}" href="{{site.baseurl}}/" data-nav-index="0" data-nav-label="Home">Home</a>
+        </span>
+        <a class="nav-underline {% if page.url == '/publications/' %}current{% endif %}" href="{{site.baseurl}}/publications/" data-nav-index="1" data-nav-label="Publications">Publications</a>
+        <a class="nav-underline {% if page.url == '/blog/' %}current{% endif %}" href="{{site.baseurl}}/blog/" data-nav-index="2" data-nav-label="Blogs">Blogs</a>
+      </div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="true">
+      <span class="theme-toggle-track" aria-hidden="true" data-theme="light">
+        <span class="theme-toggle-slot-icon theme-toggle-slot-icon--light">&#9728;&#xFE0E;</span>
+        <span class="theme-toggle-slot-icon theme-toggle-slot-icon--dark">&#9790;&#xFE0E;</span>
+        <span class="theme-toggle-thumb" data-theme="light"></span>
+      </span>
+    </button>
+  </div>
+</nav>

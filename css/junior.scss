@@ -1,0 +1,33 @@
+---
+# The scss file which include files from _sass/
+---
+@charset "UTF-8";
+
+/*!
+* Junior - A striking black and white Jekyll theme that's built for tech students.
+* @author John Otander <johnotander@gmail.com> (http://johnotander.com/) & Jono Belotti <jbelotti@zendesk.com> (https://jonathonbelotti.com)
+* @link https://github.com/thundergolfer/junior
+* @license MIT
+*/
+
+@import 'variables';
+
+@import 'basscss';
+
+@import 'base';
+
+@import 'links';
+@import 'positions';
+@import 'clearfix';
+@import 'code';
+@import 'forms';
+@import 'typography';
+@import 'header';
+@import 'tables';
+@import 'footer';
+@import 'posts';
+@import 'media-queries';
+@import 'measure';
+@import 'pagination';
+@import 'navigation';
+@import 'theme';

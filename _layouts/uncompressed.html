@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body class="site">
+  {% include header.html %}
+  <div class="site-wrap">
+    <div class="site-content">
+      <div class="page-body" role="main">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle Script -->
+  <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}"></script>
+  <!-- Menu Toggle Script -->
+  <script src="{{ '/js/menu-toggle.js' | prepend: site.baseurl }}"></script>
+  <!-- Page Transition Script -->
+  <script src="{{ '/js/page-transition.js' | prepend: site.baseurl }}"></script>
+  <!-- Navigation Indicator Script -->
+  <script src="{{ '/js/nav-indicator.js' | prepend: site.baseurl }}"></script>
+  <!-- Swipe Navigation Script -->
+  <script src="{{ '/js/swipe-navigation.js' | prepend: site.baseurl }}"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Publications-style summary for competition posts.
+  {% include competition-project-card.html github_url="..." repo="user/name" display_title="..." description="..." %}
+{%- endcomment -%}
+<div class="competition-project-card">
+  <a href="{{ include.github_url }}" target="_blank" rel="noopener noreferrer" class="competition-project-card__link" aria-label="View solution repository on GitHub">
+    <div class="competition-project-card__title">
+      {{ include.display_title }}
+      <span class="gh-stars gh-star-badge" data-repo="{{ include.repo }}" title="GitHub stars" aria-label="GitHub stars">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .67.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.76 1.98a.75.75 0 0 1-1.089-.79l.72-4.193L.82 6.374a.75.75 0 0 1 .416-1.279l4.21-.612L7.33.668A.75.75 0 0 1 8 .25Z"></path></svg>
+        <span class="count">...</span>
+      </span>
+    </div>
+    <div class="competition-project-card__description">
+      {{ include.description }}
+    </div>
+  </a>
+</div>

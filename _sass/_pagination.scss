@@ -1,0 +1,32 @@
+.pagination {
+  font-size: 1rem;
+  font-family: $font-family;
+  font-weight: 300;
+  text-align: center;
+}
+
+.pagination a, .pagination .disabled {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: #111333;
+  padding: 1em 1.5em;
+}
+
+.pagination .button {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.button-disabled {
+  opacity: 0.55;
+  background-color: #999;
+}
+
+.button-disabled:hover,
+.button-disabled:active,
+.button-disabled:focus {
+  cursor: not-allowed;
+  background-color: #999;
+}
