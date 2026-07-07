@@ -23,18 +23,6 @@
         localStorage.setItem(THEME_KEY, theme);
     }
     
-    // Update favicon to match theme
-    function updateFavicon(theme) {
-        document.querySelectorAll('link[rel="icon"][data-light][data-dark]').forEach(function(favicon) {
-            const light = favicon.getAttribute('data-light');
-            const dark = favicon.getAttribute('data-dark');
-            const cache = favicon.getAttribute('data-cache') || '';
-            if (light && dark) {
-                favicon.href = (theme === DARK_THEME ? dark : light) + cache;
-            }
-        });
-    }
-
     // Update toggle visuals and meta
     function updateThemeToggle(theme) {
         if (themeToggle) {
@@ -54,7 +42,6 @@
         if (meta) {
             meta.setAttribute('content', bg.trim());
         }
-        updateFavicon(theme);
     }
     
     // Apply theme to document

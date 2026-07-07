@@ -34,16 +34,11 @@
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl }}" />
     {% assign favicon_cache = site.time | date: '%s' %}
+    <!-- Fixed favicon: monogram only, does not change with theme toggle -->
     <link rel="icon" id="site-favicon" type="image/png" sizes="32x32"
-      href="{{ "/assets/favicon-light-32.png" | prepend: site.baseurl }}?v={{ favicon_cache }}"
-      data-light="{{ "/assets/favicon-light-32.png" | prepend: site.baseurl }}"
-      data-dark="{{ "/assets/favicon-dark-32.png" | prepend: site.baseurl }}"
-      data-cache="?v={{ favicon_cache }}">
+      href="{{ "/assets/favicon-32.png" | prepend: site.baseurl }}?v={{ favicon_cache }}">
     <link rel="icon" type="image/png" sizes="128x128"
-      href="{{ "/assets/favicon-light.png" | prepend: site.baseurl }}?v={{ favicon_cache }}"
-      data-light="{{ "/assets/favicon-light.png" | prepend: site.baseurl }}"
-      data-dark="{{ "/assets/favicon-dark.png" | prepend: site.baseurl }}"
-      data-cache="?v={{ favicon_cache }}">
+      href="{{ "/assets/favicon-128.png" | prepend: site.baseurl }}?v={{ favicon_cache }}">
 
     <!-- JQuery (Required for menu, Github Projects Page, and Resume Page for PDF printing) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -75,12 +70,6 @@
             var bg = theme === 'dark' ? '#363636' : '#e8e8e8';
             meta.setAttribute('content', bg);
           }
-          document.querySelectorAll('link[rel="icon"][data-light][data-dark]').forEach(function(favicon) {
-            var cache = favicon.getAttribute('data-cache') || '';
-            var light = favicon.getAttribute('data-light');
-            var dark = favicon.getAttribute('data-dark');
-            favicon.href = (theme === 'dark' ? dark : light) + cache;
-          });
         } catch (e) {
           // noop
         }

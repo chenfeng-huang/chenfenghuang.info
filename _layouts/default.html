@@ -14,14 +14,14 @@
   </div>
 
   <!-- Theme Toggle Script -->
-  <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
   <!-- Menu Toggle Script -->
-  <script src="{{ '/js/menu-toggle.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/menu-toggle.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
   <!-- Page Transition Script -->
-  <script src="{{ '/js/page-transition.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/page-transition.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
   <!-- Navigation Indicator Script -->
-  <script src="{{ '/js/nav-indicator.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/nav-indicator.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
   <!-- Swipe Navigation Script -->
-  <script src="{{ '/js/swipe-navigation.js' | prepend: site.baseurl }}"></script>
+  <script src="{{ '/js/swipe-navigation.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
 </body>
 </html>

@@ -98,7 +98,11 @@
     if (window.pageTransition) {
       window.pageTransition.navigate(href, direction, {
         mobile: isMobile,
-        delayMs: isMobile ? 70 : 110
+        // Hold the reload until the indicator's glide (see .nav-indicator
+        // transition in _navigation.scss) has essentially completed, so the pill
+        // arrives at its destination before the page swaps instead of snapping
+        // the final few px across the reload.
+        delayMs: isMobile ? 70 : 170
       });
     } else {
       window.location.href = href;
@@ -165,18 +169,35 @@
       (e.currentTarget.target && e.currentTarget.target !== '_self');
   }
 
+  // Cumulative CSS zoom applied to the page (see `body { zoom }` in _base.scss).
+  // getBoundingClientRect() returns zoom-scaled pixels, whereas the indicator's
+  // left/width/height/transform are applied in un-zoomed layout px (then scaled
+  // by the same zoom at paint). Divide measured geometry by this to stay aligned.
+  // Derive it empirically from navLinks' visual width (rect, zoom-scaled) over its
+  // layout width (offsetWidth, not zoom-scaled) — robust across browsers and to
+  // where `zoom` is declared. Fall back to the declared value, then to 1.
+  function getEffectiveZoom() {
+    if (navLinks && navLinks.offsetWidth > 0) {
+      const r = navLinks.getBoundingClientRect().width / navLinks.offsetWidth;
+      if (r && isFinite(r) && r > 0) return r;
+    }
+    const z = parseFloat(getComputedStyle(document.body).zoom);
+    return (z && isFinite(z) && z > 0) ? z : 1;
+  }
+
   function positionIndicator(targetElement, animate = true) {
     if (!indicator || !targetElement || !navLinks) return;
 
+    const zoom = getEffectiveZoom();
     const rect = targetElement.getBoundingClientRect();
     const navRect = navLinks.getBoundingClientRect();
     const isMobile = window.innerWidth <= 768;
     const horizontalPadding = isMobile ? 0 : 12;
     const verticalPadding = isMobile ? 4 : 6;
-    const left = isMobile ? 0 : rect.left - navRect.left - horizontalPadding;
-    const top = rect.top - navRect.top - verticalPadding;
-    const width = isMobile ? '' : `${rect.width + (horizontalPadding * 2)}px`;
-    const height = `${rect.height + (verticalPadding * 2)}px`;
+    const left = isMobile ? 0 : (rect.left - navRect.left) / zoom - horizontalPadding;
+    const top = (rect.top - navRect.top) / zoom - verticalPadding;
+    const width = isMobile ? '' : `${rect.width / zoom + (horizontalPadding * 2)}px`;
+    const height = `${rect.height / zoom + (verticalPadding * 2)}px`;
 
     if (!animate) {
       indicator.classList.add('is-positioning');
@@ -196,17 +217,23 @@
   }
 
   function showInitialIndicator() {
-    indicator.classList.remove('active');
+    // Position AND reveal the pill immediately, with no opacity fade. Tab widths
+    // are fixed, so the position is correct on the first frame — waiting for
+    // fonts (as before) left the pill invisible for ~150ms after each tab
+    // navigation, so it blinked out and faded back in. Revealing it instantly,
+    // at the spot it already occupied on the previous page, makes the hand-off
+    // across the page reload seamless (no flash).
     positionIndicator(currentNavItem, false);
+    indicator.classList.add('is-positioning'); // suppress the opacity transition
+    indicator.classList.add('active');
+    indicator.offsetHeight;                     // commit opacity:1 with no fade
+    indicator.classList.remove('is-positioning');
 
+    // Re-verify position once fonts/layout settle (tab heights can shift a hair).
+    // It's already visible, so this only nudges geometry — it can't flash.
     waitForStableNavLayout().then(() => {
       if (!currentNavItem || !indicator) return;
-
       positionIndicator(currentNavItem, false);
-      window.requestAnimationFrame(() => {
-        positionIndicator(currentNavItem, false);
-        indicator.classList.add('active');
-      });
     });
   }
 
@@ -237,20 +264,21 @@
 
     if (!nextItem) return;
 
+    const zoom = getEffectiveZoom();
     const currentRect = currentNavItem.getBoundingClientRect();
     const nextRect = nextItem.getBoundingClientRect();
     const navRect = navLinks.getBoundingClientRect();
     const padding = 12;
     const verticalPadding = 6;
 
-    const currentLeft = currentRect.left - navRect.left - padding;
-    const nextLeft = nextRect.left - navRect.left - padding;
-    const currentTop = currentRect.top - navRect.top - verticalPadding;
-    const nextTop = nextRect.top - navRect.top - verticalPadding;
-    const currentWidth = currentRect.width + (padding * 2);
-    const nextWidth = nextRect.width + (padding * 2);
-    const currentHeight = currentRect.height + (verticalPadding * 2);
-    const nextHeight = nextRect.height + (verticalPadding * 2);
+    const currentLeft = (currentRect.left - navRect.left) / zoom - padding;
+    const nextLeft = (nextRect.left - navRect.left) / zoom - padding;
+    const currentTop = (currentRect.top - navRect.top) / zoom - verticalPadding;
+    const nextTop = (nextRect.top - navRect.top) / zoom - verticalPadding;
+    const currentWidth = currentRect.width / zoom + (padding * 2);
+    const nextWidth = nextRect.width / zoom + (padding * 2);
+    const currentHeight = currentRect.height / zoom + (verticalPadding * 2);
+    const nextHeight = nextRect.height / zoom + (verticalPadding * 2);
 
     const interpolatedLeft = currentLeft + (nextLeft - currentLeft) * progress;
     const interpolatedTop = currentTop + (nextTop - currentTop) * progress;

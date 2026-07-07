@@ -29,6 +29,10 @@ body {
   margin: 0;
   overflow-x: hidden;
   width: 100%;
+  // Default page zoom: render everything at 90% of natural scale.
+  // `zoom` (unlike `transform: scale`) preserves position: fixed layout,
+  // so the fixed top nav and page content scale together.
+  zoom: 0.9;
 }
 
 img {
@@ -61,10 +65,11 @@ em img {
   will-change: transform, opacity;
 }
 
-html.page-transition-primed .page-body {
-  opacity: 0;
-}
-
+/* Entrance is a slide only — deliberately NOT an opacity fade. Priming the
+   content to opacity:0 kept it invisible from first paint until this page's
+   script ran at the end of <body>; on long pages (e.g. the Blogs list) that
+   left the content blank for ~130ms and read as a flash. Keeping it visible and
+   only sliding it in avoids any blank frame. */
 html.page-transition-primed.page-enter-from-left .page-body {
   transform: translate3d(-18px, 0, 0);
 }
@@ -74,7 +79,6 @@ html.page-transition-primed.page-enter-from-right .page-body {
 }
 
 .page-body.page-enter-active {
-  opacity: 1;
   transform: translate3d(0, 0, 0);
 }
 

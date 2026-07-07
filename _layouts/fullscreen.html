@@ -7,34 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title | default: "Curriculum Vitae" }}</title>
     {% assign favicon_cache = site.time | date: '%s' %}
+    <!-- Fixed favicon: monogram only, does not change with theme toggle -->
     <link rel="icon" id="site-favicon" type="image/png" sizes="32x32"
-      href="{{ "/assets/favicon-light-32.png" | prepend: site.baseurl }}?v={{ favicon_cache }}"
-      data-light="{{ "/assets/favicon-light-32.png" | prepend: site.baseurl }}"
-      data-dark="{{ "/assets/favicon-dark-32.png" | prepend: site.baseurl }}"
-      data-cache="?v={{ favicon_cache }}">
+      href="{{ "/assets/favicon-32.png" | prepend: site.baseurl }}?v={{ favicon_cache }}">
     <link rel="icon" type="image/png" sizes="128x128"
-      href="{{ "/assets/favicon-light.png" | prepend: site.baseurl }}?v={{ favicon_cache }}"
-      data-light="{{ "/assets/favicon-light.png" | prepend: site.baseurl }}"
-      data-dark="{{ "/assets/favicon-dark.png" | prepend: site.baseurl }}"
-      data-cache="?v={{ favicon_cache }}">
-    <script>
-      (function() {
-        try {
-          var key = 'theme-preference';
-          var theme = localStorage.getItem(key);
-          if (!theme) {
-            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            theme = prefersDark ? 'dark' : 'light';
-          }
-          document.querySelectorAll('link[rel="icon"][data-light][data-dark]').forEach(function(favicon) {
-            var cache = favicon.getAttribute('data-cache') || '';
-            var light = favicon.getAttribute('data-light');
-            var dark = favicon.getAttribute('data-dark');
-            favicon.href = (theme === 'dark' ? dark : light) + cache;
-          });
-        } catch (e) {}
-      })();
-    </script>
+      href="{{ "/assets/favicon-128.png" | prepend: site.baseurl }}?v={{ favicon_cache }}">
     <style>
         :root {
           --bg-color: #ffffff;
@@ -103,8 +80,8 @@
     {{ content }}
     
     <!-- Theme Toggle Script -->
-    <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/theme-toggle.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
     <!-- Menu Toggle Script -->
-    <script src="{{ '/js/menu-toggle.js' | prepend: site.baseurl }}"></script>
+    <script src="{{ '/js/menu-toggle.js' | prepend: site.baseurl }}?{{ site.time | date: '%s' }}"></script>
 </body>
 </html>
