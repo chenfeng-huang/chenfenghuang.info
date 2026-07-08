@@ -46,7 +46,11 @@ body.site {
   gap: 2em;
   align-items: center;
   justify-content: center;
-  margin-left: var(--page-body-inline-padding);
+  /* Indent so "Home" lines up with the left edge of the headshot below it.
+     The photo is a 200px image centred in the ~310px profile card, so its left
+     edge sits (310 - 200) / 2 = 55px inside the content column that the nav
+     otherwise aligns to. */
+  margin-left: calc(var(--page-body-inline-padding) + 55px);
   position: relative;
 }
 
@@ -352,6 +356,10 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
     overflow: visible;
   }
 
+  /* Hamburger/✕ first (far left), logo second. The dropdown labels below use
+     the same 1rem gutter line, so the menu reads as expanding from the button.
+     The -8px margin cancels the button's own padding so the icon sits exactly
+     on the gutter — mirroring the theme toggle's inset on the right. */
   .menu-toggle {
     display: block;
     position: relative;
@@ -359,7 +367,8 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
     top: auto;
     transform: none;
     margin: 0;
-    order: 1;
+    margin-left: -8px;
+    order: 0;
   }
 
   .nav-container {
@@ -379,7 +388,7 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
   .mobile-home-link {
     display: inline-flex;
     align-items: center;
-    order: 0;
+    order: 1;
   }
   
   .nav-links {
@@ -388,11 +397,16 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    width: 100vw;
+    /* Span the full header bar by stretching 1rem past each edge of
+       .nav-container (whose width is calc(100% - 2rem), i.e. a 1rem gutter per
+       side). Sizing with 100vw instead breaks under the page zoom: vw resolves
+       to the un-zoomed viewport, then shrinks by the zoom factor, leaving
+       symmetric gaps at both sides of the dropdown. */
+    width: auto;
     position: absolute;
     top: 100%;
-    left: 50%;
-    right: auto;
+    left: -1rem;
+    right: -1rem;
     order: 2;
     margin: 0;
     margin-top: -1px;
@@ -405,21 +419,24 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
     box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
-    transform: translate(-50%, -0.5rem);
+    transform: translateY(-0.5rem);
     transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease, padding 0.3s ease;
   }
 
   .nav-links.active {
-    max-height: var(--mobile-menu-max-height, calc(100vh - var(--site-header-offset-mobile, 4.55rem)));
+    /* 100vh resolves to the un-zoomed viewport, so divide the zoom back out. */
+    max-height: var(--mobile-menu-max-height, calc(100vh / var(--page-zoom, 1) - var(--site-header-offset-mobile, 4.55rem)));
     padding: 0;
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, 0);
+    transform: translateY(0);
     overflow-y: auto;
   }
 
   .nav-links a {
-    padding: 0.75rem 1.5rem;
+    /* 1rem left padding puts the labels on the same gutter line as the
+       hamburger/✕ icon above, and mirrors the theme toggle's right inset. */
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
     text-align: left;
     margin: 0;
     width: 100%;
@@ -453,7 +470,7 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
   }
 
   .home-link-group .home-link {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem 0.75rem 1rem;
     width: 100%;
     margin: 0;
     box-sizing: border-box;

@@ -28,8 +28,14 @@
         const rect = navContainer.getBoundingClientRect();
         navLinks.style.top = '';
 
-        // Update max-height to account for the actual header height
-        const maxHeight = window.innerHeight - rect.bottom;
+        // Update max-height to account for the actual header height.
+        // innerHeight and rect.bottom are visual (zoom-scaled) px, but the
+        // max-height is applied in un-zoomed layout px (see body { zoom } in
+        // _base.scss), so divide the page zoom back out or the menu caps short.
+        const zoom = navContainer.offsetWidth > 0
+          ? rect.width / navContainer.offsetWidth
+          : 1;
+        const maxHeight = (window.innerHeight - rect.bottom) / (zoom || 1);
         navLinks.style.setProperty('--mobile-menu-max-height', maxHeight + 'px');
       }
     }

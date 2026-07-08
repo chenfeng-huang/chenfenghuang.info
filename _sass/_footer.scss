@@ -8,7 +8,9 @@
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-height: 100vh;
+  /* 100vh resolves to the un-zoomed viewport; divide the page zoom back out
+     so the sticky footer still reaches the bottom of short pages. */
+  min-height: calc(100vh / var(--page-zoom, 1));
 }
 
 footer {

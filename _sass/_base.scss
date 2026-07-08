@@ -21,6 +21,7 @@ html {
   --page-body-inline-padding: clamp(1.25rem, 4vw, 2rem);
   --home-logo-size: 4.8rem;
   --home-logo-gap: 1.6rem;
+  --page-zoom: 0.9;
 }
 
 body {
@@ -32,7 +33,9 @@ body {
   // Default page zoom: render everything at 90% of natural scale.
   // `zoom` (unlike `transform: scale`) preserves position: fixed layout,
   // so the fixed top nav and page content scale together.
-  zoom: 0.9;
+  // Declared as a variable so rules that mix viewport units (vw/vh resolve to
+  // the un-zoomed viewport) with zoomed layout can divide the zoom back out.
+  zoom: var(--page-zoom, 1);
 }
 
 img {
