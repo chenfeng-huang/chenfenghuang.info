@@ -229,10 +229,15 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
   font-feature-settings: normal;
 }
 
+/* The per-icon translateY nudges are optical corrections: the ☀/☽ glyphs
+   carry their ink high in the font's em box, so a geometrically centered box
+   still renders the symbol visibly above the track's midline (measured ~1px
+   for the sun, ~0.7px for the moon). */
 .theme-toggle-slot-icon--light {
   left: 10px;
   color: rgba(0, 83, 31, 0.42);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.32), 0 -1px 1px rgba(0, 0, 0, 0.24);
+  transform: translateY(calc(-50% + 1.25px));
 }
 
 .theme-toggle-slot-icon--dark {
@@ -240,6 +245,7 @@ html[data-theme="dark"] .home-link-brand-mark .home-link-logo--dark {
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.9rem;
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.72), 0 1px 1px rgba(255, 255, 255, 0.18);
+  transform: translateY(calc(-50% + 0.75px));
 }
 
 .theme-toggle-thumb {
