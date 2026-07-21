@@ -129,6 +129,21 @@ pre, code {
   hr {
     border-color: var(--border-color);
   }
+
+  /* School seals read dark on transparent; brighten for dark cards */
+  .school-logo-usc {
+    /* Warm USC cardinal */
+    filter: brightness(1.7) saturate(1.15);
+  }
+
+  .school-logo-ucla {
+    filter: brightness(1.7) saturate(1.15);
+  }
+
+  .school-logo-scu {
+    /* Brighten while keeping mission crimson close to original */
+    filter: brightness(1.55) saturate(1.05) hue-rotate(-6deg);
+  }
 }
 
 /* Smooth transitions for theme switching */

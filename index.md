@@ -198,7 +198,7 @@ function toggleInterest(id) {
           <a href="https://statistics.ucla.edu/index.php/about/statistics-and-data-science/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
             <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
               <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-                <img src="/images/school_icons/UCLA.png" alt="UCLA Logo" style="width: 60px; height: 60px; object-fit: contain;" />
+                <img class="school-logo-ucla" src="/images/school_icons/UCLA.png" alt="UCLA Logo" style="width: 60px; height: 60px; object-fit: contain;" />
               </div>
               <div style="flex: 1;">
                 <div style="font-weight: 600; color: var(--text-color); font-size: 1em;">Ph.D. in Statistics</div>
@@ -209,7 +209,7 @@ function toggleInterest(id) {
         <a href="https://viterbigradadmission.usc.edu/programs/masters/msprograms/data-science/ms-applied-data-science/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
           <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-              <img src="/images/school_icons/USC.jpg" alt="USC Logo" style="width: 60px; height: 60px; object-fit: contain;" />
+              <img class="school-logo-usc" src="/images/school_icons/USC.jpg" alt="USC Logo" style="width: 60px; height: 60px; object-fit: contain;" />
             </div>
             <div style="flex: 1;">
               <div style="font-weight: 600; color: var(--text-color); font-size: 1em;">M.S. in Applied Data Science</div>
@@ -220,7 +220,7 @@ function toggleInterest(id) {
         <a href="https://www.scu.edu/cas/mathcs/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; transition: all 0.2s ease;">
           <div style="margin-bottom: 0.8em; display: flex; align-items: center; padding: 0.5em 1em; background: var(--code-bg); border-radius: 0.5em; border-left: 3px solid var(--link-color); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px var(--shadow-color)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
             <div style="margin-right: 0.8em; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
-              <img src="/images/school_icons/SCU.jpg" alt="Santa Clara University Logo" style="width: 60px; height: 60px; object-fit: contain;" />
+              <img class="school-logo-scu" src="/images/school_icons/SCU.jpg" alt="Santa Clara University Logo" style="width: 60px; height: 60px; object-fit: contain;" />
             </div>
             <div style="flex: 1;">
               <div style="font-weight: 600; color: var(--text-color); font-size: 1em;">B.S. in Computer Science</div>
