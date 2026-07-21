@@ -587,7 +587,17 @@ window.addEventListener('load', function() {
   
   .post-image-preview {
     width: 100%;
-    height: 150px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--card-bg, transparent);
   }
-}
-</style>
+
+  .post-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}</style>

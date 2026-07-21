@@ -534,8 +534,19 @@ div.coffee-note div.coffee-note-item {
   
   .post-image-preview {
     width: 100%;
-    height: 150px;
+    height: auto;
+    aspect-ratio: 16 / 9;
     align-self: center;
+    overflow: hidden;
+    background: var(--card-bg, transparent);
+  }
+
+  .post-image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
   
   /* Ensure proper alignment for mobile */
