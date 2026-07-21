@@ -259,13 +259,13 @@ markdown: false
         fill: currentColor;
     }
     
-    /* BibTeX Modal */
+    /* BibTeX Modal — portaled to document.body so page-body transform
+       does not trap position:fixed inside the publications card. */
     .bibtex-modal {
         display: none;
         position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
+        z-index: 10000;
+        inset: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
@@ -673,6 +673,12 @@ markdown: false
                 </svg>
                 GitHub
             </a>
+            <button class="btn btn-bibtex" onclick="showBibTeX('ompB2026')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V19H7V13H9M17,13V19H15V13H17M13,13V19H11V13H13Z" fill="currentColor"/>
+                </svg>
+                BibTeX
+            </button>
         </div>
         <div class="card-body" hidden>
             <div class="abstract-content">
@@ -714,6 +720,12 @@ markdown: false
                 </svg>
                 GitHub
             </a>
+            <button class="btn btn-bibtex" onclick="showBibTeX('pbml2026')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V19H7V13H9M17,13V19H15V13H17M13,13V19H11V13H13Z" fill="currentColor"/>
+                </svg>
+                BibTeX
+            </button>
         </div>
         <div class="card-body" hidden>
             <div class="abstract-content no-image">
@@ -1403,6 +1415,18 @@ initializeGitHubStars();
 
 // BibTeX modal functionality
 var bibtexCitations = {
+  'ompB2026': `@inproceedings{OMPB,
+  title={Model-Agnostic Online Certificate-Driven Calibration for Time Series Forecasting Under Distribution Shift},
+  author={Huang, Chenfeng and Ma, Zixuan and Michailidis, George},
+  booktitle={Conference on Uncertainty in Artificial Intelligence (UAI)},
+  year={2026}
+}`,
+  'pbml2026': `@article{PBML-LTI,
+  title={PAC-Bayesian Meta-Learning for Few-Shot Identification of Linear Dynamical Systems},
+  author={Huang, Chenfeng and Michailidis, George},
+  journal={Transactions on Machine Learning Research},
+  year={2026}
+}`,
   'stdiffusion2025': `@inproceedings{2025stdiffusion,
   title={Effective Series Decomposition and Components
 Learning for Time Series Generation},
@@ -1420,6 +1444,10 @@ function showBibTeX(citationKey) {
   }
   
   var modal = document.getElementById('bibtex-modal');
+  // Move to body so .page-body's transform does not create a fixed containing block
+  if (modal.parentElement !== document.body) {
+    document.body.appendChild(modal);
+  }
   var content = document.getElementById('bibtex-text');
   content.textContent = citation;
   modal.classList.add('show');

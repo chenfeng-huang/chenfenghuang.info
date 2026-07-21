@@ -109,6 +109,13 @@ a.cert-caption-link:focus-visible {
     </div>
     <div class="image-caption"><a class="cert-caption-link" href="/2026/01/18/SCA-Green-Coffee-Intermediate/">SCA Green Coffee Intermediate</a></div>
   </div>
+
+  <div class="image-item">
+    <div class="image-wrapper">
+      <img src="/images/Certificate-Collection/SCA-certificate-Barista-Intermediate.jpg" alt="SCA Barista Skills Intermediate certificate">
+    </div>
+    <div class="image-caption"><a class="cert-caption-link" href="/2026/06/25/SCA-Barista-Skills-Intermediate/">SCA Barista Skills Intermediate</a></div>
+  </div>
 </div>
 
 <hr>

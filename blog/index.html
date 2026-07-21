@@ -5,8 +5,9 @@ tags: blog
 {% assign regular_posts = site.posts | where_exp:"post", "post.tags contains 'blog'" %}
 {% assign regular_posts_count = regular_posts | size %}
 {% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
-{% assign regular_coffee_notes = coffee_notes | where_exp: "note", "note.pinned != true" %}
-{% assign coffee_note_count = regular_coffee_notes | size %}
+{% assign pinned_post = coffee_notes | where: "pinned", true | first %}
+{% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
+{% assign coffee_note_count = coffee_notes | size %}
 
 <h2><a href="{{ site.baseurl }}/blog-archive" class="section-title-link">Blogs</a></h2>
 <div class="home">
@@ -53,11 +54,9 @@ tags: blog
 <h2><a href="{{ site.baseurl }}/coffee-note" class="section-title-link">Coffee Notes</a></h2>
 <div class="coffee-note">
   {% if coffee_note_count > 0 %}
-    {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
-    {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
-    
-    {% if pinned_post %}
-      <div class="coffee-note-item py3">
+    <div id="coffee-posts-container" class="posts-paginated-list">
+      {% if pinned_post %}
+      <div class="coffee-note-item py3 coffee-post-item coffee-note-item--pinned" data-index="0">
         <div class="post-content-wrapper">
           {% if pinned_post.preview_image %}
             <div class="post-image-preview">
@@ -67,9 +66,13 @@ tags: blog
             </div>
           {% endif %}
           <div class="post-text-content">
-            <p class="post-meta">{% unless pinned_post.no_date %}{{ pinned_post.date | date: site.date_format }}{% endunless %}</p>
             <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
-              <h3 class="h3 post-title">{{ pinned_post.title }}</h3>
+              <h3 class="h3 post-title">
+                <svg class="pinned-badge-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" title="Pinned">
+                  <path fill="currentColor" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
+                </svg>
+                {{ pinned_post.title }}
+              </h3>
             </a>
             <p class="post-summary">
               {% if pinned_post.summary %}
@@ -82,14 +85,12 @@ tags: blog
           </div>
         </div>
       </div>
-      {% if other_notes.size > 0 %}
-        <div class="pinned-separator"></div>
       {% endif %}
-    {% endif %}
 
-    <div id="coffee-posts-container" class="posts-paginated-list">
       {% for note in other_notes %}
-        <div class="coffee-note-item py3 coffee-post-item" data-index="{{ forloop.index0 }}">
+        {% assign item_index = forloop.index0 %}
+        {% if pinned_post %}{% assign item_index = forloop.index %}{% endif %}
+        <div class="coffee-note-item py3 coffee-post-item" data-index="{{ item_index }}">
           <div class="post-content-wrapper">
             {% if note.preview_image %}
               <div class="post-image-preview">
@@ -313,7 +314,7 @@ tags: blog
   );
   var coffeePaginator = createPaginator(
     '.coffee-post-item', 'coffee-pagination', 'coffee-pagination-numbers',
-    'coffee-prev-btn', 'coffee-next-btn', 'coffee-posts-container', 3,
+    'coffee-prev-btn', 'coffee-next-btn', 'coffee-posts-container', 4,
     'cfh.blogIndex.coffeePostsPage'
   );
 
@@ -557,16 +558,26 @@ div.coffee-note div.coffee-note-item {
   }
 }
 
+/* Pinned Certificate Collection icon before title */
+.coffee-note-item--pinned .post-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pinned-badge-icon {
+  width: 0.9em;
+  height: 0.9em;
+  flex-shrink: 0;
+  color: var(--link-color);
+  transform: rotate(45deg);
+}
+
 /* Ensure coffee note items have consistent styling */
 .coffee-note-item .post-content-wrapper {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-}
-
-/* Adjust positioning for pinned Certificate Collection post */
-.coffee-note .coffee-note-item:first-child .post-text-content {
-  transform: translateY(-0.8rem);
 }
 
 /* Section title link styling */
@@ -579,14 +590,6 @@ div.coffee-note div.coffee-note-item {
 .section-title-link:hover {
   color: var(--link-color);
   text-decoration: none;
-}
-
-/* Light separator after pinned post */
-.pinned-separator {
-  margin: 0 !important;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-color, #e1e1e1) 20%, var(--border-color, #e1e1e1) 80%, transparent);
-  opacity: 0.7;
 }
 
 /* FINAL OVERRIDE - This should be last to ensure it wins */

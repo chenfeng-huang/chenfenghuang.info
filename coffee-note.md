@@ -11,9 +11,10 @@ permalink: /coffee-note/
 </div>
 
 <div class="coffee-notes-archive">
-  {% assign coffee_notes = site.posts | where: "tags", "coffee-note" | sort: "date" | reverse %}
-  {% assign regular_coffee_notes = coffee_notes | where_exp: "note", "note.pinned != true" %}
-  {% assign coffee_note_count = regular_coffee_notes | size %}
+  {% assign coffee_notes = site.posts | where: "tags", "coffee-note" %}
+  {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
+  {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
+  {% assign coffee_note_count = coffee_notes | size %}
   
   <div class="archive-info">
     <p class="archive-count">{{ coffee_note_count }} coffee note{% if coffee_note_count != 1 %}s{% endif %} total</p>
@@ -21,13 +22,41 @@ permalink: /coffee-note/
   </div>
   
   {% if coffee_note_count > 0 %}
-    {% assign pinned_post = coffee_notes | where: "pinned", true | first %}
-    {% assign other_notes = coffee_notes | where_exp: "note", "note.pinned != true" | sort: "date" | reverse %}
-    
     <div class="posts posts-paginated-list" id="posts-container">
-      <!-- Other Notes -->
+      {% if pinned_post %}
+      <div class="coffee-note-item py3 post-item coffee-note-item--pinned" data-index="0">
+        <div class="post-content-wrapper">
+          {% if pinned_post.preview_image %}
+            <div class="post-image-preview">
+              <a href="{{ pinned_post.url | prepend: site.baseurl }}">
+                <img src="{{ pinned_post.preview_image }}" alt="{{ pinned_post.title }}"{% if pinned_post.preview_image_object_position %} style="object-position: {{ pinned_post.preview_image_object_position }};"{% endif %} />
+              </a>
+            </div>
+          {% endif %}
+          <div class="post-text-content">
+            <a href="{{ pinned_post.url | prepend: site.baseurl }}" class="post-link">
+              <h3 class="h3 post-title">
+                <svg class="pinned-badge-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" title="Pinned">
+                  <path fill="currentColor" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
+                </svg>
+                {{ pinned_post.title }}
+              </h3>
+            </a>
+            <p class="post-summary">
+              {% if pinned_post.summary %}
+                {{ pinned_post.summary }}
+              {% else %}
+                {% assign excerpt_parts = pinned_post.excerpt | split: site.excerpt_separator %}
+                {{ excerpt_parts[0] | strip_html | truncate: 160 }}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
       {% for note in other_notes %}
-        {% assign item_index = forloop.index %}
+        {% assign item_index = forloop.index0 %}
         {% if pinned_post %}{% assign item_index = forloop.index %}{% endif %}
         <div class="coffee-note-item py3 post-item" data-index="{{ item_index }}">
           <div class="post-content-wrapper">
@@ -342,6 +371,20 @@ window.addEventListener('load', function() {
 .coffee-notes-archive .post-meta .marker {
   color: #ff6b6b;
   font-weight: bold;
+}
+
+.coffee-note-item--pinned .post-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pinned-badge-icon {
+  width: 0.9em;
+  height: 0.9em;
+  flex-shrink: 0;
+  color: var(--link-color);
+  transform: rotate(45deg);
 }
 
 .coffee-notes-archive .post-link {
