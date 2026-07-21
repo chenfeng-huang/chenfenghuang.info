@@ -28,13 +28,13 @@ preview_image: /images/2026-05-08-Coffee-Flower-Tea/Image_20260513214346_49_302.
 }
 </style>
 
-For months I had been hearing almost mythic praise for a particular lot of **coffee flower**—the dried blossoms of the coffee tree, brewed like an herbal tea. I finally tasted the Panama **Surfboard** version that sits at the center of that buzz.
+For months I had been hearing almost mythic praise for a particular lot of **coffee flower**, the dried blossoms of the coffee tree, brewed like an herbal tea. I finally tasted the Panama **Surfboard** version that sits at the center of that buzz.
 
 In the cup it is agreeable: the finish carries a comfortable, clean sweetness, and the overall impression is tidy rather than muddled. It is a nice drink. It did not, for me, cross into the territory of the unforgettable. The gap between reputation and first sip was real, even though I went in wanting it to live up to the stories.
 
 I also had **Yunnan** coffee flower on hand and tasted the two side by side. Before brewing, the contrast is easier to see. The Surfboard material looks a shade **darker**; on dry aroma it pushes **berry** notes more clearly and feels a bit **louder** in the nose. Once both are steeped and tasted, however, the difference in mouthfeel and flavor is **smaller than I had imagined** from the aromatics alone. They share more family resemblance in the cup than the dry comparison suggested.
 
-Coffee flower as a category is genuinely interesting—light, aromatic, and distinct from both coffee cherry tea and the seed we roast. When the conversation turns to **value**, though, Yunnan coffee flower still feels like the rational choice for everyday drinking. The Panama Surfboard lot is priced in another league entirely: ballpark **USD 1,470 per 100 grams** at the time I was looking at it. At that level you are paying for scarcity and narrative as much as for what lands in the brew. The Yunnan option delivers much of the same curiosity at a fraction of the cost.
+Coffee flower as a category is genuinely interesting: light, aromatic, and distinct from both coffee cherry tea and the seed we roast. When the conversation turns to **value**, though, Yunnan coffee flower still feels like the rational choice for everyday drinking. The Panama Surfboard lot sits in another price league entirely, around **USD 1,470 per 100 grams** when I checked. At that level you are paying for scarcity and story as much as for what lands in the cup. Yunnan delivers much of the same curiosity at a fraction of the cost.
 
 <div class="coffee-flower-images">
   <div class="image-wrapper">
