@@ -22,6 +22,19 @@ preview_image: /images/2026-07-25-AnyQRCode/anyqrcode-site.png
   width: 100%;
   height: auto;
 }
+
+.site-image {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.site-image img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 4px;
+}
 </style>
 
 <div class="image-container">
@@ -31,6 +44,10 @@ preview_image: /images/2026-07-25-AnyQRCode/anyqrcode-site.png
 </div>
 
 {% include competition-project-card.html github_url="https://github.com/chenfeng-huang/AnyQRCode" repo="chenfeng-huang/AnyQRCode" display_title="AnyQRCode: Styled QR Codes, Generated Locally" description="A dependency-free QR code generator with a hand-written ISO/IEC 18004 encoder, ten module shapes, gradient fills, centre logos, and PNG / SVG / JPG export — all rendered in the browser with no server involved." %}
+
+<div class="site-image">
+  <img src="/images/2026-07-25-AnyQRCode/anyqrcode-site.png" alt="AnyQRCode interface showing presets, content settings, and preview">
+</div>
 
 I needed a QR code for a conference poster. Every generator I tried either wanted an account, stamped a watermark on the output, or quietly routed the link through a redirect domain that could disappear the week after the poster went up. The ones that were free produced a plain black grid that looked out of place next to everything else on the page.
 
