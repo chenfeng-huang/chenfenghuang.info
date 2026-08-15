@@ -285,6 +285,7 @@ markdown: false
         padding: 1.5rem;
         max-width: 600px;
         width: 90%;
+        min-width: 0;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         animation: slideIn 0.3s ease;
     }
@@ -322,18 +323,57 @@ markdown: false
         color: var(--text-color);
     }
     
-    .bibtex-content {
+    .bibtex-scroll {
         background: var(--bg-secondary);
         border: 1px solid var(--border-color);
         border-radius: 6px;
-        padding: 1rem;
         margin-bottom: 1rem;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .bibtex-content {
+        padding: 1rem 1rem 0.5rem;
         font-family: 'Monaco', 'Courier New', monospace;
         font-size: 0.85rem;
         line-height: 1.6;
         color: var(--text-color);
         overflow-x: auto;
+        overflow-y: hidden;
         white-space: pre;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .bibtex-content::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .bibtex-scrollbar {
+        height: 10px;
+        margin: 0 0.75rem 0.65rem;
+        background: var(--border-color);
+        border-radius: 5px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .bibtex-scrollbar-thumb {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        min-width: 32px;
+        background: var(--text-secondary);
+        border-radius: 5px;
+        cursor: grab;
+    }
+
+    .bibtex-scrollbar-thumb:active {
+        cursor: grabbing;
+        background: var(--text-color);
     }
     
     .bibtex-actions {
@@ -652,6 +692,12 @@ markdown: false
             </div>
             <span class="badge-group">
                 <span class="status-badge status-published">UAI 2026 Oral</span>
+                <a href="https://proceedings.mlr.press/v337/huang26b.html" target="_blank" rel="noopener noreferrer" class="paper-link-icon" title="PMLR" onclick="event.stopPropagation();">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </span>
             <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -699,6 +745,12 @@ markdown: false
             </div>
             <span class="badge-group">
                 <span class="status-badge status-published">TMLR 2026</span>
+                <a href="https://openreview.net/forum?id=CiGFpSLzFv" target="_blank" rel="noopener noreferrer" class="paper-link-icon" title="OpenReview" onclick="event.stopPropagation();">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </span>
             <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1414,27 +1466,53 @@ initializeGitHubStars();
 })();
 
 // BibTeX modal functionality
-var bibtexCitations = {
+var bibtexCitations = {% raw %}{
   'ompB2026': `@inproceedings{OMPB,
   title={Model-Agnostic Online Certificate-Driven Calibration for Time Series Forecasting Under Distribution Shift},
   author={Huang, Chenfeng and Ma, Zixuan and Michailidis, George},
-  booktitle={Conference on Uncertainty in Artificial Intelligence (UAI)},
-  year={2026}
+  booktitle={Proceedings of the 42nd Conference on Uncertainty in Artificial Intelligence},
+  pages={2244--2273},
+  year={2026},
+  editor={Perković, Emilija and Malinsky, Daniel},
+  volume={337},
+  series={Proceedings of Machine Learning Research},
+  month={17--21 Aug},
+  publisher={PMLR}
 }`,
   'pbml2026': `@article{PBML-LTI,
-  title={PAC-Bayesian Meta-Learning for Few-Shot Identification of Linear Dynamical Systems},
-  author={Huang, Chenfeng and Michailidis, George},
+  title={{PAC}-Bayesian Meta-Learning for Few-Shot Identification of Linear Dynamical Systems},
+  author={Chenfeng Huang and George Michailidis},
   journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
   year={2026}
 }`,
   'stdiffusion2025': `@inproceedings{2025stdiffusion,
-  title={Effective Series Decomposition and Components
-Learning for Time Series Generation},
   author={Ma, Zixuan and Huang, Chenfeng},
-  booktitle={IEEE International Conference on Data Mining (ICDM)},
-  year={2025}
+  booktitle={2025 IEEE International Conference on Data Mining (ICDM)}, 
+  title={Effective Series Decomposition and Components Learning for Time Series Generation}, 
+  year={2025},
+  pages={545-554},
+  doi={10.1109/ICDM65498.2025.00062}
 }`
-};
+}{% endraw %};
+
+function updateBibtexScrollbar() {
+  var content = document.getElementById('bibtex-text');
+  var track = document.getElementById('bibtex-scrollbar');
+  var thumb = document.getElementById('bibtex-scrollbar-thumb');
+  if (!content || !track || !thumb) return;
+
+  var visible = content.clientWidth;
+  var total = content.scrollWidth;
+  var maxScroll = Math.max(total - visible, 0);
+  var trackW = track.clientWidth;
+  var thumbW = maxScroll <= 0 ? trackW : Math.max((visible / total) * trackW, 32);
+  var maxThumbLeft = Math.max(trackW - thumbW, 0);
+  var left = maxScroll <= 0 ? 0 : (content.scrollLeft / maxScroll) * maxThumbLeft;
+
+  thumb.style.width = thumbW + 'px';
+  thumb.style.left = left + 'px';
+}
 
 function showBibTeX(citationKey) {
   var citation = bibtexCitations[citationKey];
@@ -1451,6 +1529,9 @@ function showBibTeX(citationKey) {
   var content = document.getElementById('bibtex-text');
   content.textContent = citation;
   modal.classList.add('show');
+  requestAnimationFrame(function() {
+    requestAnimationFrame(updateBibtexScrollbar);
+  });
   
   // Reset copy button
   var copyBtn = document.getElementById('bibtex-copy-btn');
@@ -1513,6 +1594,50 @@ function fallbackCopyBibTeX(text) {
   document.body.removeChild(textarea);
 }
 
+(function initBibtexScrollbar() {
+  var content = document.getElementById('bibtex-text');
+  var track = document.getElementById('bibtex-scrollbar');
+  var thumb = document.getElementById('bibtex-scrollbar-thumb');
+  if (!content || !track || !thumb) return;
+
+  var dragging = false;
+  var dragOffset = 0;
+
+  content.addEventListener('scroll', updateBibtexScrollbar);
+  window.addEventListener('resize', updateBibtexScrollbar);
+
+  thumb.addEventListener('mousedown', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    dragging = true;
+    dragOffset = event.clientX - thumb.getBoundingClientRect().left;
+  });
+
+  track.addEventListener('mousedown', function(event) {
+    if (event.target === thumb) return;
+    var trackRect = track.getBoundingClientRect();
+    var thumbW = thumb.offsetWidth;
+    var maxThumbLeft = Math.max(track.clientWidth - thumbW, 0);
+    var left = Math.min(Math.max(event.clientX - trackRect.left - thumbW / 2, 0), maxThumbLeft);
+    var maxScroll = Math.max(content.scrollWidth - content.clientWidth, 0);
+    content.scrollLeft = maxThumbLeft <= 0 ? 0 : (left / maxThumbLeft) * maxScroll;
+  });
+
+  window.addEventListener('mousemove', function(event) {
+    if (!dragging) return;
+    var trackRect = track.getBoundingClientRect();
+    var thumbW = thumb.offsetWidth;
+    var maxThumbLeft = Math.max(track.clientWidth - thumbW, 0);
+    var left = Math.min(Math.max(event.clientX - trackRect.left - dragOffset, 0), maxThumbLeft);
+    var maxScroll = Math.max(content.scrollWidth - content.clientWidth, 0);
+    content.scrollLeft = maxThumbLeft <= 0 ? 0 : (left / maxThumbLeft) * maxScroll;
+  });
+
+  window.addEventListener('mouseup', function() {
+    dragging = false;
+  });
+})();
+
 // Close modal when clicking outside
 window.addEventListener('click', function(event) {
   var modal = document.getElementById('bibtex-modal');
@@ -1536,7 +1661,12 @@ document.addEventListener('keydown', function(event) {
             <h3>BibTeX Citation</h3>
             <button class="bibtex-close" onclick="closeBibTeX()" aria-label="Close modal">&times;</button>
         </div>
-        <div class="bibtex-content" id="bibtex-text"></div>
+        <div class="bibtex-scroll">
+            <div class="bibtex-content" id="bibtex-text"></div>
+            <div class="bibtex-scrollbar" id="bibtex-scrollbar" role="scrollbar" aria-controls="bibtex-text" aria-orientation="horizontal">
+                <div class="bibtex-scrollbar-thumb" id="bibtex-scrollbar-thumb"></div>
+            </div>
+        </div>
         <div class="bibtex-actions">
             <button class="bibtex-copy-btn" id="bibtex-copy-btn" onclick="copyBibTeX()">Copy to Clipboard</button>
         </div>
