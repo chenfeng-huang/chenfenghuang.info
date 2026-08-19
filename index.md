@@ -1,15 +1,16 @@
 ---
 layout: default
 tags: home
-headshot: /images/headshot.png
+headshot: /images/headshot.jpg
 ---
 
 <!-- Hero Section -->
 <div class="profile-layout" style="display: flex; gap: 3em; margin-bottom: 1.5em; align-items: flex-start; padding: 2.5em 0;">
   <div class="profile-card" style="text-align: center; max-width: 340px; min-width: 310px; padding: 0; flex-shrink: 0;">
     <img 
-      style="border-radius: 1em; width: 200px; height: 200px; object-fit: cover; margin-bottom: 1.5em; box-shadow: 0 4px 16px rgba(0,0,0,0.1);" 
+      style="border-radius: 1em; width: 100%; height: auto; aspect-ratio: 1600 / 1363; object-fit: cover; margin-bottom: 1.5em; box-shadow: 0 4px 16px rgba(0,0,0,0.1); display: block;" 
       src="{{ page.headshot }}"
+      alt="Chenfeng Huang presenting research"
     >
     <h1 style="margin: 0 0 0.75em 0; color: var(--text-color); font-size: 1.5rem; font-weight: 700;">Chenfeng Huang</h1>
     <p style="color: var(--text-secondary); margin: 0.15em 0; font-weight: 500; font-size: 1.05em;">Ph.D. Student</p>
