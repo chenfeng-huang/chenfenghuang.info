@@ -688,6 +688,61 @@ markdown: false
     <div class="publication-card" data-card>
         <div class="card-header" role="button" aria-expanded="false">
             <div class="item-title card-title">
+                "Causal Bayesian Optimization: Foundations, Methods, and Applications"
+            </div>
+            <span class="badge-group">
+                <span class="status-badge status-published">TMLR 2026</span>
+                <a href="https://openreview.net/forum?id=XT6DC37m5I" target="_blank" rel="noopener noreferrer" class="paper-link-icon" title="OpenReview" onclick="event.stopPropagation();">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </span>
+            <svg class="card-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div class="item-authors">
+            <strong>C. Huang</strong>, T. T. Le, Z. Ma and H. Tran
+        </div>
+        <div class="item-actions">
+            <a href="/assets/CBO/CBO_survey.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-pdf">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" fill="currentColor"/>
+                </svg>
+                PDF
+            </a>
+            <a href="https://github.com/chenfeng-huang/CBO-Benchmark-TMLR-2026" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" fill="currentColor"/>
+                </svg>
+                GitHub
+            </a>
+            <button class="btn btn-bibtex" onclick="showBibTeX('cbo2026')">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M9,13V19H7V13H9M17,13V19H15V13H17M13,13V19H11V13H13Z" fill="currentColor"/>
+                </svg>
+                BibTeX
+            </button>
+        </div>
+        <div class="card-body" hidden>
+            <div class="abstract-content">
+                <div class="item-description">
+                    Causal Bayesian Optimization (CBO) integrates causal inference with Bayesian optimization to enable sample-efficient intervention selection in systems governed by causal structure. This survey provides a comprehensive and systematic review of the CBO landscape, organizing the growing literature through a unified BO-loop perspective that reveals how causal assumptions shape four core components: intervention search spaces, surrogate construction, acquisition design, and decision policies. We organize methods along recurring design axes, including graph and system-knowledge assumptions, environmental assumptions, intervention representation, surrogate architecture, and decision rules, and we clarify conceptual and notational connections between CBO and adjacent fields, including causal bandits, Bayesian experimental design, safe optimization, policy search, and causal abstraction. To address the lack of standardized evaluation in the field, we introduce a reproducibility-oriented benchmark that covers hard- and soft-intervention settings, implements both the standard GAP metric and a new trajectory-aware Path-Aware GAP (PA-GAP) metric, and evaluates seven CBO methods alongside a non-causal BO baseline under a common scoring protocol.
+                    <br><br>
+                    Within this benchmark-specified regime, where the benchmark SCM, intervention domains, and reference optima are fixed and known-graph methods receive the benchmark graph unless explicitly specified otherwise, our empirical study across thirteen datasets, three budget levels, and two metrics reveals that no single method dominates uniformly: rankings depend critically on the dataset, budget, metric, and method-specific use of causal information, and strong non-causal baselines remain competitive in several settings. We further add controlled graph-misspecification and omitted-variable stress tests, which show that rankings can change substantially when the learner-side causal information is perturbed. We therefore identify robustness to causal-assumption violations, scalable unknown-graph optimization, mixed intervention types, realistic cost models, tighter theoretical guarantees, and integration with modern representation learning and causal abstractions as open challenges for moving CBO from controlled benchmarks toward reliable deployment.
+                </div>
+                <div class="abstract-image-wrap">
+                    <img class="abstract-image" src="/assets/CBO/landscape.png" alt="CBO research landscape from original CBO to modeling, intervention, unknown-graph, and robustness lines of work" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="publication-card" data-card>
+        <div class="card-header" role="button" aria-expanded="false">
+            <div class="item-title card-title">
                 "Model-Agnostic Online Certificate-Driven Calibration for Time Series Forecasting <br>Under Distribution Shift"
             </div>
             <span class="badge-group">
@@ -865,6 +920,9 @@ markdown: false
     </div>
     </div>
     </details> -->
+
+    </div>
+    </details>
 
     <details class="pub-year-group pub-year-expanded" open>
     <summary aria-expanded="true">
@@ -1467,7 +1525,7 @@ initializeGitHubStars();
 
 // BibTeX modal functionality
 var bibtexCitations = {% raw %}{
-  'ompB2026': `@inproceedings{OMPB,
+  'ompB2026': `@inproceedings{huang2026OMPB,
   title={Model-Agnostic Online Certificate-Driven Calibration for Time Series Forecasting Under Distribution Shift},
   author={Huang, Chenfeng and Ma, Zixuan and Michailidis, George},
   booktitle={Proceedings of the 42nd Conference on Uncertainty in Artificial Intelligence},
@@ -1479,14 +1537,22 @@ var bibtexCitations = {% raw %}{
   month={17--21 Aug},
   publisher={PMLR}
 }`,
-  'pbml2026': `@article{PBML-LTI,
+  'cbo2026': `@article{huang2026CBO,
+  title={Causal Bayesian Optimization: Foundations, Methods, and Applications},
+  author={Chenfeng Huang and Thuy T. Le and Zixuan Ma and Hien Tran},
+  journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
+  year={2026},
+  url={https://openreview.net/forum?id=XT6DC37m5I}
+}`,
+  'pbml2026': `@article{huang2026PBML,
   title={{PAC}-Bayesian Meta-Learning for Few-Shot Identification of Linear Dynamical Systems},
   author={Chenfeng Huang and George Michailidis},
   journal={Transactions on Machine Learning Research},
   issn={2835-8856},
   year={2026}
 }`,
-  'stdiffusion2025': `@inproceedings{2025stdiffusion,
+  'stdiffusion2025': `@inproceedings{ma2025STDiffusion,
   author={Ma, Zixuan and Huang, Chenfeng},
   booktitle={2025 IEEE International Conference on Data Mining (ICDM)}, 
   title={Effective Series Decomposition and Components Learning for Time Series Generation}, 
