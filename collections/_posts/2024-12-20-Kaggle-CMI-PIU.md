@@ -4,6 +4,7 @@ title: "Kaggle Competition Silver Medal: Child Mind Institute-Problematic Intern
 date: 2024-12-20 10:00:00 -0500
 tags: blog
 preview_image: /images/2024-12-20-Kaggle-CMI-PIU/Kaggle.png
+summary: First Kaggle silver (top 3%) predicting problematic internet use from noisy activity and tabular data.
 ---
 <!--more-->
 <style>

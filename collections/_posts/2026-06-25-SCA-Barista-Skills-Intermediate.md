@@ -4,6 +4,7 @@ title: "SCA CSP Barista Skills Intermediate Certificate"
 date: 2026-06-25 10:00:00 +0800
 tags: coffee-note
 preview_image: /images/2026-06-25-SCA-Certificate-Barista-Intermediate/barista-skills-intermediate-training.jpeg
+summary: SCA Barista Skills Intermediate with Ye Kuang, covering espresso, milk texture, and station workflow.
 ---
 <!--more-->
 <style>

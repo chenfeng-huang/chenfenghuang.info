@@ -4,6 +4,7 @@ title: "SCA CSP Green Coffee—Intermediate Certificate"
 date: 2026-01-18 10:00:00 +0800
 tags: coffee-note
 preview_image: /images/2026-01-18-SCA-Certificate-GreenCoffee-Intermediate/Image_20260409201550_40_302.jpg
+summary: SCA Green Coffee Intermediate, from origin and processing to moisture, defects, and arrival-sample quality.
 ---
 <!--more-->
 <style>

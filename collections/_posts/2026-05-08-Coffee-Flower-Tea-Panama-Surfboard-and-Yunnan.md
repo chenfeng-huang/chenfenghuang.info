@@ -4,6 +4,7 @@ title: "Coffee Flower Tea: Panama Surfboard and Yunnan"
 date: 2026-05-08 18:00:00 +0800
 tags: coffee-note
 preview_image: /images/2026-05-08-Coffee-Flower-Tea/Image_20260513214346_49_302.jpg
+summary: Side-by-side tasting of Panama Surfboard and Yunnan coffee flower; the cup gap was smaller than the price.
 ---
 <!--more-->
 <style>

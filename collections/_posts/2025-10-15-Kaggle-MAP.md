@@ -4,6 +4,7 @@ title: "Kaggle Competition Silver Medal: MAP - Charting Student Math Misundersta
 date: 2025-10-15 10:00:00 -0500
 tags: blog
 preview_image: /images/2025-10-15-Kaggle-MAP/Kaggle.png
+summary: Silver medal (top 5%) in MAP, my first LLM competition, using LoRA and a consistency-weighted ensemble.
 ---
 <!--more-->
 <style>

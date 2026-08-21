@@ -4,6 +4,7 @@ title: "AnyQRCode: A QR Code Generator That Runs Entirely in Your Browser"
 date: 2026-07-25 09:00:00 +0800
 tags: blog
 preview_image: /images/2026-07-25-AnyQRCode/anyqrcode-site.png
+summary: A browser-only QR generator I built for posters, with a hand-written ISO encoder and no server.
 ---
 <!--more-->
 <style>

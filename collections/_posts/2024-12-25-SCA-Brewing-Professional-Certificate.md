@@ -4,6 +4,7 @@ title: "SCA CSP Brewing-Professional Certificate"
 date: 2024-12-25 10:00:00 -0500
 tags: coffee-note
 preview_image: /images/2024-12-25-SCA-Certificate-Brewing-Professional/IMG_3408.JPG
+summary: SCA Brewing Professional with Ye Kuang, from infrared syphon work to pour-over, immersion, and batch brewing.
 ---
 <!--more-->
 <style>

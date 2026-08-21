@@ -5,6 +5,7 @@ date: 2026-04-16 20:00:00 +0800
 tags: coffee-note
 preview_image: /images/2026-04-16-SCA-Registered-Instructor/sca-coffee-skills-profile-registered-instructor.png
 preview_image_object_position: left center
+summary: Passed the SCA instructor registration exam with a full score and can now teach Intro to Cupping.
 ---
 <!--more-->
 <style>

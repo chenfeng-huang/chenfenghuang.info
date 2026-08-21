@@ -4,6 +4,7 @@ title: "SCA CSP Sensory-Professional and CVA-Cupper Certificate"
 date: 2025-09-25 10:00:00 -0500
 tags: coffee-note
 preview_image: /images/2025-09-25-SCA-Certificate-Sensory-Professional/Image_20260411160339_45_302.jpg
+summary: SCA Sensory Professional and CVA-Cupper certificates, covering cupping protocol and coffee value assessment.
 ---
 <!--more-->
 <style>

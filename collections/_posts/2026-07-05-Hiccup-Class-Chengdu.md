@@ -4,6 +4,7 @@ title: "Hiccup Class in Chengdu"
 date: 2026-07-05 10:00:00 +0800
 tags: coffee-note
 preview_image: /images/2026-07-05-Hiccup-Class-Chengdu/teaching-pour-over-3.jpeg
+summary: A Chengdu coffee club afternoon where I taught my mom pour-over for the first time.
 ---
 <!--more-->
 <style>

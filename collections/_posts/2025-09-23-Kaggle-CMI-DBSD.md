@@ -4,6 +4,7 @@ title: "Kaggle Competition Silver Medal: Child Mind Institute-Detect Behavior wi
 date: 2025-09-23 10:00:00 -0500
 tags: blog
 preview_image: /images/2025-09-23-Kaggle-CMI-DBSD/Kaggle.png
+summary: Silver medal (top 1%) detecting BFRBs from wrist-worn IMU, thermopile, and time-of-flight sensors.
 ---
 <!--more-->
 <style>

@@ -6,6 +6,7 @@ tags: coffee-note
 preview_image: /images/Certificate-Collection/SCA_logo_header.jpg
 pinned: true
 no_date: true
+summary: A running gallery of SCA, Q Grader, and related coffee certificates.
 ---
 <!--more-->
 <style>
