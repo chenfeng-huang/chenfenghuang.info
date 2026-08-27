@@ -142,6 +142,31 @@ summary: Oral and poster presentation of our OMPB paper at UAI 2026, held at KIT
   font-variant-numeric: tabular-nums;
 }
 
+.video-embed {
+  max-width: 880px;
+  margin: 28px auto 8px;
+}
+.video-embed-frame {
+  /* Undo body zoom so the YouTube player fills the iframe. */
+  zoom: calc(1 / var(--page-zoom, 1));
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+.video-embed-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 </style>
 
 <div class="image-container">
@@ -155,6 +180,15 @@ I presented our paper, [“Model-Agnostic Online Certificate-Driven Calibration 
 After [the acceptance in June](/2026/06/02/UAI-Oral/), preparing the oral meant compressing the story: why i.i.d. PAC-Bayes is the wrong certificate for shifting time series, how a martingale bound gives a usable online certificate, and how a gated Bayesian head can calibrate a frozen backbone without throwing the source model away. The questions, both in the hall and later at the poster, kept coming back to that last point: when you should trust the certificate enough to adapt, and when you should fall back.
 
 Giving the talk in that room was a different experience from [ICDM last fall](/2025/11/13/ICDM_trip/). An oral leaves little time, so every slide has to earn its place. I am grateful it landed in a session on uncertainty and calibration, where the audience already cared about making those statements mean something once you leave the i.i.d. setting.
+
+The official recording of Oral Session 4 is below; the player starts at our talk.
+
+<div class="video-embed">
+  <div class="video-embed-frame">
+    <iframe src="https://www.youtube.com/embed/hukcEK1Pz7o?start=2475" title="UAI 2026 Oral session 4: Uncertainty and Calibration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+  </div>
+</div>
+<p class="poster-caption"><a href="https://youtu.be/hukcEK1Pz7o?t=2475" target="_blank" rel="noopener noreferrer">Oral session recording (YouTube)</a></p>
 
 <div class="slide-deck" data-slide-deck tabindex="0" role="region" aria-roledescription="carousel" aria-label="UAI 2026 oral slides">
   <div class="slide-deck-window">
